@@ -3,11 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Platform.Configuration;
+using Abp.AspNetCore.OData;
 
 namespace Platform.Web.Host.Startup
 {
     [DependsOn(
-       typeof(PlatformWebCoreModule))]
+       typeof(PlatformWebCoreModule), typeof(AbpAspNetCoreODataModule))]
     public class PlatformWebHostModule: AbpModule
     {
         private readonly IHostingEnvironment _env;

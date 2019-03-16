@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Formatter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using Castle.Facilities.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 using Abp.AspNetCore;
+using Abp.AspNetCore.OData.Configuration;
 using Abp.Castle.Logging.Log4Net;
 using Abp.Extensions;
 using Platform.Configuration;
 using Platform.Identity;
 
 using Abp.AspNetCore.SignalR.Hubs;
+using Platform.Professions;
+using System.Reflection;
 
 namespace Platform.Web.Host.Startup
 {
@@ -41,6 +46,7 @@ namespace Platform.Web.Host.Startup
             AuthConfigurer.Configure(services, _appConfiguration);
 
             services.AddSignalR();
+            services.AddOData();
 
             // Configure CORS for angular2 UI
             services.AddCors(
@@ -76,6 +82,20 @@ namespace Platform.Web.Host.Startup
                 });
             });
 
+
+            // Workaround: https://github.com/OData/WebApi/issues/1177
+            services.AddMvcCore(options =>
+            {
+                foreach (var outputFormatter in options.OutputFormatters.OfType<ODataOutputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+                {
+                    outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                }
+                foreach (var inputFormatter in options.InputFormatters.OfType<ODataInputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+                {
+                    inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+                }
+            });
+
             // Configure Abp and Dependency Injection
             return services.AddAbp<PlatformWebHostModule>(
                 // Configure Log4Net logging
@@ -87,7 +107,7 @@ namespace Platform.Web.Host.Startup
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
+            app.UseAbp(options => { options.UseAbpRequestLocalization = true; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
@@ -103,8 +123,31 @@ namespace Platform.Web.Host.Startup
                 routes.MapHub<AbpCommonHub>("/signalr");
             });
 
+
+            app.UseOData(builder =>
+            {
+                builder.EntitySet<Profession>("Professions").EntityType
+                        .Filter() // Allow for the $filter Command
+                        .Count() // Allow for the $count Command
+                        .Expand() // Allow for the $expand Command
+                        .OrderBy() // Allow for the $orderby Command
+                        .Page() // Allow for the $top and $skip Commands
+                        .Select();// Allow for the $select Command; 
+            });
+
+            // Return IQueryable from controllers
+            app.UseUnitOfWork(options =>
+            {
+                options.Filter = httpContext =>
+                {
+                    return httpContext.Request.Path.Value.StartsWith("/odata");
+                };
+            });
+
+
             app.UseMvc(routes =>
             {
+                routes.MapODataServiceRoute(app);
                 routes.MapRoute(
                     name: "defaultWithArea",
                     template: "{area}/{controller=Home}/{action=Index}/{id?}");

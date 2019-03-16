@@ -12,15 +12,18 @@ using Abp.Zero.Configuration;
 using Platform.Authentication.JwtBearer;
 using Platform.Configuration;
 using Platform.EntityFrameworkCore;
+using Platform.Professions;
+using Abp.AspNetCore.OData;
+using Abp.AspNetCore.OData.Configuration;
 
 namespace Platform
 {
     [DependsOn(
          typeof(PlatformApplicationModule),
          typeof(PlatformEntityFrameworkModule),
-         typeof(AbpAspNetCoreModule)
-        ,typeof(AbpAspNetCoreSignalRModule),
-        typeof(AbpWebApiODataModule)
+         typeof(AbpAspNetCoreModule),
+        typeof(AbpAspNetCoreSignalRModule),
+        typeof(AbpAspNetCoreODataModule)
      )]
     public class PlatformWebCoreModule : AbpModule
     {
@@ -48,6 +51,9 @@ namespace Platform
                  );
 
             ConfigureTokenAuth();
+
+           // var builder = Configuration.Modules.AbpAspNetCoreOData().ODataModelBuilder;
+          // builder.EntitySet<Profession>("Professions");
         }
 
         private void ConfigureTokenAuth()

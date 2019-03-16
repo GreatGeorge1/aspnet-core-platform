@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Platform.Web.Core\Platform.Web.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Abp.AspNetCore.OData" Version="4.4.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
