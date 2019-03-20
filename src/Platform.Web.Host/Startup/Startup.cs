@@ -21,6 +21,10 @@ using Platform.Identity;
 using Abp.AspNetCore.SignalR.Hubs;
 using Platform.Professions;
 using System.Reflection;
+using Platform.Web.Host.Filters;
+using Abp.IdentityServer4;
+using Platform.Authorization.Users;
+using Platform.Authentication.JwtBearer;
 
 namespace Platform.Web.Host.Startup
 {
@@ -39,7 +43,11 @@ namespace Platform.Web.Host.Startup
         {
             // MVC
             services.AddMvc(
-                options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
+                options => 
+                {
+                    options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName));
+                    options.Filters.Add<ResultFilter>();
+                }
             );
 
             IdentityRegistrar.Register(services);
@@ -96,6 +104,23 @@ namespace Platform.Web.Host.Startup
                 }
             });
 
+
+            //id4
+            services.AddIdentityServer()
+             // .AddDefaultUI(UIFramework.Bootstrap4)
+              .AddDeveloperSigningCredential()
+              .AddInMemoryIdentityResources(Config.GetIdentityResources())
+              .AddInMemoryApiResources(Config.GetApiResources())
+              .AddInMemoryClients(Config.GetClients())
+              .AddAbpPersistedGrants<IAbpPersistedGrantDbContext>()
+              .AddAbpIdentityServer<User>();
+
+            services.AddAuthentication().AddIdentityServerAuthentication("IdentityBearer", options =>
+            {
+                options.Authority = "http://localhost:21021//";
+                options.RequireHttpsMetadata = false;
+            });
+
             // Configure Abp and Dependency Injection
             return services.AddAbp<PlatformWebHostModule>(
                 // Configure Log4Net logging
@@ -114,6 +139,9 @@ namespace Platform.Web.Host.Startup
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseJwtTokenMiddleware("IdentityBearer");
+            app.UseAuthentication();
+            // app.UseIdentityServer();
 
             app.UseAbpRequestLocalization();
 
@@ -133,6 +161,13 @@ namespace Platform.Web.Host.Startup
                         .OrderBy() // Allow for the $orderby Command
                         .Page() // Allow for the $top and $skip Commands
                         .Select();// Allow for the $select Command; 
+                builder.EntitySet<Profession>("ProfessionTranslations").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand() // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
             });
 
             // Return IQueryable from controllers
