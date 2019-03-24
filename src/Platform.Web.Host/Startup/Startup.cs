@@ -25,6 +25,8 @@ using Platform.Web.Host.Filters;
 using Abp.IdentityServer4;
 using Platform.Authorization.Users;
 using Platform.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Platform.Web.Host.Startup
 {
@@ -52,7 +54,6 @@ namespace Platform.Web.Host.Startup
 
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
-
             services.AddSignalR();
             services.AddOData();
 
@@ -61,13 +62,14 @@ namespace Platform.Web.Host.Startup
                 options => options.AddPolicy(
                     _defaultCorsPolicyName,
                     builder => builder
-                        .WithOrigins(
-                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
-                            _appConfiguration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
+                        //.WithOrigins(
+                        //    // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
+                        //    _appConfiguration["App:CorsOrigins"]
+                        //        .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                        //        .Select(o => o.RemovePostFix("/"))
+                        //        .ToArray()
+                        //)
+                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials()
@@ -104,23 +106,6 @@ namespace Platform.Web.Host.Startup
                 }
             });
 
-
-            //id4
-            services.AddIdentityServer()
-             // .AddDefaultUI(UIFramework.Bootstrap4)
-              .AddDeveloperSigningCredential()
-              .AddInMemoryIdentityResources(Config.GetIdentityResources())
-              .AddInMemoryApiResources(Config.GetApiResources())
-              .AddInMemoryClients(Config.GetClients())
-              .AddAbpPersistedGrants<IAbpPersistedGrantDbContext>()
-              .AddAbpIdentityServer<User>();
-
-            services.AddAuthentication().AddIdentityServerAuthentication("IdentityBearer", options =>
-            {
-                options.Authority = "http://localhost:21021//";
-                options.RequireHttpsMetadata = false;
-            });
-
             // Configure Abp and Dependency Injection
             return services.AddAbp<PlatformWebHostModule>(
                 // Configure Log4Net logging
@@ -132,16 +117,32 @@ namespace Platform.Web.Host.Startup
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            var pathBase = _appConfiguration["PATH_BASE"];
+            if (!string.IsNullOrEmpty(pathBase))
+            {
+                app.UsePathBase(pathBase);
+            }
+
+            var forwardOptions = new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+                RequireHeaderSymmetry = false
+            };
+
+            forwardOptions.KnownNetworks.Clear();
+            forwardOptions.KnownProxies.Clear();
+
             app.UseAbp(options => { options.UseAbpRequestLocalization = true; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
+            app.UseForwardedHeaders(forwardOptions);
+
             app.UseStaticFiles();
 
             app.UseAuthentication();
-            app.UseJwtTokenMiddleware("IdentityBearer");
-            app.UseAuthentication();
-            // app.UseIdentityServer();
+            //app.UseJwtTokenMiddleware("IdentityBearer");
+            //app.UseIdentityServer();
 
             app.UseAbpRequestLocalization();
 
@@ -197,7 +198,7 @@ namespace Platform.Web.Host.Startup
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint(_appConfiguration["App:ServerRootAddress"].EnsureEndsWith('/') + "swagger/v1/swagger.json", "Platform API V1");
+                options.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "Platform API V1");
                 options.IndexStream = () => Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream("Platform.Web.Host.wwwroot.swagger.ui.index.html");
             }); // URL: /swagger

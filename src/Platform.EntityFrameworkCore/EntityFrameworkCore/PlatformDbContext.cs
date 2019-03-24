@@ -5,6 +5,7 @@ using Platform.Authorization.Users;
 using Platform.MultiTenancy;
 using Platform.Professions;
 using Abp.IdentityServer4;
+using Abp.Localization;
 
 namespace Platform.EntityFrameworkCore
 {
@@ -26,6 +27,9 @@ namespace Platform.EntityFrameworkCore
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ConfigurePersistedGrantEntity();
+            modelBuilder.Entity<ApplicationLanguageText>()
+               .Property(p => p.Value)
+               .HasMaxLength(100); // any integer that is smaller than 10485760
         }
     }
 }
