@@ -21,5 +21,7 @@ namespace Platform.Professions
         public bool IsActive { get; set; }
 
         public ICollection<ProfessionTranslations> Translations { get; set; }
+
+        public ICollection<Block> Blocks { get; set; }
     }
 }

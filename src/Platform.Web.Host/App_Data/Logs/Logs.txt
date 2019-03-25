@@ -6019,3 +6019,225 @@ INFO  2019-03-24 17:04:01,978 [5    ] soft.AspNetCore.Hosting.Internal.WebHost -
 INFO  2019-03-24 17:04:01,987 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 330.3232ms 200 text/css
 INFO  2019-03-24 17:04:02,056 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:32768/swagger/v1/swagger.json  
 INFO  2019-03-24 17:04:02,397 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 333.5414ms 200 application/json;charset=utf-8
+DEBUG 2019-03-25 20:55:18,012 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-03-25 20:55:18,152 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-03-25 20:55:18,177 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.Web.Host.Startup.PlatformWebHostModule, Platform.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,180 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformWebCoreModule, Platform.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformApplicationModule, Platform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformCoreModule, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.EntityFrameworkCore.PlatformEntityFrameworkModule, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerEntityFrameworkCoreModule, Abp.ZeroCore.IdentityServer4.EntityFrameworkCore, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerModule, Abp.ZeroCore.IdentityServer4, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,185 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,185 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,185 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,185 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.OData.AbpAspNetCoreODataModule, Abp.AspNetCore.OData, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:18,189 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-03-25 20:55:18,279 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-03-25 20:55:18,279 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-03-25 20:55:18,280 [1    ] o.Configuration.LanguageManagementConfig - Converted Platform (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-03-25 20:55:18,280 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-03-25 20:55:18,745 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Platform.EntityFrameworkCore.PlatformDbContext, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-03-25 20:55:20,104 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-03-25 20:55:20,195 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-03-25 20:55:20,242 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-03-25 20:55:20,263 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Platform
+DEBUG 2019-03-25 20:55:20,292 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-03-25 20:55:20,512 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-03-25 20:55:20,571 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 14 classes define auto mapping attributes
+DEBUG 2019-03-25 20:55:20,571 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-03-25 20:55:20,579 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.CreateUserDto
+DEBUG 2019-03-25 20:55:20,580 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.UserDto
+DEBUG 2019-03-25 20:55:20,580 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-03-25 20:55:20,581 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-03-25 20:55:20,581 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.CreateRoleDto
+DEBUG 2019-03-25 20:55:20,581 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.PermissionDto
+DEBUG 2019-03-25 20:55:20,581 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.RoleDto
+DEBUG 2019-03-25 20:55:20,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-03-25 20:55:20,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.TenantDto
+DEBUG 2019-03-25 20:55:20,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionDto
+DEBUG 2019-03-25 20:55:20,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionGetDto
+DEBUG 2019-03-25 20:55:20,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionTranslationsDto
+DEBUG 2019-03-25 20:55:20,582 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionUpdateDto
+INFO  2019-03-25 20:55:29,960 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-03-25 20:55:34,836 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host)
+INFO  2019-03-25 20:55:36,496 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) - Validation state: Valid
+INFO  2019-03-25 20:55:36,503 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 2.3126ms.
+INFO  2019-03-25 20:55:36,923 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-03-25 20:55:36,942 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) in 2098.0936ms
+INFO  2019-03-25 20:55:37,022 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7065.3287ms 302 
+INFO  2019-03-25 20:55:37,037 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-03-25 20:55:37,318 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 281.5397ms 200 text/html
+INFO  2019-03-25 20:55:37,394 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-03-25 20:55:37,426 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-03-25 20:55:37,429 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-03-25 20:55:37,457 [6    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLHADPJS546", Request id "0HLLHADPJS546:00000003": the application aborted the connection.
+INFO  2019-03-25 20:55:37,465 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-03-25 20:55:37,478 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 74.6223ms 0 text/css
+INFO  2019-03-25 20:55:37,480 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'D:\Projects\Lab\platform\aspnet-core\src\Platform.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2019-03-25 20:55:37,486 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'D:\Projects\Lab\platform\aspnet-core\src\Platform.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2019-03-25 20:55:37,489 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 95.9873ms 200 application/javascript
+INFO  2019-03-25 20:55:37,493 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 104.149ms 200 application/javascript
+INFO  2019-03-25 20:55:37,773 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/favicon-16x16.png  
+INFO  2019-03-25 20:55:37,777 [10   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLHADPJS548", Request id "0HLLHADPJS548:00000002": the application aborted the connection.
+INFO  2019-03-25 20:55:37,780 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+INFO  2019-03-25 20:55:37,783 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 30.6255ms 0 image/png
+INFO  2019-03-25 20:55:37,867 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-03-25 20:55:38,173 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 304.4234ms 200 application/json;charset=utf-8
+INFO  2019-03-25 20:55:43,093 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-03-25 20:55:43,144 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 20.6078ms 200 application/json;charset=utf-8
+INFO  2019-03-25 20:55:45,718 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata  
+INFO  2019-03-25 20:55:45,809 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetServiceDocument", controller = "Metadata", area = ""}. Executing action Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData)
+INFO  2019-03-25 20:55:45,852 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData) - Validation state: Valid
+INFO  2019-03-25 20:55:45,862 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 6.7457ms.
+INFO  2019-03-25 20:55:46,026 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.OData.ODataServiceDocument'.
+INFO  2019-03-25 20:55:46,174 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData) in 361.6911ms
+INFO  2019-03-25 20:55:46,178 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 459.0856ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:56:02,642 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions  
+INFO  2019-03-25 20:56:02,679 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:56:02,990 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:56:02,996 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.6632ms.
+INFO  2019-03-25 20:56:03,153 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1[[Platform.Professions.Profession, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+INFO  2019-03-25 20:56:03,493 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 793.0368ms
+INFO  2019-03-25 20:56:03,577 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 931.0907ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:56:29,966 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$extend=Blocks  
+INFO  2019-03-25 20:56:29,989 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:56:30,028 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:56:30,032 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.3968ms.
+INFO  2019-03-25 20:56:30,274 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:56:30,290 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 297.7345ms
+INFO  2019-03-25 20:56:30,345 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 376.8623ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:56:44,044 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions$extend=Blocks  
+INFO  2019-03-25 20:56:44,069 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.5059ms 404 
+INFO  2019-03-25 20:56:44,140 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/favicon.ico  
+INFO  2019-03-25 20:56:44,147 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7.6475ms 404 
+INFO  2019-03-25 20:56:49,616 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions/$extend=Blocks  
+INFO  2019-03-25 20:56:49,646 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 30.1719ms 404 
+INFO  2019-03-25 20:57:30,507 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions  
+INFO  2019-03-25 20:57:30,513 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:57:30,549 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:57:30,554 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.7475ms.
+INFO  2019-03-25 20:57:30,688 [14   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1[[Platform.Professions.Profession, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+INFO  2019-03-25 20:57:30,747 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 230.7757ms
+INFO  2019-03-25 20:57:30,816 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 304.6841ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:57:35,246 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/$metadata  
+INFO  2019-03-25 20:57:35,255 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetMetadata", controller = "Metadata", area = ""}. Executing action Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData)
+INFO  2019-03-25 20:57:35,289 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData) - Validation state: Valid
+INFO  2019-03-25 20:57:35,292 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.0241ms.
+INFO  2019-03-25 20:57:35,414 [14   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.OData.Edm.EdmModel'.
+INFO  2019-03-25 20:57:35,552 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData) in 293.1618ms
+INFO  2019-03-25 20:57:35,596 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 309.3231ms 200 application/xml; charset=utf-8
+INFO  2019-03-25 20:57:35,646 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/$metadata  
+INFO  2019-03-25 20:57:35,660 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetMetadata", controller = "Metadata", area = ""}. Executing action Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData)
+INFO  2019-03-25 20:57:35,699 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData) - Validation state: Valid
+INFO  2019-03-25 20:57:35,703 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.1208ms.
+INFO  2019-03-25 20:57:35,815 [14   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.OData.Edm.EdmModel'.
+INFO  2019-03-25 20:57:35,820 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Microsoft.AspNet.OData.MetadataController.GetMetadata (Microsoft.AspNetCore.OData) in 156.3567ms
+INFO  2019-03-25 20:57:35,827 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 178.9299ms 200 application/xml; charset=utf-8
+INFO  2019-03-25 20:57:52,450 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$extnd=Block  
+INFO  2019-03-25 20:57:52,469 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:57:52,505 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:57:52,508 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.9189ms.
+INFO  2019-03-25 20:57:52,628 [16   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:57:52,632 [16   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 159.5594ms
+INFO  2019-03-25 20:57:52,706 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 269.8373ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:57:55,488 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$extend=Block  
+INFO  2019-03-25 20:57:55,495 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:57:55,532 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:57:55,535 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.3603ms.
+INFO  2019-03-25 20:57:55,661 [14   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:57:55,665 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 166.4322ms
+INFO  2019-03-25 20:57:55,726 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 237.6895ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:58:24,823 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$extend=Block  
+INFO  2019-03-25 20:58:24,830 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:58:24,873 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:58:24,878 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.8928ms.
+INFO  2019-03-25 20:58:25,011 [15   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:58:25,014 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 181.3125ms
+INFO  2019-03-25 20:58:25,075 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 249.8019ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:58:40,038 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Block  
+INFO  2019-03-25 20:58:40,044 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:58:40,086 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:58:40,091 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.1738ms.
+INFO  2019-03-25 20:58:40,291 [19   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:58:40,294 [19   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 246.954ms
+INFO  2019-03-25 20:58:40,358 [19   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 316.2326ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:58:44,313 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks  
+INFO  2019-03-25 20:58:44,321 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:58:44,359 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:58:44,363 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.8434ms.
+INFO  2019-03-25 20:58:44,607 [15   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[Microsoft.AspNet.OData.Query.Expressions.SelectExpandBinder+SelectAllAndExpand`1[[Platform.Professions.Profession, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], Microsoft.AspNetCore.OData, Version=7.1.0.21120, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]'.
+INFO  2019-03-25 20:58:44,949 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 624.4742ms
+INFO  2019-03-25 20:58:45,009 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 694.7612ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:59:31,645 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks&$expand=Steps  
+INFO  2019-03-25 20:59:31,657 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 9.6292ms 404 
+INFO  2019-03-25 20:59:31,779 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/favicon.ico  
+INFO  2019-03-25 20:59:31,806 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 48.2034ms 0 
+INFO  2019-03-25 20:59:39,346 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks/$expand=Steps  
+INFO  2019-03-25 20:59:39,355 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:59:39,395 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:59:39,401 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.8316ms.
+INFO  2019-03-25 20:59:39,530 [15   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:59:39,534 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 175.2439ms
+INFO  2019-03-25 20:59:39,593 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 245.2715ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:59:44,771 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks/?$expand=Steps  
+INFO  2019-03-25 20:59:44,777 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:59:44,813 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:59:44,817 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.9505ms.
+INFO  2019-03-25 20:59:44,945 [15   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:59:44,949 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 167.821ms
+INFO  2019-03-25 20:59:45,010 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 239.9178ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 20:59:51,356 [20   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks/$expand=Steps  
+INFO  2019-03-25 20:59:51,364 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 20:59:51,409 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 20:59:51,416 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.2269ms.
+INFO  2019-03-25 20:59:51,545 [18   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 20:59:51,548 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 180.5244ms
+INFO  2019-03-25 20:59:51,610 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 253.5345ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 21:00:12,502 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks/Blocks?$expand=Steps  
+INFO  2019-03-25 21:00:12,508 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 21:00:12,545 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 21:00:12,549 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.9154ms.
+INFO  2019-03-25 21:00:12,685 [23   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.SerializableError'.
+INFO  2019-03-25 21:00:12,688 [23   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 176.8769ms
+INFO  2019-03-25 21:00:12,751 [23   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 248.2987ms 400 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 21:00:20,332 [20   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Professions?$expand=Blocks&Blocks?$expand=Steps  
+INFO  2019-03-25 21:00:20,342 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Professions", area = ""}. Executing action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core)
+INFO  2019-03-25 21:00:20,380 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-03-25 21:00:20,385 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.ProfessionsController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.1293ms.
+INFO  2019-03-25 21:00:20,504 [23   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[Microsoft.AspNet.OData.Query.Expressions.SelectExpandBinder+SelectAllAndExpand`1[[Platform.Professions.Profession, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], Microsoft.AspNetCore.OData, Version=7.1.0.21120, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]'.
+INFO  2019-03-25 21:00:20,708 [23   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.ProfessionsController.Get (Platform.Web.Core) in 338.1613ms
+INFO  2019-03-25 21:00:20,770 [23   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 438.4179ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-03-25 21:02:49,467 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/TokenAuth/Authenticate application/json;odata.metadata=minimal;odata.streaming=true 90
+WARN  2019-03-25 21:02:49,482 [29   ] pNetCore.Cors.Infrastructure.CorsService - The CORS protocol does not allow specifying a wildcard (any) origin and credentials at the same time. Configure the policy by listing individual origins if credentials needs to be supported.
+INFO  2019-03-25 21:02:49,487 [29   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-03-25 21:02:49,546 [29   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Authenticate", controller = "TokenAuth", area = ""}. Executing action Platform.Controllers.TokenAuthController.Authenticate (Platform.Web.Core)
+WARN  2019-03-25 21:02:49,550 [29   ] pNetCore.Cors.Infrastructure.CorsService - The CORS protocol does not allow specifying a wildcard (any) origin and credentials at the same time. Configure the policy by listing individual origins if credentials needs to be supported.
+INFO  2019-03-25 21:02:49,553 [29   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-03-25 21:02:50,631 [29   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.TokenAuthController.Authenticate (Platform.Web.Core) with arguments (Platform.Models.TokenAuth.AuthenticateModel) - Validation state: Valid
+WARN  2019-03-25 21:02:52,336 [27   ] Mvc.ExceptionHandling.AbpExceptionFilter - Login failed!
+Abp.UI.UserFriendlyException: Login failed!
+   at Platform.Controllers.TokenAuthController.GetLoginResultAsync(String usernameOrEmailAddress, String password, String tenancyName) in D:\Projects\Lab\platform\aspnet-core\src\Platform.Web.Core\Controllers\TokenAuthController.cs:line 192
+   at Platform.Controllers.TokenAuthController.Authenticate(AuthenticateModel model) in D:\Projects\Lab\platform\aspnet-core\src\Platform.Web.Core\Controllers\TokenAuthController.cs:line 55
+   at lambda_method(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2019-03-25 21:02:52,352 [27   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-03-25 21:02:52,374 [27   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.TokenAuthController.Authenticate (Platform.Web.Core) in 2825.1281ms
+INFO  2019-03-25 21:02:52,384 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2913.6052ms 500 application/json; charset=utf-8
+DEBUG 2019-03-25 21:09:28,215 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2019-03-25 21:09:28,218 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-03-25 21:09:28,220 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-03-25 21:09:28,220 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.

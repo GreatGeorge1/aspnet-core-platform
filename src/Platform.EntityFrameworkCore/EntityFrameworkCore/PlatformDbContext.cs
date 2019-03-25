@@ -14,6 +14,13 @@ namespace Platform.EntityFrameworkCore
         /* Define a DbSet for each entity of the application */
         public DbSet<Profession> Professions { get; set; }
         public DbSet<ProfessionTranslations> ProfessionTranslations { get; set; }
+        public DbSet<Block> Blocks { get; set; }
+        public DbSet<BlockTranslations> BlockTranslations { get; set; }
+        public DbSet<StepInfo> StepInfos { get; set; }
+        public DbSet<StepTest> StepTests { get; set; }
+        public DbSet<StepTranslations>  StepTranslations{get;set;}
+        public DbSet<Answer> Answers { get; set; }
+
         public DbSet<PersistedGrantEntity> PersistedGrants { get; set; }
 
         public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
@@ -30,6 +37,22 @@ namespace Platform.EntityFrameworkCore
             modelBuilder.Entity<ApplicationLanguageText>()
                .Property(p => p.Value)
                .HasMaxLength(100); // any integer that is smaller than 10485760
+
+            modelBuilder.Entity<Profession>()
+                .HasMany(p => p.Blocks)
+                .WithOne(b => b.Profession)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<StepBase>()
+                .ToTable("Steps")
+                .HasDiscriminator<string>("StepType")
+                .HasValue<StepInfo>("Info")
+                .HasValue<StepTest>("Test");
+
+            modelBuilder.Entity<Block>()
+                .HasMany(b => b.Steps)
+                .WithOne(s => s.Block)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

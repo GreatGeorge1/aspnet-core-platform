@@ -12,5 +12,6 @@ namespace Platform.Professions
         Task UpdateProfessionAsync(ProfessionUpdateDto input);
         Task<IEnumerable<ProfessionListDto>> GetProfessions();
         Task<IEnumerable<ProfessionUpdateDto>> GetProfessionsAll();
+
     }
 }

@@ -11,4 +11,9 @@ namespace Platform.Professions.Dtos
         public int MinScore { get; set; }
         public ICollection<ProfessionTranslationsDto> Translations { get; set; }
     }
+    [AutoMap(typeof(Profession))]
+    public class ProfessionGetDto : ProfessionDto
+    {
+        public long Id { get; set; }
+    }
 }

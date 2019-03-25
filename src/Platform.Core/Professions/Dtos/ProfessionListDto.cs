@@ -12,4 +12,5 @@ namespace Platform.Professions.Dtos
         public string Description { get; set; }
         public string Base64Image { get; set; }
     }
+
 }
