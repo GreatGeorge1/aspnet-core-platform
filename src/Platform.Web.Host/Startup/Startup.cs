@@ -27,6 +27,8 @@ using Platform.Authorization.Users;
 using Platform.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
+using Platform.Packages;
+using Platform.Events;
 
 namespace Platform.Web.Host.Startup
 {
@@ -122,24 +124,17 @@ namespace Platform.Web.Host.Startup
             {
                 app.UsePathBase(pathBase);
             }
-
-            var forwardOptions = new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-                RequireHeaderSymmetry = false
-            };
-
-            forwardOptions.KnownNetworks.Clear();
-            forwardOptions.KnownProxies.Clear();
-
+          
             app.UseAbp(options => { options.UseAbpRequestLocalization = true; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
-            app.UseForwardedHeaders(forwardOptions);
-
             app.UseStaticFiles();
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseAuthentication();
             //app.UseJwtTokenMiddleware("IdentityBearer");
             //app.UseIdentityServer();
@@ -163,6 +158,20 @@ namespace Platform.Web.Host.Startup
                         .Page() // Allow for the $top and $skip Commands
                         .Select();// Allow for the $select Command; 
                 builder.EntitySet<Profession>("ProfessionTranslations").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand() // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+                builder.EntitySet<Package>("Packages").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand() // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+                builder.EntitySet<Event>("Events").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
                        .Expand() // Allow for the $expand Command

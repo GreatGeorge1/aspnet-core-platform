@@ -6,6 +6,8 @@ using Platform.MultiTenancy;
 using Platform.Professions;
 using Abp.IdentityServer4;
 using Abp.Localization;
+using Platform.Packages;
+using Platform.Events;
 
 namespace Platform.EntityFrameworkCore
 {
@@ -20,6 +22,14 @@ namespace Platform.EntityFrameworkCore
         public DbSet<StepTest> StepTests { get; set; }
         public DbSet<StepTranslations>  StepTranslations{get;set;}
         public DbSet<Answer> Answers { get; set; }
+
+        public DbSet<Package> Packages { get; set; }
+        public DbSet<PackageTranslations> GetPackageTranslations { get; set; }
+        public DbSet<PackageProfession> PackageProfessions { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventTranslations> EventTranslations { get; set; }
+        public DbSet<EventProfession> EventProfessions { get; set; }
 
         public DbSet<PersistedGrantEntity> PersistedGrants { get; set; }
 
@@ -53,6 +63,29 @@ namespace Platform.EntityFrameworkCore
                 .HasMany(b => b.Steps)
                 .WithOne(s => s.Block)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PackageProfession>()
+                .HasKey(pp => new { pp.PackageId, pp.ProfessionId });
+            modelBuilder.Entity<PackageProfession>()
+                .HasOne(pp => pp.Package)
+                .WithMany(pp => pp.PackageProfessions)
+                .HasForeignKey(pp => pp.PackageId);
+            modelBuilder.Entity<PackageProfession>()
+                .HasOne(pp => pp.Profession)
+                .WithMany(pp => pp.PackageProfessions)
+                .HasForeignKey(pp => pp.ProfessionId);
+
+            modelBuilder.Entity<EventProfession>()
+                .HasKey(ep => new { ep.EventId, ep.ProfessionId });
+            modelBuilder.Entity<EventProfession>()
+                .HasOne(ep => ep.Event)
+                .WithMany(ep => ep.EventProfessions)
+                .HasForeignKey(ep => ep.EventId);
+            modelBuilder.Entity<EventProfession>()
+                .HasOne(ep => ep.Profession)
+                .WithMany(ep => ep.EventProfessions)
+                .HasForeignKey(ep => ep.ProfessionId);
+
         }
     }
 }
