@@ -32,22 +32,22 @@ namespace Platform.Professions
             block.Translations.Add(translation);
         }
 
-        public async Task<BlockReplyOkDto> CreateBlock(CreateBlockDto input)
-        {
-            var block = ObjectMapper.Map<Block>(input);
-            var newid = await repository.InsertAndGetIdAsync(block);
-            return new BlockReplyOkDto { id = newid, message = "created" };
-        }
+        //public async Task<BlockReplyOkDto> CreateBlock(CreateBlockDto input)
+        //{
+        //    var block = ObjectMapper.Map<Block>(input);
+        //    var newid = await repository.InsertAndGetIdAsync(block);
+        //    return new BlockReplyOkDto { id = newid, message = "created" };
+        //}
 
-        public async Task<BlockReplyOkDto> CreateCopy(long id)
-        {
-            var block= await repository.GetAllIncluding(p => p.Translations)
-               .FirstOrDefaultAsync(p => p.Id == id);
-            var newblockdto = ObjectMapper.Map(block, new CreateBlockDto());
-            var newblock = ObjectMapper.Map(newblockdto, new Block());
-            var newid = await repository.InsertAndGetIdAsync(newblock);
-            return new BlockReplyOkDto { id = newid, message = "created" };
-        }
+        //public async Task<BlockReplyOkDto> CreateCopy(long id)
+        //{
+        //    var block= await repository.GetAllIncluding(p => p.Translations)
+        //       .FirstOrDefaultAsync(p => p.Id == id);
+        //    var newblockdto = ObjectMapper.Map(block, new CreateBlockDto());
+        //    var newblock = ObjectMapper.Map(newblockdto, new Block());
+        //    var newid = await repository.InsertAndGetIdAsync(newblock);
+        //    return new BlockReplyOkDto { id = newid, message = "created" };
+        //}
 
         public async Task<BlockReplyOkDto> DeleteBlock(long id)
         {

@@ -12,11 +12,11 @@ namespace Platform.Professions
         Task<ProfessionReplyOkDto> CreateCopy(long id);
         Task<ProfessionReplyOkDto> UpdateProfession(ProfessionUpdateDto input);
         Task<ProfessionReplyOkDto> DeleteProfession(long id);
-        Task<IEnumerable<GetProfessionsDto>> GetProfessions();
+        //Task<IEnumerable<GetProfessionsDto>> GetProfessions();
         Task<GetProfessionDto> GetProfession(long id);
         Task<GetProfessionAllDto> GetProfessionAll(long id);
-        Task<IEnumerable<GetProfessionAllDto>> GetProfessionsAll();
-        Task AddBlock(AddBlockDto input);
+        //Task<IEnumerable<GetProfessionAllDto>> GetProfessionsAll();
+        Task AddBlock(AddBlockDto input, long id);
         Task RemoveBlock(RemoveBlockDto input);
         Task AddTranslation(AddProfessionTranslationDto input, long id);
         Task UpdateTranslation(UpdateProfessionTranslationDto input);

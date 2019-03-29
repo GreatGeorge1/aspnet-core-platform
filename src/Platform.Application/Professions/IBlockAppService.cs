@@ -8,8 +8,8 @@ namespace Platform.Professions
 {
     public interface IBlockAppService
     {
-        Task<BlockReplyOkDto> CreateCopy(long id);
-        Task<BlockReplyOkDto> CreateBlock(CreateBlockDto input);
+        //Task<BlockReplyOkDto> CreateCopy(long id);
+        //Task<BlockReplyOkDto> CreateBlock(CreateBlockDto input);
         Task<BlockReplyOkDto> UpdateBlock(UpdateBlockDto input);
         Task<BlockReplyOkDto> DeleteBlock(long id);
        // Task AddStep(AddStepDto input);

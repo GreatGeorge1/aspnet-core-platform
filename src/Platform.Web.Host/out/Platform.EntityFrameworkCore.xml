@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Platform.EntityFrameworkCore</name>
+    </assembly>
+    <members>
+        <member name="T:Platform.EntityFrameworkCore.Repositories.PlatformRepositoryBase`2">
+            <summary>
+            Base class for custom repositories of the application.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <typeparam name="TPrimaryKey">Primary key type of the entity</typeparam>
+        </member>
+        <member name="T:Platform.EntityFrameworkCore.Repositories.PlatformRepositoryBase`1">
+            <summary>
+            Base class for custom repositories of the application.
+            This is a shortcut of <see cref="T:Platform.EntityFrameworkCore.Repositories.PlatformRepositoryBase`2"/> for <see cref="T:System.Int32"/> primary key.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+        </member>
+    </members>
+</doc>

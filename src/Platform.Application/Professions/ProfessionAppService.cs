@@ -25,13 +25,14 @@ namespace Platform.Professions
             _blockRepository = blockRepository;
         }
 
-        public async Task AddBlock(AddBlockDto input)
+        public async Task AddBlock(AddBlockDto input, long id)
         {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
-                .FirstOrDefaultAsync(p => p.Id == input.ProfessionId);
-            var block =await _blockRepository.GetAllIncluding(p => p.Translations)
-                .FirstOrDefaultAsync(p => p.Id == input.BlockId);
-            prof.Blocks.Add(block);
+            var prof = await _professionRepository.FirstOrDefaultAsync(p => p.Id == id);
+            var block = ObjectMapper.Map<Block>(input);
+            var newid=await _blockRepository.InsertAndGetIdAsync(block);
+            var b= await _blockRepository.FirstOrDefaultAsync(p => p.Id == newid);
+            //prof.Blocks.Add(b);
+            b.Profession = prof;
         }
 
         public async Task AddTranslation(AddProfessionTranslationDto input, long id)
@@ -92,17 +93,17 @@ namespace Platform.Professions
             return new ProfessionReplyOkDto { id = newid, message = "created" };
         }
 
-        public async Task<IEnumerable<GetProfessionsDto>> GetProfessions()
-        {
-            var profs = await _professionRepository.GetAllIncluding(p => p.Translations)
-               .ToListAsync();
-            var res = new List<GetProfessionsDto>();
-            foreach (var item in profs)
-            {
-                res.Add(ObjectMapper.Map(item, new GetProfessionsDto()));
-            }
-            return res;
-        }
+        //public async Task<IEnumerable<GetProfessionsDto>> GetProfessions()
+        //{
+        //    var profs = await _professionRepository.GetAllIncluding(p => p.Translations)
+        //       .ToListAsync();
+        //    var res = new List<GetProfessionsDto>();
+        //    foreach (var item in profs)
+        //    {
+        //        res.Add(ObjectMapper.Map(item, new GetProfessionsDto()));
+        //    }
+        //    return res;
+        //}
 
         public async Task<ProfessionReplyOkDto> UpdateProfession(ProfessionUpdateDto input)
         {
@@ -132,17 +133,17 @@ namespace Platform.Professions
             return res;
         }
 
-        public async Task<IEnumerable<GetProfessionAllDto>> GetProfessionsAll()
-        {
-            var profs = await _professionRepository.GetAllIncluding(p => p.Translations)
-              .ToListAsync();
-            var res = new List<GetProfessionAllDto>();
-            foreach (var item in profs)
-            {
-                res.Add(ObjectMapper.Map(item, new GetProfessionAllDto()));
-            }
-            return res;
-        }
+        //public async Task<IEnumerable<GetProfessionAllDto>> GetProfessionsAll()
+        //{
+        //    var profs = await _professionRepository.GetAllIncluding(p => p.Translations)
+        //      .ToListAsync();
+        //    var res = new List<GetProfessionAllDto>();
+        //    foreach (var item in profs)
+        //    {
+        //        res.Add(ObjectMapper.Map(item, new GetProfessionAllDto()));
+        //    }
+        //    return res;
+        //}
 
         public async Task RemoveBlock(RemoveBlockDto input)
         {
@@ -150,7 +151,9 @@ namespace Platform.Professions
               .FirstOrDefaultAsync(p => p.Id == input.ProfessionId);
             var block= await _blockRepository.GetAllIncluding(p => p.Translations)
               .FirstOrDefaultAsync(p => p.Id == input.BlockId);
-            prof.Blocks.Remove(block);
+            //prof.Blocks.Remove(block);
+            block.IsActive = false;
+            block.IsDeleted = true;
         }
     }
 }

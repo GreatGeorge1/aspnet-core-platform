@@ -75,7 +75,7 @@ namespace Platform.Web.Host.Startup
                         .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowCredentials()
+                       // .AllowCredentials()
                 )
             );
 
@@ -93,9 +93,9 @@ namespace Platform.Web.Host.Startup
                     In = "header",
                     Type = "apiKey"
                 });
-                var xml1 = "../Docs/Platform.Web.Core.xml";
-                var xml2 = "D:\\Projects\\Lab\\platform\\aspnet-core\\src\\DocsPlatform.Application.xml";
-                options.IncludeXmlComments(xml1);
+               // var xml1 = "../Docs/Platform.Web.Core.xml";
+               // var xml2 = "D:\\Projects\\Lab\\platform\\aspnet-core\\src\\DocsPlatform.Application.xml";
+               // options.IncludeXmlComments(xml1);
 
             });
 
