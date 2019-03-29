@@ -13,12 +13,8 @@ namespace Platform.Professions
 {
     [Audited]
    // [Table("AppProfessions")]
-    public class Profession : AuditedEntity<long>, IDeletionAudited, IPassivable, IMultiLingualEntity<ProfessionTranslations>
+    public class Profession : FullAuditedEntity<long>, IPassivable, IMultiLingualEntity<ProfessionTranslations>
     {
-        public bool IsDeleted { get; set; }
-        public long? DeleterUserId { get; set; }
-        public DateTime? DeletionTime { get; set; }
-
         public virtual int? MinScore { get; set; }
         public bool IsActive { get; set; }
 

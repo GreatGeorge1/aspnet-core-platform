@@ -9,11 +9,8 @@ using System.Text;
 namespace Platform.Professions
 {
     [Audited]
-    public class Block : AuditedEntity<long>, IDeletionAudited, IPassivable, IMultiLingualEntity<BlockTranslations>
+    public class Block : FullAuditedEntity<long>, IPassivable, IMultiLingualEntity<BlockTranslations>
     {
-        public long? DeleterUserId { get; set; }
-        public DateTime? DeletionTime { get; set; }
-        public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
         public ICollection<BlockTranslations> Translations { get; set; }
 
@@ -25,19 +22,18 @@ namespace Platform.Professions
     }
 
     [Audited]
-    public class BlockTranslations : AuditedEntity<long>, IEntityTranslation<Block, long>, IDeletionAudited, IPassivable, IMedia
+    public class BlockTranslations : FullAuditedEntity<long>, IPassivable, IEntityTranslation<Block, long>, IMedia
     {
         public Block Core { get; set; }
         public long CoreId { get; set; }
         public string Language { get; set; }
-        public long? DeleterUserId { get; set; }
-        public DateTime? DeletionTime { get; set; }
-        public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
 
         [MaxLength(300)]
         public string Title { get; set; }
         public string Description { get; set; }
         public string Base64Image { get; set; }
+        [Url]
+        public string VideoUrl { get; set; }
     }
 }

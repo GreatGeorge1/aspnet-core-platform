@@ -1,11 +1,12 @@
 ﻿using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using System.ComponentModel.DataAnnotations;
 
 namespace Platform.Professions
 {
     [Audited]
-    public class AnswerTranslation : AuditedEntity<long>, IEntityTranslation<Answer>,IMedia
+    public class AnswerTranslation : FullAuditedEntity<long>, IPassivable, IEntityTranslation<Answer>,IMedia
     {
         public Answer Core { get; set; }
         public int CoreId { get; set; }
@@ -13,5 +14,8 @@ namespace Platform.Professions
         public string Title { get; set; }
         public string Description { get; set; }
         public string Base64Image { get; set; }
+        [Url]
+        public string VideoUrl { get; set; }
+        public bool IsActive { get; set; }
     }
 }

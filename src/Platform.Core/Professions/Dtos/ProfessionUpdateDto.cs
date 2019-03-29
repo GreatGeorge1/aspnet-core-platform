@@ -8,6 +8,7 @@ namespace Platform.Professions.Dtos
     [AutoMap(typeof(Profession))]
     public class ProfessionUpdateDto:ProfessionDto
     {
-        public long Id;
+        public long Id { get; set; }
+        public bool IsActive { get; set; }
     }
 }

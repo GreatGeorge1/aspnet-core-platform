@@ -44,6 +44,9 @@ namespace Platform
                 ProfessionListDtoMapper.CreateMappings(configuration, new MultiLingualMapContext(
                     IocManager.Resolve<ISettingManager>()
                 ));
+                BlockDtoMapper.CreateMappings(configuration, new MultiLingualMapContext(
+                    IocManager.Resolve<ISettingManager>()
+                ));
             });
         }
 

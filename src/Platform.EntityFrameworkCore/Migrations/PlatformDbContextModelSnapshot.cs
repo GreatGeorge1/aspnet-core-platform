@@ -1041,6 +1041,89 @@ namespace Platform.Migrations
                     b.ToTable("AbpUsers");
                 });
 
+            modelBuilder.Entity("Platform.Events.Event", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<DateTime?>("DateEnd");
+
+                    b.Property<DateTime>("DateStart");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("Platform.Events.EventProfession", b =>
+                {
+                    b.Property<long>("EventId");
+
+                    b.Property<long>("ProfessionId");
+
+                    b.HasKey("EventId", "ProfessionId");
+
+                    b.HasIndex("ProfessionId");
+
+                    b.ToTable("EventProfessions");
+                });
+
+            modelBuilder.Entity("Platform.Events.EventTranslations", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Base64Image");
+
+                    b.Property<long>("CoreId");
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Language");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("VideoUrl");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoreId");
+
+                    b.ToTable("EventTranslations");
+                });
+
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
                 {
                     b.Property<int>("Id")
@@ -1090,6 +1173,87 @@ namespace Platform.Migrations
                     b.ToTable("AbpTenants");
                 });
 
+            modelBuilder.Entity("Platform.Packages.Package", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<decimal>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Packages");
+                });
+
+            modelBuilder.Entity("Platform.Packages.PackageProfession", b =>
+                {
+                    b.Property<long>("PackageId");
+
+                    b.Property<long>("ProfessionId");
+
+                    b.HasKey("PackageId", "ProfessionId");
+
+                    b.HasIndex("ProfessionId");
+
+                    b.ToTable("PackageProfessions");
+                });
+
+            modelBuilder.Entity("Platform.Packages.PackageTranslations", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Base64Image");
+
+                    b.Property<long>("CoreId");
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Language");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("VideoUrl");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CoreId");
+
+                    b.ToTable("PackageTranslations");
+                });
+
             modelBuilder.Entity("Platform.Professions.Answer", b =>
                 {
                     b.Property<long>("Id")
@@ -1137,7 +1301,15 @@ namespace Platform.Migrations
 
                     b.Property<long?>("CreatorUserId");
 
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
                     b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Language");
 
@@ -1146,6 +1318,8 @@ namespace Platform.Migrations
                     b.Property<long?>("LastModifierUserId");
 
                     b.Property<string>("Title");
+
+                    b.Property<string>("VideoUrl");
 
                     b.HasKey("Id");
 
@@ -1220,6 +1394,8 @@ namespace Platform.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(300);
 
+                    b.Property<string>("VideoUrl");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CoreId");
@@ -1286,6 +1462,8 @@ namespace Platform.Migrations
 
                     b.Property<string>("Title")
                         .HasMaxLength(300);
+
+                    b.Property<string>("VideoUrl");
 
                     b.HasKey("Id");
 
@@ -1361,6 +1539,8 @@ namespace Platform.Migrations
                     b.Property<long?>("LastModifierUserId");
 
                     b.Property<string>("Title");
+
+                    b.Property<string>("VideoUrl");
 
                     b.HasKey("Id");
 
@@ -1533,6 +1713,27 @@ namespace Platform.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
+            modelBuilder.Entity("Platform.Events.EventProfession", b =>
+                {
+                    b.HasOne("Platform.Events.Event", "Event")
+                        .WithMany("EventProfessions")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Platform.Professions.Profession", "Profession")
+                        .WithMany("EventProfessions")
+                        .HasForeignKey("ProfessionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Platform.Events.EventTranslations", b =>
+                {
+                    b.HasOne("Platform.Events.Event", "Core")
+                        .WithMany("Translations")
+                        .HasForeignKey("CoreId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
                 {
                     b.HasOne("Platform.Authorization.Users.User", "CreatorUser")
@@ -1550,6 +1751,27 @@ namespace Platform.Migrations
                     b.HasOne("Platform.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
+                });
+
+            modelBuilder.Entity("Platform.Packages.PackageProfession", b =>
+                {
+                    b.HasOne("Platform.Packages.Package", "Package")
+                        .WithMany("PackageProfessions")
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Platform.Professions.Profession", "Profession")
+                        .WithMany("PackageProfessions")
+                        .HasForeignKey("ProfessionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Platform.Packages.PackageTranslations", b =>
+                {
+                    b.HasOne("Platform.Packages.Package", "Core")
+                        .WithMany("Translations")
+                        .HasForeignKey("CoreId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Platform.Professions.Answer", b =>

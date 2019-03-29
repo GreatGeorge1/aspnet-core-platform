@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
@@ -6,11 +7,8 @@ using Abp.Domain.Entities.Auditing;
 namespace Platform.Professions
 {
     [Audited]
-    public class StepTranslations : AuditedEntity<long>, IEntityTranslation<StepBase, long>, IDeletionAudited, IPassivable, IMedia
+    public class StepTranslations : FullAuditedEntity<long>, IPassivable, IEntityTranslation<StepBase, long>, IMedia
     {
-        public long? DeleterUserId { get; set; }
-        public DateTime? DeletionTime { get; set; }
-        public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
         public StepBase Core { get; set; }
         public long CoreId { get; set; }
@@ -19,5 +17,7 @@ namespace Platform.Professions
         public string Title { get; set; }
         public string Description { get; set; }
         public string Base64Image { get; set; }
+        [Url]
+        public string VideoUrl { get; set; }
     }
 }

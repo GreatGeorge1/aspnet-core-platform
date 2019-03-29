@@ -1,5 +1,5 @@
 # Build runtime image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2.3
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443

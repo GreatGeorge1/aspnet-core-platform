@@ -11,7 +11,8 @@ namespace Platform.Professions
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration, MultiLingualMapContext context)
         {
-            configuration.CreateMultiLingualMap<Profession, long, ProfessionTranslations, ProfessionListDto>(context);
+            configuration.CreateMultiLingualMap<Profession, long, ProfessionTranslations, GetProfessionsDto>(context);
+            configuration.CreateMultiLingualMap<Profession, long, ProfessionTranslations, GetProfessionDto>(context);
         }
     }
 }

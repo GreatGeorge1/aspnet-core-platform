@@ -24,7 +24,7 @@ namespace Platform.EntityFrameworkCore
         public DbSet<Answer> Answers { get; set; }
 
         public DbSet<Package> Packages { get; set; }
-        public DbSet<PackageTranslations> GetPackageTranslations { get; set; }
+        public DbSet<PackageTranslations> PackageTranslations { get; set; }
         public DbSet<PackageProfession> PackageProfessions { get; set; }
 
         public DbSet<Event> Events { get; set; }

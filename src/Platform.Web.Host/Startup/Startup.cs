@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Platform.Packages;
 using Platform.Events;
+using System.IO;
 
 namespace Platform.Web.Host.Startup
 {
@@ -92,6 +93,10 @@ namespace Platform.Web.Host.Startup
                     In = "header",
                     Type = "apiKey"
                 });
+                var xml1 = "../Docs/Platform.Web.Core.xml";
+                var xml2 = "D:\\Projects\\Lab\\platform\\aspnet-core\\src\\DocsPlatform.Application.xml";
+                options.IncludeXmlComments(xml1);
+
             });
 
 
@@ -157,6 +162,7 @@ namespace Platform.Web.Host.Startup
                         .OrderBy() // Allow for the $orderby Command
                         .Page() // Allow for the $top and $skip Commands
                         .Select();// Allow for the $select Command; 
+                        
                 builder.EntitySet<Profession>("ProfessionTranslations").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
@@ -164,6 +170,15 @@ namespace Platform.Web.Host.Startup
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
+
+                builder.EntitySet<Block>("Blocks").EntityType
+                      .Filter() // Allow for the $filter Command
+                      .Count() // Allow for the $count Command
+                      .Expand() // Allow for the $expand Command
+                      .OrderBy() // Allow for the $orderby Command
+                      .Page() // Allow for the $top and $skip Commands
+                      .Select();// Allow for the $select Command; 
+
                 builder.EntitySet<Package>("Packages").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
