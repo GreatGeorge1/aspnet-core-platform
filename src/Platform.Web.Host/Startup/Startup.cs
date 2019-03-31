@@ -162,8 +162,9 @@ namespace Platform.Web.Host.Startup
                         .OrderBy() // Allow for the $orderby Command
                         .Page() // Allow for the $top and $skip Commands
                         .Select();// Allow for the $select Command; 
-                        
-                builder.EntitySet<Profession>("ProfessionTranslations").EntityType
+                //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession))
+                //    .AddProperty(typeof(Profession).GetProperty("BlocksCount"));
+                builder.EntitySet<ProfessionTranslations>("ProfessionTranslations").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
                        .Expand() // Allow for the $expand Command
@@ -178,6 +179,14 @@ namespace Platform.Web.Host.Startup
                       .OrderBy() // Allow for the $orderby Command
                       .Page() // Allow for the $top and $skip Commands
                       .Select();// Allow for the $select Command; 
+
+                builder.EntitySet<StepInfo>("StepInfos").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand() // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
 
                 builder.EntitySet<Package>("Packages").EntityType
                        .Filter() // Allow for the $filter Command

@@ -6,6 +6,6 @@ namespace Platform.Professions.Dtos.Block
 {
     public class DeleteBlockTranslationDto
     {
-        public long id { get; set; }
+        public long Id { get; set; }
     }
 }

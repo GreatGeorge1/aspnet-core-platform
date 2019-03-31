@@ -22,6 +22,8 @@
     <Compile Remove="Migrations\20190326180541_event_package.Designer.cs" />
     <Compile Remove="Migrations\20190329190235_mg.cs" />
     <Compile Remove="Migrations\20190329190235_mg.Designer.cs" />
+    <Compile Remove="Migrations\20190331180049_step_duration.cs" />
+    <Compile Remove="Migrations\20190331180049_step_duration.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.ZeroCore.IdentityServer4.EntityFrameworkCore" Version="4.4.0" />

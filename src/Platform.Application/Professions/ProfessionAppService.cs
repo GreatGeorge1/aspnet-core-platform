@@ -49,10 +49,10 @@ namespace Platform.Professions
 
         public async Task DeleteTranslation(DeleteProfessionTranslationDto input)
         {
-            var ts = await _professionRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
+            var ts = await _translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             ts.IsActive = false;
             ts.IsDeleted = true;
-            await _professionRepository.InsertOrUpdateAsync(ts);
+            await _translationRepository.InsertOrUpdateAsync(ts);
         }
 
         /// <summary>
@@ -123,9 +123,11 @@ namespace Platform.Professions
         {
             var prof = await _professionRepository.FirstOrDefaultAsync(p => p.Id == id);
             var block = ObjectMapper.Map<Block>(input);
+            block.Profession = prof;
             var newid = await _blockRepository.InsertAndGetIdAsync(block);
-            var b = await _blockRepository.FirstOrDefaultAsync(p => p.Id == newid);
-            b.Profession = prof;
+            //var b = await _blockRepository.FirstOrDefaultAsync(p => p.Id == newid);
+            //b.Profession = prof;
+
         }
     }
 }

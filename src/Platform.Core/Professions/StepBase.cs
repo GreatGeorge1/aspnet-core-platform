@@ -12,8 +12,9 @@ namespace Platform.Professions
     {
         public bool IsActive { get; set; }
         public ICollection<StepTranslations> Translations { get; set; }
-        public DateTime Duration { get; set; }
+        public int Duration { get; set; }
         public Block Block { get; set; }
+        public int Index { get; set; }
     }
 
     public class StepInfo : StepBase

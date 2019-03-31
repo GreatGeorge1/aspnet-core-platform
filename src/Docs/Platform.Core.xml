@@ -21,6 +21,21 @@
             It's shown in the web page.
             </summary>
         </member>
+        <member name="P:Platform.Professions.Dtos.Block.UpdateBlockTranslationDto.Id">
+            <summary>
+            BlockTRanslations Id
+            </summary>
+        </member>
+        <member name="P:Platform.Professions.Dtos.Step.DeleteStepTranslationDto.Id">
+            <summary>
+            StepTranslations Id
+            </summary>
+        </member>
+        <member name="P:Platform.Professions.Dtos.Step.UpdateStepTranslationDto.Id">
+            <summary>
+            StepTranslations Id
+            </summary>
+        </member>
         <member name="P:Platform.Professions.Dtos.UpdateProfessionTranslationDto.Id">
             <summary>
             ProfessionTranslations Id, не Profession

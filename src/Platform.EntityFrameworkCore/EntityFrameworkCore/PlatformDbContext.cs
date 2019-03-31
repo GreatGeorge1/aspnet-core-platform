@@ -8,6 +8,7 @@ using Abp.IdentityServer4;
 using Abp.Localization;
 using Platform.Packages;
 using Platform.Events;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Platform.EntityFrameworkCore
 {
@@ -52,6 +53,10 @@ namespace Platform.EntityFrameworkCore
                 .HasMany(p => p.Blocks)
                 .WithOne(b => b.Profession)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<StepBase>()
+            //    .Property(s => s.Duration)
+            //    .HasConversion<TimeSpanToTicksConverter>();
 
             modelBuilder.Entity<StepBase>()
                 .ToTable("Steps")

@@ -2,6 +2,7 @@
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos.Block;
+using Platform.Professions.Dtos.Step;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,11 +14,14 @@ namespace Platform.Professions
     {
         private readonly IRepository<Block, long> repository;
         private readonly IRepository<BlockTranslations, long> translationRepository;
+        private readonly IRepository<StepInfo, long> stepInfoRepository;
         public BlockAppService(IRepository<Block, long> blockRepository,
-            IRepository<BlockTranslations, long> translationRepository)
+            IRepository<BlockTranslations, long> translationRepository,
+             IRepository<StepInfo, long> stepInfoRepository)
         {
             repository = blockRepository;
             this.translationRepository = translationRepository;
+            this.stepInfoRepository = stepInfoRepository;
         }   
 
         public async Task<GetBlockDto> GetBlock(long id)
@@ -72,20 +76,31 @@ namespace Platform.Professions
 
         public async Task DeleteTranslation(DeleteBlockTranslationDto input)
         {
-            var ts = await repository.FirstOrDefaultAsync(p => p.Id == input.id);
+            var ts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             ts.IsActive = false;
             ts.IsDeleted = true;
-            await repository.InsertOrUpdateAsync(ts);
+            await translationRepository.InsertOrUpdateAsync(ts);
         }
 
-        //public Task AddStep(AddStepDto input)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task AddInfoStep(CreateInfoStepDto input, long id)
+        {
+            var block = await repository.FirstOrDefaultAsync(p => p.Id == id);
+            var step = ObjectMapper.Map(input, new StepInfo());
+            step.Block = block;
+            var newid = await stepInfoRepository.InsertAndGetIdAsync(step);
+           // var s= await stepInfoRepository.FirstOrDefaultAsync(p => p.Id == newid);
+            //s.Block = block;
+        }
 
-        //public Task RemoveStep(RemoveStepDto input)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task RemoveStep(RemoveStepDto input)
+        {
+            //steptest
+            var block = await repository.GetAllIncluding(p => p.Translations)
+              .FirstOrDefaultAsync(p => p.Id == input.BlockId);
+            var stepInfo = await stepInfoRepository.GetAllIncluding(p => p.Translations)
+              .FirstOrDefaultAsync(p => p.Id == input.StepId);
+            block.IsActive = false;
+            block.IsDeleted = true;
+        }
     }
 }

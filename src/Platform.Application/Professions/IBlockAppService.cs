@@ -1,4 +1,5 @@
 ﻿using Platform.Professions.Dtos.Block;
+using Platform.Professions.Dtos.Step;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,8 +13,9 @@ namespace Platform.Professions
         //Task<BlockReplyOkDto> CreateBlock(CreateBlockDto input);
         Task<BlockReplyOkDto> UpdateBlock(UpdateBlockDto input);
         Task<BlockReplyOkDto> DeleteBlock(long id);
-       // Task AddStep(AddStepDto input);
-        //Task RemoveStep(RemoveStepDto input);
+        Task AddInfoStep(CreateInfoStepDto input, long id);
+       // Task AddTestStep(CreateTestStepDto input, long id);
+        Task RemoveStep(RemoveStepDto input);
         Task AddTranslation(AddBlockTranslationDto input, long id);
         Task UpdateTranslation(UpdateBlockTranslationDto input);
         Task DeleteTranslation(DeleteBlockTranslationDto input);

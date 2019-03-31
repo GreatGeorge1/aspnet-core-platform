@@ -4,7 +4,9 @@ using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Linq;
 
 namespace Platform.Professions
 {
@@ -19,6 +21,12 @@ namespace Platform.Professions
         public Profession Profession { get; set; }
 
         public ICollection<StepBase> Steps { get; set; }
+
+        [NotMapped]
+        public int Duration
+        { get { return Steps.Sum(s=>s.Duration);  }
+            set { } }
+
     }
 
     [Audited]

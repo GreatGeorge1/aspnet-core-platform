@@ -29,6 +29,5 @@
   <ItemGroup>
     <Folder Include="Events\Dtos\" />
     <Folder Include="Packages\Dtos\" />
-    <Folder Include="Professions\Dtos\Step\" />
   </ItemGroup>
 </Project>

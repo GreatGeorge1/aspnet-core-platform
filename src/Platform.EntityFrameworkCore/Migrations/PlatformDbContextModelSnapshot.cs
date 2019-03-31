@@ -1424,8 +1424,6 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<int?>("MinScore");
-
                     b.HasKey("Id");
 
                     b.ToTable("Professions");
@@ -1487,7 +1485,9 @@ namespace Platform.Migrations
 
                     b.Property<DateTime?>("DeletionTime");
 
-                    b.Property<DateTime>("Duration");
+                    b.Property<int>("Duration");
+
+                    b.Property<int>("Index");
 
                     b.Property<bool>("IsActive");
 
