@@ -14,7 +14,7 @@ namespace Platform.Professions
         Task<BlockReplyOkDto> UpdateBlock(UpdateBlockDto input);
         Task<BlockReplyOkDto> DeleteBlock(long id);
         Task AddInfoStep(CreateInfoStepDto input, long id);
-       // Task AddTestStep(CreateTestStepDto input, long id);
+        Task AddTestStep(CreateTestStepDto input, long id);
         Task RemoveStep(RemoveStepDto input);
         Task AddTranslation(AddBlockTranslationDto input, long id);
         Task UpdateTranslation(UpdateBlockTranslationDto input);

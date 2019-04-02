@@ -10,5 +10,6 @@ namespace Platform.Professions.Dtos.Step
     {
         public long Id;
         public bool IsActive;
+        public new ICollection<UpdateStepTranslationDto> Translations { get; set; }
     }
 }

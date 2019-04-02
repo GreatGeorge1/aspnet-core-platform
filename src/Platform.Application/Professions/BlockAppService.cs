@@ -15,13 +15,16 @@ namespace Platform.Professions
         private readonly IRepository<Block, long> repository;
         private readonly IRepository<BlockTranslations, long> translationRepository;
         private readonly IRepository<StepInfo, long> stepInfoRepository;
+        private readonly IRepository<StepTest, long> stepTestRepository;
         public BlockAppService(IRepository<Block, long> blockRepository,
             IRepository<BlockTranslations, long> translationRepository,
-             IRepository<StepInfo, long> stepInfoRepository)
+             IRepository<StepInfo, long> stepInfoRepository,
+             IRepository<StepTest, long> stepTestRepository)
         {
             repository = blockRepository;
             this.translationRepository = translationRepository;
             this.stepInfoRepository = stepInfoRepository;
+            this.stepTestRepository = stepTestRepository;
         }   
 
         public async Task<GetBlockDto> GetBlock(long id)
@@ -94,13 +97,30 @@ namespace Platform.Professions
 
         public async Task RemoveStep(RemoveStepDto input)
         {
-            //steptest
             var block = await repository.GetAllIncluding(p => p.Translations)
               .FirstOrDefaultAsync(p => p.Id == input.BlockId);
             var stepInfo = await stepInfoRepository.GetAllIncluding(p => p.Translations)
               .FirstOrDefaultAsync(p => p.Id == input.StepId);
-            block.IsActive = false;
-            block.IsDeleted = true;
+            if (stepInfo==null)
+            {
+                var stepTest= await stepTestRepository.GetAllIncluding(p => p.Translations)
+              .FirstOrDefaultAsync(p => p.Id == input.StepId);
+                stepTest.IsActive = false;
+                stepTest.IsDeleted = true;
+            }
+            else
+            {
+                stepInfo.IsActive = false;
+                stepInfo.IsDeleted = true;
+            }
+        }
+
+        public async Task AddTestStep(CreateTestStepDto input, long id)
+        {
+            var block = await repository.FirstOrDefaultAsync(p => p.Id == id);
+            var step = ObjectMapper.Map(input, new StepTest());
+            step.Block = block;
+            var newid = await stepTestRepository.InsertAndGetIdAsync(step);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Platform.Professions.Dtos.Block
     {
         public long Id { get; set; }
         public bool IsActive { get; set; }
+        public new ICollection<UpdateBlockTranslationDto> Translations { get; set; }
     }
 }

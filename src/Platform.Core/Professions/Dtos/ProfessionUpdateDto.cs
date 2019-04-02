@@ -10,5 +10,6 @@ namespace Platform.Professions.Dtos
     {
         public long Id { get; set; }
         public bool IsActive { get; set; }
+        public new ICollection<UpdateProfessionTranslationDto> Translations { get; set; }
     }
 }
