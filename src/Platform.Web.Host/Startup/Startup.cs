@@ -188,6 +188,22 @@ namespace Platform.Web.Host.Startup
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
 
+                builder.EntitySet<StepTest>("StepTests").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand() // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+
+                builder.EntitySet<Answer>("Answers").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand() // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+
                 builder.EntitySet<Package>("Packages").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
@@ -235,6 +251,13 @@ namespace Platform.Web.Host.Startup
                 options.IndexStream = () => Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream("Platform.Web.Host.wwwroot.swagger.ui.index.html");
             }); // URL: /swagger
+            app.UseReDoc(options => 
+            {
+                options.SpecUrl= $"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json";
+                //options.IndexStream = () => Assembly.GetExecutingAssembly()
+               // .GetManifestResourceStream("Platform.Web.Host.wwwroot.redoc.index.html");
+                options.RoutePrefix = "redoc";
+            });
         }
     }
 }

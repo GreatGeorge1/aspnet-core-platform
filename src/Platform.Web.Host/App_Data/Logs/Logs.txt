@@ -11682,3 +11682,545 @@ INFO  2019-04-02 20:32:58,194 [7    ] NetCore.StaticFiles.StaticFileMiddleware -
 INFO  2019-04-02 20:32:58,201 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 57.5761ms 0 image/png
 INFO  2019-04-02 20:32:58,222 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
 INFO  2019-04-02 20:32:58,524 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 300.8902ms 200 application/json;charset=utf-8
+DEBUG 2019-04-02 21:00:54,695 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-04-02 21:00:54,809 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-04-02 21:00:54,831 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.Web.Host.Startup.PlatformWebHostModule, Platform.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,834 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformWebCoreModule, Platform.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,835 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformApplicationModule, Platform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,835 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformCoreModule, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,835 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,836 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,836 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,836 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,837 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.EntityFrameworkCore.PlatformEntityFrameworkModule, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,837 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,837 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,838 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,838 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerEntityFrameworkCoreModule, Abp.ZeroCore.IdentityServer4.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,838 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerModule, Abp.ZeroCore.IdentityServer4, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,838 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,839 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,839 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,839 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.OData.AbpAspNetCoreODataModule, Abp.AspNetCore.OData, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:54,843 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-04-02 21:00:54,934 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:00:54,934 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:00:54,934 [1    ] o.Configuration.LanguageManagementConfig - Converted Platform (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:00:54,934 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:00:55,389 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Platform.EntityFrameworkCore.PlatformDbContext, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:00:56,559 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-04-02 21:00:56,649 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-04-02 21:00:56,692 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-04-02 21:00:56,714 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Platform
+DEBUG 2019-04-02 21:00:56,745 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-04-02 21:00:57,009 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-02 21:00:57,061 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 38 classes define auto mapping attributes
+DEBUG 2019-04-02 21:00:57,061 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-04-02 21:00:57,069 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.CreateUserDto
+DEBUG 2019-04-02 21:00:57,070 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.UserDto
+DEBUG 2019-04-02 21:00:57,071 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-04-02 21:00:57,071 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-04-02 21:00:57,071 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.CreateRoleDto
+DEBUG 2019-04-02 21:00:57,071 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.PermissionDto
+DEBUG 2019-04-02 21:00:57,071 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.RoleDto
+DEBUG 2019-04-02 21:00:57,072 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-04-02 21:00:57,072 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.TenantDto
+DEBUG 2019-04-02 21:00:57,072 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddBlockDto
+DEBUG 2019-04-02 21:00:57,072 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddProfessionTranslationDto
+DEBUG 2019-04-02 21:00:57,072 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.GetProfessionAllDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionCreateDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionTranslationsDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionUpdateDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.UpdateProfessionTranslationDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateInfoStepDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateStepTranslationDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateTestStepDto
+DEBUG 2019-04-02 21:00:57,073 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetInfoStepAllDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetTestStepAllDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateInfoStepDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateStepTranslationDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateTestStepDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.AddBlockTranslationDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockTranslationsDto
+DEBUG 2019-04-02 21:00:57,074 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockAllDto
+DEBUG 2019-04-02 21:00:57,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockTranslationDto
+DEBUG 2019-04-02 21:00:57,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockDto
+DEBUG 2019-04-02 21:00:57,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockTranslationDto
+DEBUG 2019-04-02 21:00:57,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerDto
+DEBUG 2019-04-02 21:00:57,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerTranslationDto
+DEBUG 2019-04-02 21:00:57,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.GetAnswerAllDto
+DEBUG 2019-04-02 21:00:57,076 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerDto
+DEBUG 2019-04-02 21:00:57,076 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerTranslationDto
+INFO  2019-04-02 21:01:06,029 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-04-02 21:01:11,366 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host)
+INFO  2019-04-02 21:01:12,686 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) - Validation state: Valid
+INFO  2019-04-02 21:01:12,693 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 2.403ms.
+INFO  2019-04-02 21:01:13,075 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-04-02 21:01:13,097 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) in 1723.2163ms
+INFO  2019-04-02 21:01:13,183 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7158.1977ms 302 
+INFO  2019-04-02 21:01:13,194 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-04-02 21:01:13,438 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 242.3437ms 200 text/html
+INFO  2019-04-02 21:01:13,540 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-04-02 21:01:13,601 [6    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNIKMCPNSH", Request id "0HLLNIKMCPNSH:00000003": the application aborted the connection.
+INFO  2019-04-02 21:01:13,615 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-04-02 21:01:13,621 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 115.3465ms 0 text/css
+INFO  2019-04-02 21:01:13,777 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-02 21:01:14,124 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 359.7855ms 200 application/json;charset=utf-8
+INFO  2019-04-02 21:01:18,244 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc  
+INFO  2019-04-02 21:01:18,252 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 8.7007ms 404 
+INFO  2019-04-02 21:01:18,306 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/favicon.ico  
+INFO  2019-04-02 21:01:18,312 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 6.532ms 404 
+DEBUG 2019-04-02 21:02:14,019 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2019-04-02 21:02:14,022 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-02 21:02:14,024 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-02 21:02:14,025 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2019-04-02 21:03:06,960 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-04-02 21:03:07,084 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-04-02 21:03:07,105 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.Web.Host.Startup.PlatformWebHostModule, Platform.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,109 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformWebCoreModule, Platform.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,109 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformApplicationModule, Platform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,110 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformCoreModule, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,110 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,110 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,111 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,111 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,112 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.EntityFrameworkCore.PlatformEntityFrameworkModule, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,112 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,112 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,112 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,113 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerEntityFrameworkCoreModule, Abp.ZeroCore.IdentityServer4.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,113 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerModule, Abp.ZeroCore.IdentityServer4, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,113 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,113 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,114 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,114 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.OData.AbpAspNetCoreODataModule, Abp.AspNetCore.OData, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:07,118 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-04-02 21:03:07,209 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:07,209 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:07,209 [1    ] o.Configuration.LanguageManagementConfig - Converted Platform (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:07,209 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:07,658 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Platform.EntityFrameworkCore.PlatformDbContext, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:08,875 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-04-02 21:03:08,958 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-04-02 21:03:09,002 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-04-02 21:03:09,027 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Platform
+DEBUG 2019-04-02 21:03:09,057 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-04-02 21:03:09,331 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-02 21:03:09,381 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 38 classes define auto mapping attributes
+DEBUG 2019-04-02 21:03:09,381 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-04-02 21:03:09,389 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.CreateUserDto
+DEBUG 2019-04-02 21:03:09,389 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.UserDto
+DEBUG 2019-04-02 21:03:09,390 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-04-02 21:03:09,390 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-04-02 21:03:09,390 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.CreateRoleDto
+DEBUG 2019-04-02 21:03:09,390 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.PermissionDto
+DEBUG 2019-04-02 21:03:09,390 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.RoleDto
+DEBUG 2019-04-02 21:03:09,391 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-04-02 21:03:09,391 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.TenantDto
+DEBUG 2019-04-02 21:03:09,391 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddBlockDto
+DEBUG 2019-04-02 21:03:09,391 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddProfessionTranslationDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.GetProfessionAllDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionCreateDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionTranslationsDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionUpdateDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.UpdateProfessionTranslationDto
+DEBUG 2019-04-02 21:03:09,392 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateInfoStepDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateStepTranslationDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateTestStepDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetInfoStepAllDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetTestStepAllDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateInfoStepDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateStepTranslationDto
+DEBUG 2019-04-02 21:03:09,393 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateTestStepDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.AddBlockTranslationDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockTranslationsDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockAllDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockTranslationDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockDto
+DEBUG 2019-04-02 21:03:09,394 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockTranslationDto
+DEBUG 2019-04-02 21:03:09,395 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerDto
+DEBUG 2019-04-02 21:03:09,395 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerTranslationDto
+DEBUG 2019-04-02 21:03:09,395 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.GetAnswerAllDto
+DEBUG 2019-04-02 21:03:09,395 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerDto
+DEBUG 2019-04-02 21:03:09,395 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerTranslationDto
+INFO  2019-04-02 21:03:18,337 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-04-02 21:03:23,275 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host)
+INFO  2019-04-02 21:03:24,584 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) - Validation state: Valid
+INFO  2019-04-02 21:03:24,593 [9    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 2.6067ms.
+INFO  2019-04-02 21:03:24,973 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-04-02 21:03:24,993 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) in 1709.3005ms
+INFO  2019-04-02 21:03:25,072 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 6741.0783ms 302 
+INFO  2019-04-02 21:03:25,090 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-04-02 21:03:25,332 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 242.0687ms 200 text/html
+INFO  2019-04-02 21:03:25,442 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-04-02 21:03:25,489 [10   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNILTQFRPU", Request id "0HLLNILTQFRPU:00000003": the application aborted the connection.
+INFO  2019-04-02 21:03:25,499 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-04-02 21:03:25,502 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 64.7881ms 0 text/css
+INFO  2019-04-02 21:03:25,641 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-02 21:03:25,968 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 327.1544ms 200 application/json;charset=utf-8
+INFO  2019-04-02 21:03:30,832 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc  
+INFO  2019-04-02 21:03:30,841 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 6.9038ms 301 
+INFO  2019-04-02 21:03:30,854 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc/index.html  
+ERROR 2019-04-02 21:03:30,977 [9    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNILTQFRQ0", Request id "0HLLNILTQFRQ0:00000003": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: stream
+   at System.IO.StreamReader..ctor(Stream stream, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean leaveOpen)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.RespondWithIndexHtml(HttpResponse response)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Abp.AspNetCore.Uow.AbpUnitOfWorkMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Uow\UnitOfWorkMiddleware.cs:line 28
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-04-02 21:03:30,990 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 128.0216ms 500 
+INFO  2019-04-02 21:03:31,040 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/favicon.ico  
+INFO  2019-04-02 21:03:31,047 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4.4609ms 0 
+INFO  2019-04-02 21:03:32,401 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc/index.html  
+ERROR 2019-04-02 21:03:32,411 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNILTQFRQ1", Request id "0HLLNILTQFRQ1:00000001": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: stream
+   at System.IO.StreamReader..ctor(Stream stream, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean leaveOpen)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.RespondWithIndexHtml(HttpResponse response)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Abp.AspNetCore.Uow.AbpUnitOfWorkMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Uow\UnitOfWorkMiddleware.cs:line 28
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-04-02 21:03:32,417 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 13.6529ms 500 
+INFO  2019-04-02 21:03:38,066 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc/index.html  
+ERROR 2019-04-02 21:03:38,077 [10   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNILTQFRQ1", Request id "0HLLNILTQFRQ1:00000002": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: stream
+   at System.IO.StreamReader..ctor(Stream stream, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean leaveOpen)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.RespondWithIndexHtml(HttpResponse response)
+   at Swashbuckle.AspNetCore.ReDoc.ReDocMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Abp.AspNetCore.Uow.AbpUnitOfWorkMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Uow\UnitOfWorkMiddleware.cs:line 28
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-04-02 21:03:38,083 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 16.1948ms 500 
+DEBUG 2019-04-02 21:03:56,856 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-04-02 21:03:56,977 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-04-02 21:03:57,000 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.Web.Host.Startup.PlatformWebHostModule, Platform.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,003 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformWebCoreModule, Platform.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,004 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformApplicationModule, Platform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,004 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformCoreModule, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,004 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,005 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,005 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,005 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,006 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.EntityFrameworkCore.PlatformEntityFrameworkModule, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,006 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,006 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,007 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,007 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerEntityFrameworkCoreModule, Abp.ZeroCore.IdentityServer4.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,007 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerModule, Abp.ZeroCore.IdentityServer4, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,007 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,008 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,008 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,009 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.OData.AbpAspNetCoreODataModule, Abp.AspNetCore.OData, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:57,012 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-04-02 21:03:57,101 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:57,101 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:57,101 [1    ] o.Configuration.LanguageManagementConfig - Converted Platform (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:57,101 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 21:03:57,538 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Platform.EntityFrameworkCore.PlatformDbContext, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 21:03:58,757 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-04-02 21:03:58,842 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-04-02 21:03:58,888 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-04-02 21:03:58,912 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Platform
+DEBUG 2019-04-02 21:03:58,940 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-04-02 21:03:59,226 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-02 21:03:59,278 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 38 classes define auto mapping attributes
+DEBUG 2019-04-02 21:03:59,278 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-04-02 21:03:59,285 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.CreateUserDto
+DEBUG 2019-04-02 21:03:59,286 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.UserDto
+DEBUG 2019-04-02 21:03:59,287 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-04-02 21:03:59,287 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-04-02 21:03:59,287 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.CreateRoleDto
+DEBUG 2019-04-02 21:03:59,287 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.PermissionDto
+DEBUG 2019-04-02 21:03:59,287 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.RoleDto
+DEBUG 2019-04-02 21:03:59,288 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-04-02 21:03:59,288 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.TenantDto
+DEBUG 2019-04-02 21:03:59,288 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddBlockDto
+DEBUG 2019-04-02 21:03:59,288 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddProfessionTranslationDto
+DEBUG 2019-04-02 21:03:59,288 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.GetProfessionAllDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionCreateDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionTranslationsDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionUpdateDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.UpdateProfessionTranslationDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateInfoStepDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateStepTranslationDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateTestStepDto
+DEBUG 2019-04-02 21:03:59,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetInfoStepAllDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetTestStepAllDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateInfoStepDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateStepTranslationDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateTestStepDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.AddBlockTranslationDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockTranslationsDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockAllDto
+DEBUG 2019-04-02 21:03:59,290 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockTranslationDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockTranslationDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerTranslationDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.GetAnswerAllDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerDto
+DEBUG 2019-04-02 21:03:59,291 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerTranslationDto
+INFO  2019-04-02 21:04:08,167 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-04-02 21:04:13,084 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host)
+INFO  2019-04-02 21:04:14,421 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) - Validation state: Valid
+INFO  2019-04-02 21:04:14,429 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 2.7244ms.
+INFO  2019-04-02 21:04:14,806 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-04-02 21:04:14,823 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) in 1732.5343ms
+INFO  2019-04-02 21:04:14,902 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 6742.6389ms 302 
+INFO  2019-04-02 21:04:14,909 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-04-02 21:04:15,149 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 240.166ms 200 text/html
+INFO  2019-04-02 21:04:15,439 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-02 21:04:15,780 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 311.9762ms 200 application/json;charset=utf-8
+INFO  2019-04-02 21:04:24,396 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc/index.html  
+INFO  2019-04-02 21:04:24,419 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 20.1121ms 200 text/html
+INFO  2019-04-02 21:04:24,467 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/redoc/redoc.min.js  
+INFO  2019-04-02 21:04:24,554 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/redoc.min.js'. Physical path: 'N/A'
+INFO  2019-04-02 21:04:24,569 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 100.9168ms 200 application/javascript
+INFO  2019-04-02 21:04:24,821 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-02 21:04:24,857 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 31.2572ms 200 application/json;charset=utf-8
+DEBUG 2019-04-02 22:02:37,641 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-04-02 22:02:37,765 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-04-02 22:02:37,810 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.Web.Host.Startup.PlatformWebHostModule, Platform.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,813 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformWebCoreModule, Platform.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,813 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformApplicationModule, Platform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,813 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformCoreModule, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,814 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,814 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,814 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.EntityFrameworkCore.PlatformEntityFrameworkModule, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerEntityFrameworkCoreModule, Abp.ZeroCore.IdentityServer4.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerModule, Abp.ZeroCore.IdentityServer4, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,817 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,817 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,817 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.OData.AbpAspNetCoreODataModule, Abp.AspNetCore.OData, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:37,821 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-04-02 22:02:37,918 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 22:02:37,918 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 22:02:37,918 [1    ] o.Configuration.LanguageManagementConfig - Converted Platform (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 22:02:37,918 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-02 22:02:38,377 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Platform.EntityFrameworkCore.PlatformDbContext, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-02 22:02:39,628 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-04-02 22:02:39,732 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-04-02 22:02:39,778 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-04-02 22:02:39,801 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Platform
+DEBUG 2019-04-02 22:02:39,831 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-04-02 22:02:40,100 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-02 22:02:40,157 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 38 classes define auto mapping attributes
+DEBUG 2019-04-02 22:02:40,157 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-04-02 22:02:40,165 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.CreateUserDto
+DEBUG 2019-04-02 22:02:40,165 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.UserDto
+DEBUG 2019-04-02 22:02:40,166 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-04-02 22:02:40,166 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-04-02 22:02:40,166 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.CreateRoleDto
+DEBUG 2019-04-02 22:02:40,166 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.PermissionDto
+DEBUG 2019-04-02 22:02:40,166 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.RoleDto
+DEBUG 2019-04-02 22:02:40,167 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-04-02 22:02:40,167 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.TenantDto
+DEBUG 2019-04-02 22:02:40,167 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddBlockDto
+DEBUG 2019-04-02 22:02:40,167 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddProfessionTranslationDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.GetProfessionAllDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionCreateDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionTranslationsDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionUpdateDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.UpdateProfessionTranslationDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateInfoStepDto
+DEBUG 2019-04-02 22:02:40,168 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateStepTranslationDto
+DEBUG 2019-04-02 22:02:40,169 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateTestStepDto
+DEBUG 2019-04-02 22:02:40,169 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetInfoStepAllDto
+DEBUG 2019-04-02 22:02:40,169 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetTestStepAllDto
+DEBUG 2019-04-02 22:02:40,170 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateInfoStepDto
+DEBUG 2019-04-02 22:02:40,170 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateStepTranslationDto
+DEBUG 2019-04-02 22:02:40,170 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateTestStepDto
+DEBUG 2019-04-02 22:02:40,170 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.AddBlockTranslationDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockTranslationsDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockAllDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockTranslationDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockTranslationDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerDto
+DEBUG 2019-04-02 22:02:40,171 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerTranslationDto
+DEBUG 2019-04-02 22:02:40,172 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.GetAnswerAllDto
+DEBUG 2019-04-02 22:02:40,172 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerDto
+DEBUG 2019-04-02 22:02:40,172 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerTranslationDto
+INFO  2019-04-02 22:02:49,916 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-04-02 22:02:54,806 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host)
+INFO  2019-04-02 22:02:56,189 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) - Validation state: Valid
+INFO  2019-04-02 22:02:56,197 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 2.3904ms.
+INFO  2019-04-02 22:02:56,601 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-04-02 22:02:56,621 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) in 1807.6693ms
+INFO  2019-04-02 22:02:56,713 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 6821.0514ms 302 
+INFO  2019-04-02 22:02:56,722 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-04-02 22:02:57,000 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 282.2773ms 200 text/html
+INFO  2019-04-02 22:02:57,116 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-04-02 22:02:57,167 [8    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNJN6512A3", Request id "0HLLNJN6512A3:00000003": the application aborted the connection.
+INFO  2019-04-02 22:02:57,176 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-04-02 22:02:57,182 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 110.694ms 0 text/css
+INFO  2019-04-02 22:02:57,250 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/favicon-16x16.png  
+INFO  2019-04-02 22:02:57,260 [6    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLNJN6512A4", Request id "0HLLNJN6512A4:00000001": the application aborted the connection.
+INFO  2019-04-02 22:02:57,262 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+INFO  2019-04-02 22:02:57,265 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 15.8968ms 0 image/png
+INFO  2019-04-02 22:02:57,362 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-02 22:02:57,690 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 337.9117ms 200 application/json;charset=utf-8
+INFO  2019-04-02 22:03:03,560 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-04-02 22:03:03,632 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 96.1096ms 200 text/html
+INFO  2019-04-02 22:03:04,034 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-02 22:03:04,181 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 115.5386ms 200 application/json;charset=utf-8
+INFO  2019-04-02 22:03:07,085 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata  
+INFO  2019-04-02 22:03:07,180 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetServiceDocument", controller = "Metadata", area = ""}. Executing action Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData)
+INFO  2019-04-02 22:03:07,215 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData) - Validation state: Valid
+INFO  2019-04-02 22:03:07,225 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 6.5556ms.
+INFO  2019-04-02 22:03:07,422 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.OData.ODataServiceDocument'.
+INFO  2019-04-02 22:03:07,599 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Microsoft.AspNet.OData.MetadataController.GetServiceDocument (Microsoft.AspNetCore.OData) in 415.5913ms
+INFO  2019-04-02 22:03:07,613 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 517.5312ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-04-02 22:03:15,179 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Blocks  
+INFO  2019-04-02 22:03:15,208 [8    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Blocks", area = ""}. Executing action Platform.Controllers.BlocksController.Get (Platform.Web.Core)
+INFO  2019-04-02 22:03:15,546 [8    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.BlocksController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-04-02 22:03:15,553 [8    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.BlocksController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3.375ms.
+INFO  2019-04-02 22:03:15,742 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1[[Platform.Professions.Block, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+INFO  2019-04-02 22:03:16,064 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.BlocksController.Get (Platform.Web.Core) in 842.7305ms
+INFO  2019-04-02 22:03:16,204 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 985.1351ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+INFO  2019-04-02 22:03:24,327 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/odata/Blocks?$expand=Steps  
+INFO  2019-04-02 22:03:24,347 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Blocks", area = ""}. Executing action Platform.Controllers.BlocksController.Get (Platform.Web.Core)
+INFO  2019-04-02 22:03:24,402 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Controllers.BlocksController.Get (Platform.Web.Core) - Validation state: Valid
+INFO  2019-04-02 22:03:24,408 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Controllers.BlocksController.Get (Platform.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3.637ms.
+INFO  2019-04-02 22:03:24,725 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[Microsoft.AspNet.OData.Query.Expressions.SelectExpandBinder+SelectAllAndExpand`1[[Platform.Professions.Block, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], Microsoft.AspNetCore.OData, Version=7.1.0.21120, Culture=neutral, PublicKeyToken=31bf3856ad364e35]]'.
+INFO  2019-04-02 22:03:25,406 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Controllers.BlocksController.Get (Platform.Web.Core) in 1052.9095ms
+INFO  2019-04-02 22:03:25,473 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1139.6307ms 200 application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
+DEBUG 2019-04-03 16:50:56,048 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-04-03 16:50:56,271 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-04-03 16:50:56,301 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.Web.Host.Startup.PlatformWebHostModule, Platform.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,304 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformWebCoreModule, Platform.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,305 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformApplicationModule, Platform.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,305 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.PlatformCoreModule, Platform.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,306 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,306 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,306 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,308 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,308 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Platform.EntityFrameworkCore.PlatformEntityFrameworkModule, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,309 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,309 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,309 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,309 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerEntityFrameworkCoreModule, Abp.ZeroCore.IdentityServer4.EntityFrameworkCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.IdentityServer4.AbpZeroCoreIdentityServerModule, Abp.ZeroCore.IdentityServer4, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.4.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,311 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.OData.AbpAspNetCoreODataModule, Abp.AspNetCore.OData, Version=4.5.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:56,315 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-04-03 16:50:56,413 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-03 16:50:56,413 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-03 16:50:56,413 [1    ] o.Configuration.LanguageManagementConfig - Converted Platform (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-03 16:50:56,413 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-04-03 16:50:56,924 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: Platform.EntityFrameworkCore.PlatformDbContext, Platform.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-04-03 16:50:58,451 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-04-03 16:50:58,544 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-04-03 16:50:58,596 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-04-03 16:50:58,662 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Platform
+DEBUG 2019-04-03 16:50:58,692 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-04-03 16:50:58,976 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-03 16:50:59,032 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 38 classes define auto mapping attributes
+DEBUG 2019-04-03 16:50:59,032 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-04-03 16:50:59,041 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.CreateUserDto
+DEBUG 2019-04-03 16:50:59,041 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Users.Dto.UserDto
+DEBUG 2019-04-03 16:50:59,042 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-04-03 16:50:59,042 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-04-03 16:50:59,042 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.CreateRoleDto
+DEBUG 2019-04-03 16:50:59,042 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.PermissionDto
+DEBUG 2019-04-03 16:50:59,042 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Roles.Dto.RoleDto
+DEBUG 2019-04-03 16:50:59,043 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-04-03 16:50:59,043 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.MultiTenancy.Dto.TenantDto
+DEBUG 2019-04-03 16:50:59,043 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddBlockDto
+DEBUG 2019-04-03 16:50:59,043 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.AddProfessionTranslationDto
+DEBUG 2019-04-03 16:50:59,044 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.GetProfessionAllDto
+DEBUG 2019-04-03 16:50:59,044 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionCreateDto
+DEBUG 2019-04-03 16:50:59,044 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionDto
+DEBUG 2019-04-03 16:50:59,044 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionTranslationsDto
+DEBUG 2019-04-03 16:50:59,044 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.ProfessionUpdateDto
+DEBUG 2019-04-03 16:50:59,044 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.UpdateProfessionTranslationDto
+DEBUG 2019-04-03 16:50:59,045 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateInfoStepDto
+DEBUG 2019-04-03 16:50:59,045 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateStepTranslationDto
+DEBUG 2019-04-03 16:50:59,045 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.CreateTestStepDto
+DEBUG 2019-04-03 16:50:59,045 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetInfoStepAllDto
+DEBUG 2019-04-03 16:50:59,045 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.GetTestStepAllDto
+DEBUG 2019-04-03 16:50:59,045 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateInfoStepDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateStepTranslationDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Step.UpdateTestStepDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.AddBlockTranslationDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.CreateBlockTranslationsDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockAllDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.GetBlockTranslationDto
+DEBUG 2019-04-03 16:50:59,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockDto
+DEBUG 2019-04-03 16:50:59,047 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Block.UpdateBlockTranslationDto
+DEBUG 2019-04-03 16:50:59,047 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerDto
+DEBUG 2019-04-03 16:50:59,047 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.CreateAnswerTranslationDto
+DEBUG 2019-04-03 16:50:59,047 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.GetAnswerAllDto
+DEBUG 2019-04-03 16:50:59,047 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerDto
+DEBUG 2019-04-03 16:50:59,047 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Platform.Professions.Dtos.Answer.UpdateAnswerTranslationDto
+INFO  2019-04-03 16:51:08,500 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-04-03 16:51:14,335 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host)
+INFO  2019-04-03 16:51:15,639 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) - Validation state: Valid
+INFO  2019-04-03 16:51:15,649 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 2.6203ms.
+INFO  2019-04-03 16:51:16,046 [11   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-04-03 16:51:16,069 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Platform.Web.Host.Controllers.HomeController.Index (Platform.Web.Host) in 1721.5606ms
+INFO  2019-04-03 16:51:16,169 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7669.8703ms 302 
+INFO  2019-04-03 16:51:16,200 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-04-03 16:51:16,472 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 272.6034ms 200 text/html
+INFO  2019-04-03 16:51:16,577 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-04-03 16:51:16,651 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLO7DM10IHT", Request id "0HLLO7DM10IHT:00000003": the application aborted the connection.
+INFO  2019-04-03 16:51:16,669 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-04-03 16:51:16,708 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 104.5323ms 0 text/css
+INFO  2019-04-03 16:51:16,813 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/favicon-16x16.png  
+INFO  2019-04-03 16:51:16,818 [12   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLLO7DM10IHU", Request id "0HLLO7DM10IHU:00000001": the application aborted the connection.
+INFO  2019-04-03 16:51:16,821 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+INFO  2019-04-03 16:51:16,824 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 12.6783ms 0 image/png
+INFO  2019-04-03 16:51:16,882 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-04-03 16:51:17,212 [8    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 327.4499ms 200 application/json;charset=utf-8
+DEBUG 2019-04-03 16:51:23,523 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2019-04-03 16:51:23,526 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-03 16:51:23,528 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-04-03 16:51:23,528 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
