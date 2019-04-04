@@ -14,7 +14,7 @@ namespace Platform.Professions
         Task<ProfessionReplyOkDto> DeleteProfession(long id);
         //Task<IEnumerable<GetProfessionsDto>> GetProfessions();
         Task<GetProfessionDto> GetProfession(long id);
-        Task<GetProfessionAllDto> GetProfessionAll(long id);
+        Task<GetProfessionAllDto> GetProfessionAllLang(long id);
         //Task<IEnumerable<GetProfessionAllDto>> GetProfessionsAll();
         Task AddBlock(AddBlockDto input, long id);
         Task RemoveBlock(RemoveBlockDto input);

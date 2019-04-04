@@ -100,11 +100,24 @@ namespace Platform.Professions
             return res;
         }
 
-        public async Task<GetProfessionAllDto> GetProfessionAll(long id)
+        public async Task<GetProfessionAllDto> GetProfessionAllLang(long id)
         {
             var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
                .FirstOrDefaultAsync(p => p.Id == id);
             var res = ObjectMapper.Map(prof, new GetProfessionAllDto());
+            return res;
+        }
+
+        public async Task<IEnumerable<GetProfessionAllDto>> GetAll(int max=10, int skip=0)
+        {
+            var prof = await _professionRepository.GetAllIncluding(p=>p.Translations,p=>p.Blocks)
+               .Take(max).ToListAsync();
+            //var res = ObjectMapper.Map(prof, new GetProfessionAllDto());
+            var res = new List<GetProfessionAllDto>();
+            prof.ForEach(p=> 
+            {
+                res.Add(ObjectMapper.Map<GetProfessionAllDto>(p));
+            });
             return res;
         }
 

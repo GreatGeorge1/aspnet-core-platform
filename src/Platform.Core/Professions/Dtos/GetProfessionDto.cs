@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Platform.Professions.Dtos
 {
+
     public class GetProfessionDto
     {
         public long Id { get; set; }
