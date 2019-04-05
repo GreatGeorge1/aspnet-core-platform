@@ -21,6 +21,10 @@ namespace Platform.EntityFrameworkCore
         public DbSet<BlockTranslations> BlockTranslations { get; set; }
         public DbSet<StepInfo> StepInfos { get; set; }
         public DbSet<StepTest> StepTests { get; set; }
+
+        //!!!!!!!!!!!!!!!
+        public DbSet<StepBase> Steps { get; set; }
+        //!!!!!!!!!!!!!!!
         public DbSet<StepTranslations>  StepTranslations{get;set;}
         public DbSet<Answer> Answers { get; set; }
 
@@ -58,11 +62,14 @@ namespace Platform.EntityFrameworkCore
             //    .Property(s => s.Duration)
             //    .HasConversion<TimeSpanToTicksConverter>();
 
+            modelBuilder.Entity<StepInfo>().ToTable("StepInfos");
+            modelBuilder.Entity<StepTest>().ToTable("StepTests");
+
             modelBuilder.Entity<StepBase>()
-                .ToTable("Steps")
-                .HasDiscriminator<string>("StepType")
-                .HasValue<StepInfo>("Info")
-                .HasValue<StepTest>("Test");
+                .ToTable("Steps");
+                //.HasDiscriminator<string>("StepType")
+                //.HasValue<StepInfo>("Info")
+                //.HasValue<StepTest>("Test");
 
             modelBuilder.Entity<Block>()
                 .HasMany(b => b.Steps)

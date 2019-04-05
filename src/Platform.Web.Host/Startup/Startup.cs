@@ -180,6 +180,14 @@ namespace Platform.Web.Host.Startup
                       .Page() // Allow for the $top and $skip Commands
                       .Select();// Allow for the $select Command; 
 
+                builder.EntitySet<StepBase>("Steps").EntityType
+                      .Filter() // Allow for the $filter Command
+                      .Count() // Allow for the $count Command
+                      .Expand() // Allow for the $expand Command
+                      .OrderBy() // Allow for the $orderby Command
+                      .Page() // Allow for the $top and $skip Commands
+                      .Select();// Allow for the $select Command; 
+
                 builder.EntitySet<StepInfo>("StepInfos").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command

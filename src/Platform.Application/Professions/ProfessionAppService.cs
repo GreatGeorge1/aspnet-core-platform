@@ -94,7 +94,7 @@ namespace Platform.Professions
 
         public async Task<GetProfessionDto> GetProfession(long id)
         {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
+            var prof = await _professionRepository.GetAllIncluding(p => p.Translations, p => p.Blocks)
                .FirstOrDefaultAsync(p => p.Id == id);
             var res = ObjectMapper.Map(prof, new GetProfessionDto());
             return res;
@@ -102,7 +102,7 @@ namespace Platform.Professions
 
         public async Task<GetProfessionAllDto> GetProfessionAllLang(long id)
         {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
+            var prof = await _professionRepository.GetAllIncluding(p => p.Translations, p=>p.Blocks)
                .FirstOrDefaultAsync(p => p.Id == id);
             var res = ObjectMapper.Map(prof, new GetProfessionAllDto());
             return res;

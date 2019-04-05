@@ -1485,6 +1485,9 @@ namespace Platform.Migrations
 
                     b.Property<DateTime?>("DeletionTime");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<int>("Duration");
 
                     b.Property<int>("Index");
@@ -1497,16 +1500,13 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<string>("StepType")
-                        .IsRequired();
-
                     b.HasKey("Id");
 
                     b.HasIndex("BlockId");
 
                     b.ToTable("Steps");
 
-                    b.HasDiscriminator<string>("StepType").HasValue("StepBase");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("StepBase");
                 });
 
             modelBuilder.Entity("Platform.Professions.StepTranslations", b =>
@@ -1603,14 +1603,18 @@ namespace Platform.Migrations
                 {
                     b.HasBaseType("Platform.Professions.StepBase");
 
-                    b.HasDiscriminator().HasValue("Info");
+                    b.ToTable("StepInfos");
+
+                    b.HasDiscriminator().HasValue("StepInfo");
                 });
 
             modelBuilder.Entity("Platform.Professions.StepTest", b =>
                 {
                     b.HasBaseType("Platform.Professions.StepBase");
 
-                    b.HasDiscriminator().HasValue("Test");
+                    b.ToTable("StepTests");
+
+                    b.HasDiscriminator().HasValue("StepTest");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>

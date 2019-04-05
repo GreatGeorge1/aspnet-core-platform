@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Platform.Migrations
 {
-    public partial class step_duration : Migration
+    public partial class steps : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -1034,7 +1034,7 @@ namespace Platform.Migrations
                     Duration = table.Column<int>(nullable: false),
                     BlockId = table.Column<long>(nullable: true),
                     Index = table.Column<int>(nullable: false),
-                    StepType = table.Column<string>(nullable: false)
+                    Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
