@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2/linux-x64",
-    "signature": "48e721bd89d4ae9a8275338efbdce38c2fd29618"
+    "signature": "93a7f51985a3540ff07a2bd82bc2b26ed1a3aa00"
   },
   "compilationOptions": {
     "defines": [
@@ -10,23 +10,23 @@
       "NETCOREAPP",
       "NETCOREAPP2_2"
     ],
-    "languageVersion": "preview",
+    "languageVersion": "",
     "platform": "x64",
     "allowUnsafe": false,
     "warningsAsErrors": false,
     "optimize": false,
     "keyFile": "",
     "emitEntryPoint": true,
-    "xmlDoc": true,
+    "xmlDoc": false,
     "debugType": "portable"
   },
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "Platform.Web.Host/1.0.0": {
         "dependencies": {
-          "Abp.AspNetCore.OData": "4.5.0",
-          "Abp.Castle.Log4Net": "4.5.0",
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.5.0",
+          "Abp.AspNetCore.OData": "4.4.0",
+          "Abp.Castle.Log4Net": "4.4.0",
+          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.4.0",
           "Castle.LoggingFacility.MsLogging": "3.1.0",
           "IdentityServer4.AccessTokenValidation": "2.7.0",
           "Microsoft.AspNetCore.Diagnostics": "2.2.0",
@@ -39,14 +39,13 @@
           "Microsoft.NETCore.App": "2.2.1",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.4.10",
           "Microsoft.VisualStudio.Web.BrowserLink": "2.2.0",
-          "Platform.Web.Core": "1.0.0",
-          "Swashbuckle.AspNetCore.ReDoc": "4.0.1"
+          "Platform.Web.Core": "1.0.0"
         },
         "compile": {
           "Platform.Web.Host.dll": {}
         }
       },
-      "Abp/4.5.0": {
+      "Abp/4.4.0": {
         "dependencies": {
           "Castle.Core": "4.3.1",
           "Castle.LoggingFacility": "4.1.1",
@@ -72,9 +71,9 @@
           "lib/netstandard2.0/Abp.dll": {}
         }
       },
-      "Abp.AspNetCore/4.5.0": {
+      "Abp.AspNetCore/4.4.0": {
         "dependencies": {
-          "Abp.Web.Common": "4.5.0",
+          "Abp.Web.Common": "4.4.0",
           "Castle.LoggingFacility.MsLogging": "3.1.0",
           "Castle.Windsor.MsDependencyInjection": "3.3.1",
           "Microsoft.AspNetCore.Authentication.Cookies": "2.2.0",
@@ -85,10 +84,10 @@
           "lib/netstandard2.0/Abp.AspNetCore.dll": {}
         }
       },
-      "Abp.AspNetCore.OData/4.5.0": {
+      "Abp.AspNetCore.OData/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
-          "Abp.AspNetCore": "4.5.0",
+          "Abp": "4.4.0",
+          "Abp.AspNetCore": "4.4.0",
           "Microsoft.AspNetCore.OData": "7.1.0"
         },
         "compile": {
@@ -97,16 +96,16 @@
       },
       "Abp.AspNetCore.SignalR/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "Microsoft.AspNetCore.SignalR": "1.1.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.AspNetCore.SignalR.dll": {}
         }
       },
-      "Abp.AutoMapper/4.5.0": {
+      "Abp.AutoMapper/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "AutoMapper": "8.0.0",
           "AutoMapper.Collection": "5.0.0"
         },
@@ -114,26 +113,26 @@
           "lib/netstandard2.0/Abp.AutoMapper.dll": {}
         }
       },
-      "Abp.Castle.Log4Net/4.5.0": {
+      "Abp.Castle.Log4Net/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "log4net": "2.0.8"
         },
         "compile": {
           "lib/netstandard2.0/Abp.Castle.Log4Net.dll": {}
         }
       },
-      "Abp.EntityFramework.Common/4.5.0": {
+      "Abp.EntityFramework.Common/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0"
+          "Abp": "4.4.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.EntityFramework.Common.dll": {}
         }
       },
-      "Abp.EntityFrameworkCore/4.5.0": {
+      "Abp.EntityFrameworkCore/4.4.0": {
         "dependencies": {
-          "Abp.EntityFramework.Common": "4.5.0",
+          "Abp.EntityFramework.Common": "4.4.0",
           "Microsoft.EntityFrameworkCore": "2.2.3",
           "Microsoft.EntityFrameworkCore.Relational": "2.2.3"
         },
@@ -141,45 +140,45 @@
           "lib/netstandard2.0/Abp.EntityFrameworkCore.dll": {}
         }
       },
-      "Abp.Web.Common/4.5.0": {
+      "Abp.Web.Common/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "NUglify": "1.5.12"
         },
         "compile": {
           "lib/netstandard2.0/Abp.Web.Common.dll": {}
         }
       },
-      "Abp.Zero.Common/4.5.0": {
+      "Abp.Zero.Common/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0"
+          "Abp": "4.4.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.Zero.Common.dll": {}
         }
       },
-      "Abp.ZeroCore/4.5.0": {
+      "Abp.ZeroCore/4.4.0": {
         "dependencies": {
-          "Abp.Zero.Common": "4.5.0",
+          "Abp.Zero.Common": "4.4.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.ZeroCore.dll": {}
         }
       },
-      "Abp.ZeroCore.EntityFrameworkCore/4.5.0": {
+      "Abp.ZeroCore.EntityFrameworkCore/4.4.0": {
         "dependencies": {
-          "Abp.EntityFrameworkCore": "4.5.0",
-          "Abp.ZeroCore": "4.5.0"
+          "Abp.EntityFrameworkCore": "4.4.0",
+          "Abp.ZeroCore": "4.4.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.dll": {}
         }
       },
-      "Abp.ZeroCore.IdentityServer4/4.5.0": {
+      "Abp.ZeroCore.IdentityServer4/4.4.0": {
         "dependencies": {
-          "Abp.AutoMapper": "4.5.0",
-          "Abp.ZeroCore": "4.5.0",
+          "Abp.AutoMapper": "4.4.0",
+          "Abp.ZeroCore": "4.4.0",
           "IdentityServer4": "2.3.2",
           "IdentityServer4.AspNetIdentity": "2.3.0"
         },
@@ -187,10 +186,10 @@
           "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.dll": {}
         }
       },
-      "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.5.0": {
+      "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.4.0": {
         "dependencies": {
-          "Abp.ZeroCore.EntityFrameworkCore": "4.5.0",
-          "Abp.ZeroCore.IdentityServer4": "4.5.0"
+          "Abp.ZeroCore.EntityFrameworkCore": "4.4.0",
+          "Abp.ZeroCore.IdentityServer4": "4.4.0"
         },
         "compile": {
           "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.EntityFrameworkCore.dll": {}
@@ -2049,17 +2048,6 @@
           "lib/netstandard2.0/Swashbuckle.AspNetCore.dll": {}
         }
       },
-      "Swashbuckle.AspNetCore.ReDoc/4.0.1": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Routing": "2.2.0",
-          "Microsoft.AspNetCore.StaticFiles": "2.2.0",
-          "Microsoft.Extensions.FileProviders.Embedded": "2.0.0",
-          "Newtonsoft.Json": "12.0.1"
-        },
-        "compile": {
-          "lib/netstandard2.0/Swashbuckle.AspNetCore.ReDoc.dll": {}
-        }
-      },
       "Swashbuckle.AspNetCore.Swagger/4.0.1": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "2.2.0",
@@ -3149,8 +3137,8 @@
       },
       "Platform.Core/1.0.0": {
         "dependencies": {
-          "Abp.AutoMapper": "4.5.0",
-          "Abp.ZeroCore.EntityFrameworkCore": "4.5.0",
+          "Abp.AutoMapper": "4.4.0",
+          "Abp.ZeroCore.EntityFrameworkCore": "4.4.0",
           "Castle.Windsor.MsDependencyInjection": "3.3.1",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "2.2.0",
           "Microsoft.Extensions.Configuration.Json": "2.2.0",
@@ -3162,7 +3150,7 @@
       },
       "Platform.EntityFrameworkCore/1.0.0": {
         "dependencies": {
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.5.0",
+          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.4.0",
           "Microsoft.EntityFrameworkCore.Design": "2.2.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
@@ -3175,10 +3163,10 @@
       },
       "Platform.Web.Core/1.0.0": {
         "dependencies": {
-          "Abp.AspNetCore": "4.5.0",
-          "Abp.AspNetCore.OData": "4.5.0",
+          "Abp.AspNetCore": "4.4.0",
+          "Abp.AspNetCore.OData": "4.4.0",
           "Abp.AspNetCore.SignalR": "4.4.0",
-          "Abp.ZeroCore": "4.5.0",
+          "Abp.ZeroCore": "4.4.0",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.2.0",
           "Platform.Application": "1.0.0",
@@ -3194,9 +3182,9 @@
     ".NETCoreApp,Version=v2.2/linux-x64": {
       "Platform.Web.Host/1.0.0": {
         "dependencies": {
-          "Abp.AspNetCore.OData": "4.5.0",
-          "Abp.Castle.Log4Net": "4.5.0",
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.5.0",
+          "Abp.AspNetCore.OData": "4.4.0",
+          "Abp.Castle.Log4Net": "4.4.0",
+          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.4.0",
           "Castle.LoggingFacility.MsLogging": "3.1.0",
           "IdentityServer4.AccessTokenValidation": "2.7.0",
           "Microsoft.AspNetCore.Diagnostics": "2.2.0",
@@ -3209,14 +3197,13 @@
           "Microsoft.NETCore.App": "2.2.1",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.4.10",
           "Microsoft.VisualStudio.Web.BrowserLink": "2.2.0",
-          "Platform.Web.Core": "1.0.0",
-          "Swashbuckle.AspNetCore.ReDoc": "4.0.1"
+          "Platform.Web.Core": "1.0.0"
         },
         "runtime": {
           "Platform.Web.Host.dll": {}
         }
       },
-      "Abp/4.5.0": {
+      "Abp/4.4.0": {
         "dependencies": {
           "Castle.Core": "4.3.1",
           "Castle.LoggingFacility": "4.1.1",
@@ -3240,14 +3227,14 @@
         },
         "runtime": {
           "lib/netstandard2.0/Abp.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.AspNetCore/4.5.0": {
+      "Abp.AspNetCore/4.4.0": {
         "dependencies": {
-          "Abp.Web.Common": "4.5.0",
+          "Abp.Web.Common": "4.4.0",
           "Castle.LoggingFacility.MsLogging": "3.1.0",
           "Castle.Windsor.MsDependencyInjection": "3.3.1",
           "Microsoft.AspNetCore.Authentication.Cookies": "2.2.0",
@@ -3256,27 +3243,27 @@
         },
         "runtime": {
           "lib/netstandard2.0/Abp.AspNetCore.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.AspNetCore.OData/4.5.0": {
+      "Abp.AspNetCore.OData/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
-          "Abp.AspNetCore": "4.5.0",
+          "Abp": "4.4.0",
+          "Abp.AspNetCore": "4.4.0",
           "Microsoft.AspNetCore.OData": "7.1.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.AspNetCore.OData.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
       "Abp.AspNetCore.SignalR/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "Microsoft.AspNetCore.SignalR": "1.1.0"
         },
         "runtime": {
@@ -3286,125 +3273,125 @@
           }
         }
       },
-      "Abp.AutoMapper/4.5.0": {
+      "Abp.AutoMapper/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "AutoMapper": "8.0.0",
           "AutoMapper.Collection": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.AutoMapper.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.Castle.Log4Net/4.5.0": {
+      "Abp.Castle.Log4Net/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "log4net": "2.0.8"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.Castle.Log4Net.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.EntityFramework.Common/4.5.0": {
+      "Abp.EntityFramework.Common/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0"
+          "Abp": "4.4.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.EntityFramework.Common.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.EntityFrameworkCore/4.5.0": {
+      "Abp.EntityFrameworkCore/4.4.0": {
         "dependencies": {
-          "Abp.EntityFramework.Common": "4.5.0",
+          "Abp.EntityFramework.Common": "4.4.0",
           "Microsoft.EntityFrameworkCore": "2.2.3",
           "Microsoft.EntityFrameworkCore.Relational": "2.2.3"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.EntityFrameworkCore.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.Web.Common/4.5.0": {
+      "Abp.Web.Common/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0",
+          "Abp": "4.4.0",
           "NUglify": "1.5.12"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.Web.Common.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.Zero.Common/4.5.0": {
+      "Abp.Zero.Common/4.4.0": {
         "dependencies": {
-          "Abp": "4.5.0"
+          "Abp": "4.4.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.Zero.Common.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.ZeroCore/4.5.0": {
+      "Abp.ZeroCore/4.4.0": {
         "dependencies": {
-          "Abp.Zero.Common": "4.5.0",
+          "Abp.Zero.Common": "4.4.0",
           "Microsoft.AspNetCore.Identity": "2.2.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.ZeroCore.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.ZeroCore.EntityFrameworkCore/4.5.0": {
+      "Abp.ZeroCore.EntityFrameworkCore/4.4.0": {
         "dependencies": {
-          "Abp.EntityFrameworkCore": "4.5.0",
-          "Abp.ZeroCore": "4.5.0"
+          "Abp.EntityFrameworkCore": "4.4.0",
+          "Abp.ZeroCore": "4.4.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.ZeroCore.EntityFrameworkCore.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.ZeroCore.IdentityServer4/4.5.0": {
+      "Abp.ZeroCore.IdentityServer4/4.4.0": {
         "dependencies": {
-          "Abp.AutoMapper": "4.5.0",
-          "Abp.ZeroCore": "4.5.0",
+          "Abp.AutoMapper": "4.4.0",
+          "Abp.ZeroCore": "4.4.0",
           "IdentityServer4": "2.3.2",
           "IdentityServer4.AspNetIdentity": "2.3.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
-      "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.5.0": {
+      "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.4.0": {
         "dependencies": {
-          "Abp.ZeroCore.EntityFrameworkCore": "4.5.0",
-          "Abp.ZeroCore.IdentityServer4": "4.5.0"
+          "Abp.ZeroCore.EntityFrameworkCore": "4.4.0",
+          "Abp.ZeroCore.IdentityServer4": "4.4.0"
         },
         "runtime": {
           "lib/netstandard2.0/Abp.ZeroCore.IdentityServer4.EntityFrameworkCore.dll": {
-            "assemblyVersion": "4.5.0.0",
-            "fileVersion": "4.5.0.0"
+            "assemblyVersion": "4.4.0.0",
+            "fileVersion": "4.4.0.0"
           }
         }
       },
@@ -5515,20 +5502,6 @@
           }
         }
       },
-      "Swashbuckle.AspNetCore.ReDoc/4.0.1": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Routing": "2.2.0",
-          "Microsoft.AspNetCore.StaticFiles": "2.2.0",
-          "Microsoft.Extensions.FileProviders.Embedded": "2.0.0",
-          "Newtonsoft.Json": "12.0.1"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Swashbuckle.AspNetCore.ReDoc.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.0.1.0"
-          }
-        }
-      },
       "Swashbuckle.AspNetCore.Swagger/4.0.1": {
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "2.2.0",
@@ -6678,8 +6651,8 @@
       },
       "Platform.Core/1.0.0": {
         "dependencies": {
-          "Abp.AutoMapper": "4.5.0",
-          "Abp.ZeroCore.EntityFrameworkCore": "4.5.0",
+          "Abp.AutoMapper": "4.4.0",
+          "Abp.ZeroCore.EntityFrameworkCore": "4.4.0",
           "Castle.Windsor.MsDependencyInjection": "3.3.1",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "2.2.0",
           "Microsoft.Extensions.Configuration.Json": "2.2.0",
@@ -6691,7 +6664,7 @@
       },
       "Platform.EntityFrameworkCore/1.0.0": {
         "dependencies": {
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.5.0",
+          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.4.0",
           "Microsoft.EntityFrameworkCore.Design": "2.2.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
@@ -6704,10 +6677,10 @@
       },
       "Platform.Web.Core/1.0.0": {
         "dependencies": {
-          "Abp.AspNetCore": "4.5.0",
-          "Abp.AspNetCore.OData": "4.5.0",
+          "Abp.AspNetCore": "4.4.0",
+          "Abp.AspNetCore.OData": "4.4.0",
           "Abp.AspNetCore.SignalR": "4.4.0",
-          "Abp.ZeroCore": "4.5.0",
+          "Abp.ZeroCore": "4.4.0",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.2.0",
           "Platform.Application": "1.0.0",
@@ -6727,26 +6700,26 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Abp/4.5.0": {
+    "Abp/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-PV7dolASntgS+PA+ow4adbNjY9zFYCJ+1YVlgeLwLjths5wLD0mdCa2+rnN0xAyYo2DEWNuOnNMEcPemTx/82Q==",
-      "path": "abp/4.5.0",
-      "hashPath": "abp.4.5.0.nupkg.sha512"
+      "sha512": "sha512-147syv4MWU783pJJckMAhvdopS6dLL2EcbJapCCGFrHLUp4zD7ANfHqStfGnoI+Eo0023bWc0EyYh40vv7AMFw==",
+      "path": "abp/4.4.0",
+      "hashPath": "abp.4.4.0.nupkg.sha512"
     },
-    "Abp.AspNetCore/4.5.0": {
+    "Abp.AspNetCore/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hRmLCYQvZxIQeqbC6Gf3ycLhF5gVnWn2qvfRM2tA9ZT8rvq4LMaWjbYXTJWcPlN1wFW382Rk6mDrB7ZNfoSHaA==",
-      "path": "abp.aspnetcore/4.5.0",
-      "hashPath": "abp.aspnetcore.4.5.0.nupkg.sha512"
+      "sha512": "sha512-CG0E3eoyxSsMunIILOwoM3FXmAe33Rl20WfMSc9gZji7QYjw/zalDqg6IZuWOOldVYkt5OLxjPBSIYMP30ejIQ==",
+      "path": "abp.aspnetcore/4.4.0",
+      "hashPath": "abp.aspnetcore.4.4.0.nupkg.sha512"
     },
-    "Abp.AspNetCore.OData/4.5.0": {
+    "Abp.AspNetCore.OData/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ehvPKOkZqYm2rP5MpbrLIvuT1vkkmIewLGjlvQ5Kuq38lvO2FGvuBTCrgqTDaFOSyCUmeIXBTGI+JxgQuHzN+Q==",
-      "path": "abp.aspnetcore.odata/4.5.0",
-      "hashPath": "abp.aspnetcore.odata.4.5.0.nupkg.sha512"
+      "sha512": "sha512-3zSp6XhKlzqmk7eWwyHQ1p7hZ3a0WTZnHNv73iHGfZKfIrAR+xaa6NRMwuJLaeWeULwSGfEgIjpGs+izPgA3nA==",
+      "path": "abp.aspnetcore.odata/4.4.0",
+      "hashPath": "abp.aspnetcore.odata.4.4.0.nupkg.sha512"
     },
     "Abp.AspNetCore.SignalR/4.4.0": {
       "type": "package",
@@ -6755,75 +6728,75 @@
       "path": "abp.aspnetcore.signalr/4.4.0",
       "hashPath": "abp.aspnetcore.signalr.4.4.0.nupkg.sha512"
     },
-    "Abp.AutoMapper/4.5.0": {
+    "Abp.AutoMapper/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ENCuSjBtxTMgStSxxl/J1VJoBBzRXrc4pTH6gkD9iNnwVOwhMNXAshPJ3lSb8hp5rKddW/E0S4lZHfAOFZgakQ==",
-      "path": "abp.automapper/4.5.0",
-      "hashPath": "abp.automapper.4.5.0.nupkg.sha512"
+      "sha512": "sha512-1LgYqC1WqUIwAn6le9Wlryq86mb7gxqaQFHjV79n7RlVtIddk0FPNbp/LcuuTtIhTWpq9Y2y8YvHAoGhqHWmgw==",
+      "path": "abp.automapper/4.4.0",
+      "hashPath": "abp.automapper.4.4.0.nupkg.sha512"
     },
-    "Abp.Castle.Log4Net/4.5.0": {
+    "Abp.Castle.Log4Net/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JbEiphyKpp51gk8Yq+Uj6VdFRd5cjCVh/p4lruqn1TrMyaEUMYBZo7A9oKakzi7fSB0NGIR9QEannDvVpYua+g==",
-      "path": "abp.castle.log4net/4.5.0",
-      "hashPath": "abp.castle.log4net.4.5.0.nupkg.sha512"
+      "sha512": "sha512-JkiXz/O6JlglOwKhzabRPsjYToTihxv4Osa5dsD5SdtVhRJI+HWP58Q9iPSsFyil2n5VXVyOUSBVsli3QRTssg==",
+      "path": "abp.castle.log4net/4.4.0",
+      "hashPath": "abp.castle.log4net.4.4.0.nupkg.sha512"
     },
-    "Abp.EntityFramework.Common/4.5.0": {
+    "Abp.EntityFramework.Common/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-43J7wY8FkD6E3bR1E5yL9tI1AzmNWcmLr5L+W8ybCsjG40kkk5p8mK1s1iI3bPnIK+hGayI4CaELPN6gAwfouw==",
-      "path": "abp.entityframework.common/4.5.0",
-      "hashPath": "abp.entityframework.common.4.5.0.nupkg.sha512"
+      "sha512": "sha512-u26R7iXzYxe3uTthlJQXSZ7MOE9By142OQpytKOiW9UfeZnKR20UhZ+inYG5JafDIAdJcqw5gv+zDcovcGrrJA==",
+      "path": "abp.entityframework.common/4.4.0",
+      "hashPath": "abp.entityframework.common.4.4.0.nupkg.sha512"
     },
-    "Abp.EntityFrameworkCore/4.5.0": {
+    "Abp.EntityFrameworkCore/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CWMQTv//VLKnnf4cEnP/g1oGmTFs39chhL6zpnoK5YZXX+u3swalGXQPOyjF5ZmDh1TkMG54H+gy6S+GraChJQ==",
-      "path": "abp.entityframeworkcore/4.5.0",
-      "hashPath": "abp.entityframeworkcore.4.5.0.nupkg.sha512"
+      "sha512": "sha512-Z99l/sD7sSZ9a43yNV2vfuvepzUNfawpsgtjjoSJsnX6leJHIsuACbAAiEhIMG9bahcFeoMFHJ75GxXett1L5A==",
+      "path": "abp.entityframeworkcore/4.4.0",
+      "hashPath": "abp.entityframeworkcore.4.4.0.nupkg.sha512"
     },
-    "Abp.Web.Common/4.5.0": {
+    "Abp.Web.Common/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3lQIkmran5ZdU8nFBK3hhddax0z+v0eOucfqP2FbBNkaa+7USgiMQTHsPOlk3337h0PHMwkekWBZrf5na5f3ZQ==",
-      "path": "abp.web.common/4.5.0",
-      "hashPath": "abp.web.common.4.5.0.nupkg.sha512"
+      "sha512": "sha512-lnxop1m6g65D4XLRrz05h3DyamdVOmVgjaGJWxB5dV3htob+owPWVNRNe8fK6ubkzUv2w7O1PXO9ZvL1SQ9xTQ==",
+      "path": "abp.web.common/4.4.0",
+      "hashPath": "abp.web.common.4.4.0.nupkg.sha512"
     },
-    "Abp.Zero.Common/4.5.0": {
+    "Abp.Zero.Common/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-D5mpdwCca040MVkTQOJjB9tI/VA4xpE7dRbAPqlML733djK8KEEZKMuoI3q42axgtBvJ8nuURw4Jhv6mXOoD6Q==",
-      "path": "abp.zero.common/4.5.0",
-      "hashPath": "abp.zero.common.4.5.0.nupkg.sha512"
+      "sha512": "sha512-mBQPnLY5SlEcZ7eVEeMSPJV1jrZxz4xwN27SZnX6d/vxhNsBnGvLqcxqyFxUsKw5jDHWNK/8zBh5Io8bx3V1KA==",
+      "path": "abp.zero.common/4.4.0",
+      "hashPath": "abp.zero.common.4.4.0.nupkg.sha512"
     },
-    "Abp.ZeroCore/4.5.0": {
+    "Abp.ZeroCore/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-73WmzBE4MhsVJFFg/isslo4R5QIZzgdIJUQIBikuXljFfonlLi0b86JWXJXXUP3qR1yh/IzalsALR7FLy0VDzQ==",
-      "path": "abp.zerocore/4.5.0",
-      "hashPath": "abp.zerocore.4.5.0.nupkg.sha512"
+      "sha512": "sha512-W2c6vLJbx7oo5BqY9IA4w2jRt0iIhLwdzHXIUUNlpDSj2QrqMlqZ3dZ0Hyg2ocEELfm80WgZ9+4KBXtABHox+g==",
+      "path": "abp.zerocore/4.4.0",
+      "hashPath": "abp.zerocore.4.4.0.nupkg.sha512"
     },
-    "Abp.ZeroCore.EntityFrameworkCore/4.5.0": {
+    "Abp.ZeroCore.EntityFrameworkCore/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qO40XBXPSdSLm1rYz5OcridPlGhBGFzZZVYBtlAfkVcTe0jwxqyuR3ZiJujOCXgnP4LNAKHO8esBreDjRiEC+w==",
-      "path": "abp.zerocore.entityframeworkcore/4.5.0",
-      "hashPath": "abp.zerocore.entityframeworkcore.4.5.0.nupkg.sha512"
+      "sha512": "sha512-G8FGAcY8PYDNvjndgq8+Eqff69sipUY8KT2cFMVvWDOp90KhwW89aoHBwvFU3wi6+jJd9gXjCQadCoYPm5XZ7Q==",
+      "path": "abp.zerocore.entityframeworkcore/4.4.0",
+      "hashPath": "abp.zerocore.entityframeworkcore.4.4.0.nupkg.sha512"
     },
-    "Abp.ZeroCore.IdentityServer4/4.5.0": {
+    "Abp.ZeroCore.IdentityServer4/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-m/KoGRv80ukwmNO2PNtLWfvCm6ohIfgMNnQkQXAu2gPehHBu8fmajdH+pdsiZe7JeGESgLDS/NXM0K/EMGntvw==",
-      "path": "abp.zerocore.identityserver4/4.5.0",
-      "hashPath": "abp.zerocore.identityserver4.4.5.0.nupkg.sha512"
+      "sha512": "sha512-RSWUIMpS3Qo/DCVoEk+7O4T8Wp+Gj420HBZJBRiyjV7GlljhuPLT4Y3yzZhaCOcnGqc1R6eVcGFK5l3E2QRBYg==",
+      "path": "abp.zerocore.identityserver4/4.4.0",
+      "hashPath": "abp.zerocore.identityserver4.4.4.0.nupkg.sha512"
     },
-    "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.5.0": {
+    "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore/4.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uns7fG+HVVb+OvDo1uS73m/q1ocIqSBf/pEgcPabSTEiHaHrfkjII3l6t70M8h/q0xOSXI5vasxXtaFIJIwMOg==",
-      "path": "abp.zerocore.identityserver4.entityframeworkcore/4.5.0",
-      "hashPath": "abp.zerocore.identityserver4.entityframeworkcore.4.5.0.nupkg.sha512"
+      "sha512": "sha512-pZLa/GowmVrAkN1CxTxwkVzwJhXyX+O7FkpjFLYqKrcPH4Q7Db6lfs2I51IbuuMBH2JAKOh5U3ZHr1BVn/bi7A==",
+      "path": "abp.zerocore.identityserver4.entityframeworkcore/4.4.0",
+      "hashPath": "abp.zerocore.identityserver4.entityframeworkcore.4.4.0.nupkg.sha512"
     },
     "AutoMapper/8.0.0": {
       "type": "package",
@@ -8063,13 +8036,6 @@
       "sha512": "sha512-k8TzWTpjwO+4xXsMaaAsAPAdYKyM5wuRvSP+ZmgtyXwhW45ChBVq3xdVJ8Tz+hQ0ziBZSh5p6r2dkRN6SyasVA==",
       "path": "swashbuckle.aspnetcore/4.0.1",
       "hashPath": "swashbuckle.aspnetcore.4.0.1.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.ReDoc/4.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-K4Yd3lfSRngFVEaqFQN+DfYF2dZTViA5lBgnOOc/wnwQu7OG0oofjNzNQRmHsd+WLxl+y5xxjlhwG1a+UBpVAA==",
-      "path": "swashbuckle.aspnetcore.redoc/4.0.1",
-      "hashPath": "swashbuckle.aspnetcore.redoc.4.0.1.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.Swagger/4.0.1": {
       "type": "package",

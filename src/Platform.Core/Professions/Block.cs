@@ -22,10 +22,12 @@ namespace Platform.Professions
 
         public ICollection<StepBase> Steps { get; set; }
 
-        [NotMapped]
-        public int Duration
-        { get { return Steps.Sum(s=>s.Duration);  }
-            set { } }
+        //[NotMapped]
+        //public int Duration
+        //{ get { return Steps.Sum(s=>s.Duration);  }
+        //    set { } }
+
+
 
     }
 

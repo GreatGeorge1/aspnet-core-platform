@@ -3,6 +3,7 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Web.Models;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace Platform.Controllers
 {
    // [Authorize(AuthenticationSchemes = "JwtBearer")]
     [DontWrapResult]
+    [Expand(MaxDepth = 10)]
     public class ProfessionsController : AbpODataEntityController<Profession, long>, ITransientDependency
     {
         public ProfessionsController(IRepository<Profession,long> repository) : base(repository)
@@ -28,15 +30,16 @@ namespace Platform.Controllers
         //    return base.Delete(key);
         //}
 
-        //public override IQueryable<Profession> Get()
-        //{
-        //    return base.Get();
-        //}
-
-        //public override SingleResult<Profession> Get([FromODataUri] long key)
-        //{
-        //    return base.Get(key);
-        //}
+        [EnableQuery(MaxExpansionDepth =4)]
+        public override IQueryable<Profession> Get()
+        {
+            return base.Get();
+        }
+        [EnableQuery(MaxExpansionDepth = 4)]
+        public override SingleResult<Profession> Get([FromODataUri] long key)
+        {
+            return base.Get(key);
+        }
 
         //public override Task<IActionResult> Patch([FromODataUri] long key, [FromBody] Delta<Profession> entity)
         //{

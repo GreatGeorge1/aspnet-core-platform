@@ -67,9 +67,9 @@ namespace Platform.EntityFrameworkCore
 
             modelBuilder.Entity<StepBase>()
                 .ToTable("Steps");
-                //.HasDiscriminator<string>("StepType")
-                //.HasValue<StepInfo>("Info")
-                //.HasValue<StepTest>("Test");
+            //.HasDiscriminator<string>("StepType")
+            //.HasValue<StepInfo>("Info")
+            //.HasValue<StepTest>("Test");
 
             modelBuilder.Entity<Block>()
                 .HasMany(b => b.Steps)

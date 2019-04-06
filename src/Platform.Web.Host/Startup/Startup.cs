@@ -158,10 +158,12 @@ namespace Platform.Web.Host.Startup
                 builder.EntitySet<Profession>("Professions").EntityType
                         .Filter() // Allow for the $filter Command
                         .Count() // Allow for the $count Command
-                        .Expand() // Allow for the $expand Command
+                        .Expand(4) // Allow for the $expand Command
                         .OrderBy() // Allow for the $orderby Command
                         .Page() // Allow for the $top and $skip Commands
                         .Select();// Allow for the $select Command; 
+                        
+                        
                 //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession))
                 //    .AddProperty(typeof(Profession).GetProperty("BlocksCount"));
                 builder.EntitySet<ProfessionTranslations>("ProfessionTranslations").EntityType
@@ -175,15 +177,16 @@ namespace Platform.Web.Host.Startup
                 builder.EntitySet<Block>("Blocks").EntityType
                       .Filter() // Allow for the $filter Command
                       .Count() // Allow for the $count Command
-                      .Expand() // Allow for the $expand Command
+                      .Expand(4) // Allow for the $expand Command
                       .OrderBy() // Allow for the $orderby Command
                       .Page() // Allow for the $top and $skip Commands
                       .Select();// Allow for the $select Command; 
+                     // .Property(b => b.StepsCount);
 
                 builder.EntitySet<StepBase>("Steps").EntityType
                       .Filter() // Allow for the $filter Command
                       .Count() // Allow for the $count Command
-                      .Expand() // Allow for the $expand Command
+                      .Expand(4) // Allow for the $expand Command
                       .OrderBy() // Allow for the $orderby Command
                       .Page() // Allow for the $top and $skip Commands
                       .Select();// Allow for the $select Command; 
@@ -191,7 +194,7 @@ namespace Platform.Web.Host.Startup
                 builder.EntitySet<StepInfo>("StepInfos").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
-                       .Expand() // Allow for the $expand Command
+                       .Expand(4) // Allow for the $expand Command
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
@@ -199,7 +202,7 @@ namespace Platform.Web.Host.Startup
                 builder.EntitySet<StepTest>("StepTests").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
-                       .Expand() // Allow for the $expand Command
+                       .Expand(4) // Allow for the $expand Command
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
@@ -207,7 +210,7 @@ namespace Platform.Web.Host.Startup
                 builder.EntitySet<Answer>("Answers").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
-                       .Expand() // Allow for the $expand Command
+                       .Expand(4) // Allow for the $expand Command
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
@@ -215,14 +218,14 @@ namespace Platform.Web.Host.Startup
                 builder.EntitySet<Package>("Packages").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
-                       .Expand() // Allow for the $expand Command
+                       .Expand(4) // Allow for the $expand Command
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
                 builder.EntitySet<Event>("Events").EntityType
                        .Filter() // Allow for the $filter Command
                        .Count() // Allow for the $count Command
-                       .Expand() // Allow for the $expand Command
+                       .Expand(4) // Allow for the $expand Command
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
