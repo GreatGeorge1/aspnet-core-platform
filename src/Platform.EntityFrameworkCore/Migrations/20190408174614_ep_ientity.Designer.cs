@@ -10,8 +10,8 @@ using Platform.EntityFrameworkCore;
 namespace Platform.Migrations
 {
     [DbContext(typeof(PlatformDbContext))]
-    [Migration("20190406133300_steps2")]
-    partial class steps2
+    [Migration("20190408174614_ep_ientity")]
+    partial class ep_ientity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1075,11 +1075,16 @@ namespace Platform.Migrations
 
             modelBuilder.Entity("Platform.Events.EventProfession", b =>
                 {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
                     b.Property<long>("EventId");
 
                     b.Property<long>("ProfessionId");
 
-                    b.HasKey("EventId", "ProfessionId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("ProfessionId");
 
@@ -1205,11 +1210,16 @@ namespace Platform.Migrations
 
             modelBuilder.Entity("Platform.Packages.PackageProfession", b =>
                 {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
                     b.Property<long>("PackageId");
 
                     b.Property<long>("ProfessionId");
 
-                    b.HasKey("PackageId", "ProfessionId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PackageId");
 
                     b.HasIndex("ProfessionId");
 

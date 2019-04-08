@@ -32,13 +32,13 @@ namespace Platform.Controllers
         //    return base.Delete(key);
         //}
 
-        [EnableQuery(MaxExpansionDepth =4)]
+        [EnableQuery(MaxExpansionDepth =0)]
         public override IQueryable<Profession> Get()
         {
-            //return base.Get();
-            return repository.GetAllIncluding(p => p.EventProfessions).AsQueryable();
+            return base.Get();
+            //return repository.GetAllIncluding(p => p.EventProfessions).AsQueryable();
         }
-        [EnableQuery(MaxExpansionDepth = 4)]
+        [EnableQuery(MaxExpansionDepth = 0)]
         public override SingleResult<Profession> Get([FromODataUri] long key)
         {
             return base.Get(key);

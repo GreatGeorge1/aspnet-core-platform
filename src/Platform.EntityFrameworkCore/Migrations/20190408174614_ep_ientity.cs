@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Platform.Migrations
 {
-    public partial class steps : Migration
+    public partial class ep_ientity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -829,12 +829,14 @@ namespace Platform.Migrations
                 name: "EventProfessions",
                 columns: table => new
                 {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     EventId = table.Column<long>(nullable: false),
                     ProfessionId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventProfessions", x => new { x.EventId, x.ProfessionId });
+                    table.PrimaryKey("PK_EventProfessions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_EventProfessions_Events_EventId",
                         column: x => x.EventId,
@@ -853,12 +855,14 @@ namespace Platform.Migrations
                 name: "PackageProfessions",
                 columns: table => new
                 {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     PackageId = table.Column<long>(nullable: false),
                     ProfessionId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PackageProfessions", x => new { x.PackageId, x.ProfessionId });
+                    table.PrimaryKey("PK_PackageProfessions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PackageProfessions_Packages_PackageId",
                         column: x => x.PackageId,
@@ -1034,7 +1038,7 @@ namespace Platform.Migrations
                     Duration = table.Column<int>(nullable: false),
                     BlockId = table.Column<long>(nullable: true),
                     Index = table.Column<int>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false)
+                    StepType = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1476,6 +1480,11 @@ namespace Platform.Migrations
                 column: "CoreId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EventProfessions_EventId",
+                table: "EventProfessions",
+                column: "EventId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EventProfessions_ProfessionId",
                 table: "EventProfessions",
                 column: "ProfessionId");
@@ -1484,6 +1493,11 @@ namespace Platform.Migrations
                 name: "IX_EventTranslations_CoreId",
                 table: "EventTranslations",
                 column: "CoreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackageProfessions_PackageId",
+                table: "PackageProfessions",
+                column: "PackageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PackageProfessions_ProfessionId",

@@ -9,6 +9,11 @@
             Default pass phrase for SimpleStringCipher decrypt/encrypt operations
             </summary>
         </member>
+        <member name="M:Platform.Events.EventAppService.CreateCopy(System.Int64)">
+            <summary>
+            Govno, no rabotaet
+            </summary>
+        </member>
         <member name="T:Platform.Net.MimeTypes.MimeTypeNames">
             <summary>
             Common mime types. 
@@ -306,6 +311,11 @@
         </member>
         <member name="F:Platform.Net.MimeTypes.MimeTypeNames.ApplicationZip">
             <summary>ZIP archive files; Registered[7]</summary>
+        </member>
+        <member name="M:Platform.Packages.PackageAppService.CreateCopy(System.Int64)">
+            <summary>
+            Govno, no rabotaet
+            </summary>
         </member>
         <member name="T:Platform.PlatformAppServiceBase">
             <summary>

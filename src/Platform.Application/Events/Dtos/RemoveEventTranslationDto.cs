@@ -6,7 +6,6 @@ namespace Platform.Events.Dtos
 {
     public class RemoveEventTranslationDto
     {
-        public long EventId { get; set; }
-        public long ProfessionId { get; set; }
+        public long EventTranslationId { get; set; }
     }
 }

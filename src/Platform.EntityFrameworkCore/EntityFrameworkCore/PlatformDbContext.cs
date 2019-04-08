@@ -21,10 +21,7 @@ namespace Platform.EntityFrameworkCore
         public DbSet<BlockTranslations> BlockTranslations { get; set; }
         public DbSet<StepInfo> StepInfos { get; set; }
         public DbSet<StepTest> StepTests { get; set; }
-
-        //!!!!!!!!!!!!!!!
         public DbSet<StepBase> Steps { get; set; }
-        //!!!!!!!!!!!!!!!
         public DbSet<StepTranslations>  StepTranslations{get;set;}
         public DbSet<Answer> Answers { get; set; }
 
@@ -77,7 +74,9 @@ namespace Platform.EntityFrameworkCore
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<PackageProfession>()
-                .HasKey(pp => new { pp.PackageId, pp.ProfessionId });
+                //в odata не работают композитные ключи(в swagger тоже)
+                //.HasKey(pp => new { pp.PackageId, pp.ProfessionId });
+                .HasKey(pp => pp.Id);
             modelBuilder.Entity<PackageProfession>()
                 .HasOne(pp => pp.Package)
                 .WithMany(pp => pp.PackageProfessions)
@@ -88,7 +87,8 @@ namespace Platform.EntityFrameworkCore
                 .HasForeignKey(pp => pp.ProfessionId);
 
             modelBuilder.Entity<EventProfession>()
-                .HasKey(ep => new { ep.EventId, ep.ProfessionId });
+                //.HasKey(ep => new { ep.EventId, ep.ProfessionId });
+                .HasKey(ep => ep.Id);
             modelBuilder.Entity<EventProfession>()
                 .HasOne(ep => ep.Event)
                 .WithMany(ep => ep.EventProfessions)
