@@ -21,8 +21,10 @@ namespace Platform.Controllers
     [Expand(MaxDepth = 10)]
     public class ProfessionsController : AbpODataEntityController<Profession, long>, ITransientDependency
     {
+        private readonly IRepository<Profession, long> repository;
         public ProfessionsController(IRepository<Profession,long> repository) : base(repository)
         {
+            this.repository = repository;
         }
 
         //public override Task<IActionResult> Delete([FromODataUri] long key)
@@ -33,7 +35,8 @@ namespace Platform.Controllers
         [EnableQuery(MaxExpansionDepth =4)]
         public override IQueryable<Profession> Get()
         {
-            return base.Get();
+            //return base.Get();
+            return repository.GetAllIncluding(p => p.EventProfessions).AsQueryable();
         }
         [EnableQuery(MaxExpansionDepth = 4)]
         public override SingleResult<Profession> Get([FromODataUri] long key)

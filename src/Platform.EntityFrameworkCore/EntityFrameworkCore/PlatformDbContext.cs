@@ -62,14 +62,14 @@ namespace Platform.EntityFrameworkCore
             //    .Property(s => s.Duration)
             //    .HasConversion<TimeSpanToTicksConverter>();
 
-            modelBuilder.Entity<StepInfo>().ToTable("StepInfos");
-            modelBuilder.Entity<StepTest>().ToTable("StepTests");
+           // modelBuilder.Entity<StepInfo>().ToTable("StepInfos");
+           // modelBuilder.Entity<StepTest>();
 
             modelBuilder.Entity<StepBase>()
-                .ToTable("Steps");
-            //.HasDiscriminator<string>("StepType")
-            //.HasValue<StepInfo>("Info")
-            //.HasValue<StepTest>("Test");
+                .ToTable("Steps")
+                .HasDiscriminator<string>("StepType")
+                .HasValue<StepInfo>("Info")
+                .HasValue<StepTest>("Test");
 
             modelBuilder.Entity<Block>()
                 .HasMany(b => b.Steps)

@@ -229,6 +229,14 @@ namespace Platform.Web.Host.Startup
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
+
+                //builder.EntitySet<EventProfession>("EventProfessions").EntityType
+                //       .Filter() // Allow for the $filter Command
+                //       .Count() // Allow for the $count Command
+                //       .Expand(4) // Allow for the $expand Command
+                //       .OrderBy() // Allow for the $orderby Command
+                //       .Page() // Allow for the $top and $skip Commands
+                //       .Select();// Allow for the $select Command; 
             });
 
             // Return IQueryable from controllers
