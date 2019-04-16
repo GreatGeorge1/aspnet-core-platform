@@ -14,12 +14,25 @@ namespace Platform.Web.Host.Startup
     {
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
+          //  services.
+           //services.AddAuthentication().AddFacebook(facebookOptions =>
+           //{
+           //    facebookOptions.AppId = "352709768684264";
+           //    facebookOptions.AppSecret = "4576fa336138a84932b88ab6f41bf92e";
+           //    facebookOptions.ClientId="352709768684264";
+           //    // facebookOptions.Fields
+           //    //facebookOptions.
+               
+           //});
+
             if (bool.Parse(configuration["Authentication:JwtBearer:IsEnabled"]))
             {
-                services.AddAuthentication(options => {
+                services.AddAuthentication(options =>
+                {
                     options.DefaultAuthenticateScheme = "JwtBearer";
                     options.DefaultChallengeScheme = "JwtBearer";
-                }).AddJwtBearer("JwtBearer", options =>
+                })
+                .AddJwtBearer("JwtBearer", options =>
                 {
                     options.Audience = configuration["Authentication:JwtBearer:Audience"];
 
@@ -49,6 +62,7 @@ namespace Platform.Web.Host.Startup
                         OnMessageReceived = QueryStringTokenResolver
                     };
                 });
+                    
             }
         }
 

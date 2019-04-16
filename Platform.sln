@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Migrator", "src\Platform.Migrator\Platform.Migrator.csproj", "{880B3591-E057-46FE-B525-10BD83828B93}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Web.Host", "src\Platform.Web.Host\Platform.Web.Host.csproj", "{38E184BD-E874-4633-A947-AED4FDB73F40}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F} = {E0580562-F8F2-4EBB-B07A-ABFC6F2C314F}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Web.Core", "src\Platform.Web.Core\Platform.Web.Core.csproj", "{22CFE0D2-8DCA-42D7-AD7D-784C3862493F}"
 EndProject

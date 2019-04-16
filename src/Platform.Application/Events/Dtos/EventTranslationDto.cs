@@ -17,6 +17,6 @@ namespace Platform.Events.Dtos
 
         public string Language { get; set; }
         [Url]
-        public string? VideoUrl { get; set; }
+        public string VideoUrl { get; set; }
     }
 }

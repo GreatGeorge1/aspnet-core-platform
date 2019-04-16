@@ -21,6 +21,11 @@
             It's shown in the web page.
             </summary>
         </member>
+        <member name="P:Platform.Packages.Order.IsActive">
+            <summary>
+            подтвержден
+            </summary>
+        </member>
         <member name="P:Platform.Professions.Dtos.Block.UpdateBlockTranslationDto.Id">
             <summary>
             BlockTRanslations Id

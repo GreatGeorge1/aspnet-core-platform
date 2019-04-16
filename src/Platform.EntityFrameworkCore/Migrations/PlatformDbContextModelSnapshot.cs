@@ -962,6 +962,8 @@ namespace Platform.Migrations
 
                     b.Property<long?>("CreatorUserId");
 
+                    b.Property<DateTime>("DOB");
+
                     b.Property<long?>("DeleterUserId");
 
                     b.Property<DateTime?>("DeletionTime");
@@ -1010,8 +1012,7 @@ namespace Platform.Migrations
                     b.Property<string>("PasswordResetCode")
                         .HasMaxLength(328);
 
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(32);
+                    b.Property<string>("PhoneNumber");
 
                     b.Property<string>("SecurityStamp")
                         .HasMaxLength(128);
@@ -1129,6 +1130,36 @@ namespace Platform.Migrations
                     b.ToTable("EventTranslations");
                 });
 
+            modelBuilder.Entity("Platform.Events.UserEvents", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<long>("EventId");
+
+                    b.Property<bool>("IsCompleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<int>("Score");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserEvents");
+                });
+
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
                 {
                     b.Property<int>("Id")
@@ -1178,6 +1209,42 @@ namespace Platform.Migrations
                     b.ToTable("AbpTenants");
                 });
 
+            modelBuilder.Entity("Platform.Packages.Order", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<string>("ExtensionData");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsCompleted");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<decimal>("Summ");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("Platform.Packages.Package", b =>
                 {
                     b.Property<long>("Id")
@@ -1199,9 +1266,13 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
+                    b.Property<long?>("OrderId");
+
                     b.Property<decimal>("Price");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Packages");
                 });
@@ -1744,6 +1815,19 @@ namespace Platform.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Platform.Events.UserEvents", b =>
+                {
+                    b.HasOne("Platform.Events.Event", "Event")
+                        .WithMany("UserEvents")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Platform.Authorization.Users.User", "User")
+                        .WithMany("UserEvents")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
                 {
                     b.HasOne("Platform.Authorization.Users.User", "CreatorUser")
@@ -1761,6 +1845,21 @@ namespace Platform.Migrations
                     b.HasOne("Platform.Authorization.Users.User", "LastModifierUser")
                         .WithMany()
                         .HasForeignKey("LastModifierUserId");
+                });
+
+            modelBuilder.Entity("Platform.Packages.Order", b =>
+                {
+                    b.HasOne("Platform.Authorization.Users.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Platform.Packages.Package", b =>
+                {
+                    b.HasOne("Platform.Packages.Order")
+                        .WithMany("Items")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("Platform.Packages.PackageProfession", b =>

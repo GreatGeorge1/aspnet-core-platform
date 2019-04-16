@@ -22,7 +22,7 @@ namespace Platform.EntityFrameworkCore
         public DbSet<StepInfo> StepInfos { get; set; }
         public DbSet<StepTest> StepTests { get; set; }
         public DbSet<StepBase> Steps { get; set; }
-        public DbSet<StepTranslations>  StepTranslations{get;set;}
+        public DbSet<StepTranslations> StepTranslations { get; set; }
         public DbSet<Answer> Answers { get; set; }
 
         public DbSet<Package> Packages { get; set; }
@@ -32,6 +32,9 @@ namespace Platform.EntityFrameworkCore
         public DbSet<Event> Events { get; set; }
         public DbSet<EventTranslations> EventTranslations { get; set; }
         public DbSet<EventProfession> EventProfessions { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<UserEvents> UserEvents {get;set;}
 
         public DbSet<PersistedGrantEntity> PersistedGrants { get; set; }
 
@@ -97,6 +100,18 @@ namespace Platform.EntityFrameworkCore
                 .HasOne(ep => ep.Profession)
                 .WithMany(ep => ep.EventProfessions)
                 .HasForeignKey(ep => ep.ProfessionId);
+
+            modelBuilder.Entity<UserEvents>()
+                //.HasKey(ep => new { ep.EventId, ep.ProfessionId });
+                .HasKey(ep => ep.Id);
+            modelBuilder.Entity<UserEvents>()
+                .HasOne(ep => ep.User)
+                .WithMany(ep => ep.UserEvents)
+                .HasForeignKey(ep => ep.UserId);
+            modelBuilder.Entity<UserEvents>()
+                .HasOne(ep => ep.Event)
+                .WithMany(ep => ep.UserEvents)
+                .HasForeignKey(ep => ep.EventId);
 
         }
     }

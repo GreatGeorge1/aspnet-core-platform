@@ -30,6 +30,10 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Platform.Packages;
 using Platform.Events;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Platform.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Platform.Web.Host.Startup
 {
@@ -55,7 +59,14 @@ namespace Platform.Web.Host.Startup
                 }
             );
 
-            IdentityRegistrar.Register(services);
+            //services.AddDbContext<PlatformDbContext>(options =>
+            // options.UseNpgsql(
+            //    _appConfiguration.GetConnectionString("DefaultConnection")));
+
+            IdentityRegistrar.Register(services);//.AddDefaultUI(UIFramework.Bootstrap4);
+
+            
+            
             AuthConfigurer.Configure(services, _appConfiguration);
             services.AddSignalR();
             services.AddOData();
@@ -261,6 +272,29 @@ namespace Platform.Web.Host.Startup
                        .OrderBy() // Allow for the $orderby Command
                        .Page() // Allow for the $top and $skip Commands
                        .Select();// Allow for the $select Command; 
+
+                builder.EntitySet<User>("Users").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand(4) // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+                builder.EntitySet<UserEvents>("UserEvents").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand(4) // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+                builder.EntitySet<Order>("Orders").EntityType
+                       .Filter() // Allow for the $filter Command
+                       .Count() // Allow for the $count Command
+                       .Expand(4) // Allow for the $expand Command
+                       .OrderBy() // Allow for the $orderby Command
+                       .Page() // Allow for the $top and $skip Commands
+                       .Select();// Allow for the $select Command; 
+
             });
 
             // Return IQueryable from controllers

@@ -21,5 +21,6 @@ namespace Platform.Events
         public DateTime? DateEnd { get; set; }
 
         public ICollection<EventProfession> EventProfessions { get; set; }
+        public ICollection<UserEvents> UserEvents { get; set; }
     }
 }

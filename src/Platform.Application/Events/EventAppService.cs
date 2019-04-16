@@ -107,7 +107,7 @@ namespace Platform.Events
                 .Where(e => e.Id == input.EventId)
                 .FirstOrDefaultAsync();
             // event1.Where(e=>e.EventId==input)
-            var ep = event1.EventProfessions.Where(ep => ep.ProfessionId == input.ProfessionId).FirstOrDefault();
+            var ep = event1.EventProfessions.Where(e => e.ProfessionId == input.ProfessionId).FirstOrDefault();
             event1.EventProfessions.Remove(ep);
         }
 

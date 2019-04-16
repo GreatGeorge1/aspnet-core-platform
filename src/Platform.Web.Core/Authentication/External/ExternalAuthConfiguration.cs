@@ -10,6 +10,7 @@ namespace Platform.Authentication.External
         public ExternalAuthConfiguration()
         {
             Providers = new List<ExternalLoginProviderInfo>();
+            
         }
     }
 }

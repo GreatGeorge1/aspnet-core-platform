@@ -15,6 +15,7 @@ using Platform.Authentication.External;
 using Platform.Authentication.JwtBearer;
 using Platform.Authorization;
 using Platform.Authorization.Users;
+using Platform.Identity;
 using Platform.Models.TokenAuth;
 using Platform.MultiTenancy;
 
@@ -31,6 +32,8 @@ namespace Platform.Controllers
         private readonly IExternalAuthManager _externalAuthManager;
         private readonly UserRegistrationManager _userRegistrationManager;
 
+        private readonly SignInManager _signInManager;
+
         public TokenAuthController(
             LogInManager logInManager,
             ITenantCache tenantCache,
@@ -38,7 +41,8 @@ namespace Platform.Controllers
             TokenAuthConfiguration configuration,
             IExternalAuthConfiguration externalAuthConfiguration,
             IExternalAuthManager externalAuthManager,
-            UserRegistrationManager userRegistrationManager)
+            UserRegistrationManager userRegistrationManager,
+            SignInManager signInManager)
         {
             _logInManager = logInManager;
             _tenantCache = tenantCache;
@@ -47,6 +51,7 @@ namespace Platform.Controllers
             _externalAuthConfiguration = externalAuthConfiguration;
             _externalAuthManager = externalAuthManager;
             _userRegistrationManager = userRegistrationManager;
+            _signInManager = signInManager;
         }
 
         [HttpPost]
@@ -70,16 +75,20 @@ namespace Platform.Controllers
         }
 
         [HttpGet]
-        public List<ExternalLoginProviderInfoModel> GetExternalAuthenticationProviders()
+        public async Task<List<ExternalLoginProviderInfoModel>> GetExternalAuthenticationProviders()
         {
-            return ObjectMapper.Map<List<ExternalLoginProviderInfoModel>>(_externalAuthConfiguration.Providers);
+            var schemes = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            var sch2=ObjectMapper.Map<List<ExternalLoginProviderInfoModel>>(schemes);
+            var res = ObjectMapper.Map<List<ExternalLoginProviderInfoModel>>(_externalAuthConfiguration.Providers);
+            res.AddRange(sch2);
+            return res;
         }
 
         [HttpPost]
         public async Task<ExternalAuthenticateResultModel> ExternalAuthenticate([FromBody] ExternalAuthenticateModel model)
         {
             var externalUser = await GetExternalUserInfo(model);
-
+   
             var loginResult = await _logInManager.LoginAsync(new UserLoginInfo(model.AuthProvider, model.ProviderKey, model.AuthProvider), GetTenancyNameOrNull());
 
             switch (loginResult.Result)

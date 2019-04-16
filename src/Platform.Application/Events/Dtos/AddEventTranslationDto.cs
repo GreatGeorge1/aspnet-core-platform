@@ -13,7 +13,7 @@ namespace Platform.Events.Dtos
         public string Description { get; set; }
         public string Base64Image { get; set; }
         [Url]
-        public string? VideoUrl { get; set; }
+        public string VideoUrl { get; set; }
         public string Language { get; set; }
     }
     

@@ -54,6 +54,7 @@ namespace Platform.Users
 
         public override async Task<UserDto> Create(CreateUserDto input)
         {
+            //TODO:disable admin create
             CheckCreatePermission();
 
             var user = ObjectMapper.Map<User>(input);

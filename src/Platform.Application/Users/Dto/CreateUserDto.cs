@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
 using Abp.Authorization.Users;
@@ -10,6 +11,12 @@ namespace Platform.Users.Dto
     [AutoMapTo(typeof(User))]
     public class CreateUserDto : IShouldNormalize
     {
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DOB { get; set; }
+
+
         [Required]
         [StringLength(AbpUserBase.MaxUserNameLength)]
         public string UserName { get; set; }

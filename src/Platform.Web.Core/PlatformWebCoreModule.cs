@@ -15,6 +15,7 @@ using Platform.EntityFrameworkCore;
 using Platform.Professions;
 using Abp.AspNetCore.OData;
 using Abp.AspNetCore.OData.Configuration;
+using Platform.Authentication.External;
 
 namespace Platform
 {
@@ -66,7 +67,30 @@ namespace Platform
             tokenAuthConfig.Audience = _appConfiguration["Authentication:JwtBearer:Audience"];
             tokenAuthConfig.SigningCredentials = new SigningCredentials(tokenAuthConfig.SecurityKey, SecurityAlgorithms.HmacSha256);
             tokenAuthConfig.Expiration = TimeSpan.FromDays(1);
+
+           // IocManager.Register<IExternalAuthConfiguration>();
+          //  var extAuthConfig = IocManager.Resolve<ExternalAuthConfiguration>();
+//            var ext = new ExternalLoginProviderInfo(
+//                name: "Facebook",
+//                clientId: "352709768684264",
+//                clientSecret: "4576fa336138a84932b88ab6f41bf92e",
+//                typeof(FacebookAuth));
+            
+            //extAuthConfig.Providers.Add(ext);
         }
+
+        //public override void PostInitialize()
+        //{
+        //    var externalAuthConfiguration = IocManager.Resolve<IExternalAuthConfiguration>();
+        //    externalAuthConfiguration.Providers.Add(
+        //        new ExternalLoginProviderInfo(
+        //            FacebookAuthProvider.Name,
+        //            "352709768684264",
+        //            "4576fa336138a84932b88ab6f41bf92e",
+        //            typeof(FacebookAuthProvider)
+        //        )
+        //    );
+        //}
 
         public override void Initialize()
         {
