@@ -4,7 +4,6 @@ using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
 using Platform.MultiTenancy;
 using Platform.Professions;
-using Abp.IdentityServer4;
 using Abp.Localization;
 using Platform.Packages;
 using Platform.Events;
@@ -12,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Platform.EntityFrameworkCore
 {
-    public class PlatformDbContext : AbpZeroDbContext<Tenant, Role, User, PlatformDbContext>, IAbpPersistedGrantDbContext
+    public class PlatformDbContext : AbpZeroDbContext<Tenant, Role, User, PlatformDbContext>
     {
         /* Define a DbSet for each entity of the application */
         public DbSet<Profession> Professions { get; set; }
@@ -36,8 +35,6 @@ namespace Platform.EntityFrameworkCore
         public DbSet<Order> Orders { get; set; }
         public DbSet<UserEvents> UserEvents {get;set;}
 
-        public DbSet<PersistedGrantEntity> PersistedGrants { get; set; }
-
         public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
             : base(options)
         {
@@ -48,7 +45,7 @@ namespace Platform.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ConfigurePersistedGrantEntity();
+           // modelBuilder.ConfigurePersistedGrantEntity();
             modelBuilder.Entity<ApplicationLanguageText>()
                .Property(p => p.Value)
                .HasMaxLength(100); // any integer that is smaller than 10485760

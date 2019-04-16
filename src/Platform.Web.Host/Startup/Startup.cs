@@ -14,26 +14,17 @@ using Swashbuckle.AspNetCore.Swagger;
 using Abp.AspNetCore;
 using Abp.AspNetCore.OData.Configuration;
 using Abp.Castle.Logging.Log4Net;
-using Abp.Extensions;
 using Platform.Configuration;
 using Platform.Identity;
-
 using Abp.AspNetCore.SignalR.Hubs;
 using Platform.Professions;
 using System.Reflection;
 using Platform.Web.Host.Filters;
-using Abp.IdentityServer4;
 using Platform.Authorization.Users;
-using Platform.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Platform.Packages;
 using Platform.Events;
-using System.IO;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Platform.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Platform.Web.Host.Startup
 {

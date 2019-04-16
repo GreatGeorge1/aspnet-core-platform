@@ -5,7 +5,6 @@ using Abp.Reflection.Extensions;
 using Platform.Configuration;
 using Abp.AspNetCore.OData;
 using Abp.Authorization;
-using Microsoft.AspNetCore.Authentication.Facebook;
 using Platform.Authentication.External;
 
 namespace Platform.Web.Host.Startup
