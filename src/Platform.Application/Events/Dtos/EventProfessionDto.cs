@@ -8,7 +8,9 @@ namespace Platform.Events.Dtos
     public class EventProfessionDto:EntityDto<long>
     {
         public long EventId { get; set; }
-        public GetProfessionAllDto Profession { get; set; }
+        //public ProfessionDto Profession { get; set; }
         public long ProfessionId { get; set; }
     }
+
+    
 }

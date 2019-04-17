@@ -1,5 +1,4 @@
 ﻿using Abp.AutoMapper;
-using Abp.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Timing;
@@ -10,7 +9,6 @@ using Platform.Authorization.Users;
 using Platform.Configuration;
 using Platform.Localization;
 using Platform.MultiTenancy;
-using Platform.Professions;
 using Platform.Timing;
 
 namespace Platform
@@ -37,17 +35,6 @@ namespace Platform
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             Configuration.Settings.Providers.Add<AppSettingProvider>();
-
-            //automap
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(configuration =>
-            {
-                ProfessionListDtoMapper.CreateMappings(configuration, new MultiLingualMapContext(
-                    IocManager.Resolve<ISettingManager>()
-                ));
-                BlockDtoMapper.CreateMappings(configuration, new MultiLingualMapContext(
-                    IocManager.Resolve<ISettingManager>()
-                ));
-            });
         }
 
         public override void Initialize()

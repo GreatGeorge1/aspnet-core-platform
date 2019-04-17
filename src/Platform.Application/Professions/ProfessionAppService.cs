@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos;
@@ -9,42 +11,37 @@ using Platform.Professions.Dtos;
 namespace Platform.Professions
 {
     //[Authorize]
-    public class ProfessionAppService : ApplicationService, IProfessionAppService
+    public class ProfessionAppService : AsyncCrudAppService<Profession,ProfessionDto, long, PagedResultDto<Profession>, ProfessionCreateDto, ProfessionUpdateDto>, IProfessionAppService
     {
         private readonly IRepository<Profession, long> _professionRepository;
         private readonly IRepository<ProfessionTranslations, long> _translationRepository;
         private readonly IRepository<Block, long> _blockRepository;
 
-        public ProfessionAppService(IRepository<Profession, long> professionRepository, 
+        public ProfessionAppService(IRepository<Profession, long> professionRepository,
             IRepository<ProfessionTranslations, long> translationRepository, 
-            IRepository<Block, long> blockRepository)
+            IRepository<Block, long> blockRepository):base(professionRepository)
         {
             _professionRepository = professionRepository;
             _translationRepository = translationRepository;
             _blockRepository = blockRepository;
         }
 
-        public async Task AddTranslation(AddProfessionTranslationDto input, long id)
+        public async Task AddTranslation(ProfessionTranslationDto input, long id)
         {
             var translation = ObjectMapper.Map(input, new ProfessionTranslations());
+            translation.Id = 0;
             var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
                 .FirstOrDefaultAsync(p => p.Id == id);
             prof.Translations.Add(translation);
         }
 
-        public async Task<ProfessionReplyOkDto> CreateCopy(long id)
+        public async Task<ProfessionDto> CreateCopy(long id)
         {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
-                .FirstOrDefaultAsync(p => p.Id == id);
-
-            var newprofdto = ObjectMapper.Map(prof, new ProfessionCreateDto());
-            var newprof = ObjectMapper.Map(newprofdto, new Profession());
-
-            var newid = await _professionRepository.InsertAndGetIdAsync(newprof);
-            return new ProfessionReplyOkDto { id = newid, message = "created" };
+            throw new NotImplementedException();
+            
         }
 
-        public async Task DeleteTranslation(DeleteProfessionTranslationDto input)
+        public async Task DeleteTranslation(ProfessionTranslationDeleteDto input)
         {
             var ts = await _translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             ts.IsActive = false;
@@ -57,69 +54,15 @@ namespace Platform.Professions
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task UpdateTranslation(UpdateProfessionTranslationDto input)
+        public async Task<ProfessionTranslationDto> UpdateTranslation(ProfessionTranslationDto input)
         {
             var ts = ObjectMapper.Map<ProfessionTranslations>(input);
-            await _translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+            var updid= await _translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+            var updts = await _translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
+            return ObjectMapper.Map<ProfessionTranslationDto>(updts);
         }
 
-        public async Task<ProfessionReplyOkDto> CreateProfession(ProfessionCreateDto input)
-        {
-            var prof = ObjectMapper.Map<Profession>(input);
-            var newid = await _professionRepository.InsertAndGetIdAsync(prof);
-            return new ProfessionReplyOkDto { id = newid, message = "created" };
-        }
-
-        public async Task<ProfessionReplyOkDto> UpdateProfession(ProfessionUpdateDto input)
-        {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
-               .FirstOrDefaultAsync(p => p.Id == input.Id);
-            prof.Translations.Clear();
-            var upd = ObjectMapper.Map(input, prof);
-            var res = await _professionRepository.InsertOrUpdateAndGetIdAsync(upd);
-            return new ProfessionReplyOkDto { id = res, message = "updated" };
-        }
-        public async Task<ProfessionReplyOkDto> DeleteProfession(long id)
-        {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
-                .FirstOrDefaultAsync(p => p.Id == id);
-            prof.IsDeleted = true;
-            prof.IsActive = false;
-            var res = await _professionRepository.InsertOrUpdateAndGetIdAsync(prof);
-            return new ProfessionReplyOkDto { id = res, message = "deleted" };
-        }
-
-        public async Task<GetProfessionDto> GetProfession(long id)
-        {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations, p => p.Blocks)
-               .FirstOrDefaultAsync(p => p.Id == id);
-            var res = ObjectMapper.Map(prof, new GetProfessionDto());
-            return res;
-        }
-
-        public async Task<GetProfessionAllDto> GetProfessionAllLang(long id)
-        {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Translations, p=>p.Blocks)
-               .FirstOrDefaultAsync(p => p.Id == id);
-            var res = ObjectMapper.Map(prof, new GetProfessionAllDto());
-            return res;
-        }
-
-        public async Task<IEnumerable<GetProfessionAllDto>> GetAll(int max=10, int skip=0)
-        {
-            var prof = await _professionRepository.GetAllIncluding(p=>p.Translations,p=>p.Blocks)
-               .Take(max).ToListAsync();
-            //var res = ObjectMapper.Map(prof, new GetProfessionAllDto());
-            var res = new List<GetProfessionAllDto>();
-            prof.ForEach(p=> 
-            {
-                res.Add(ObjectMapper.Map<GetProfessionAllDto>(p));
-            });
-            return res;
-        }
-
-
-        public async Task RemoveBlock(RemoveBlockDto input)
+        public async Task RemoveBlock(BlockDeleteDto input)
         {
             var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
               .FirstOrDefaultAsync(p => p.Id == input.ProfessionId);
@@ -129,15 +72,14 @@ namespace Platform.Professions
             block.IsDeleted = true;
         }
 
-        public async Task AddBlock(AddBlockDto input, long id)
+        public async Task<BlockDto> CreateBlock(BlockCreateDto input, long id)
         {
             var prof = await _professionRepository.FirstOrDefaultAsync(p => p.Id == id);
             var block = ObjectMapper.Map<Block>(input);
             block.Profession = prof;
             var newid = await _blockRepository.InsertAndGetIdAsync(block);
-            //var b = await _blockRepository.FirstOrDefaultAsync(p => p.Id == newid);
-            //b.Profession = prof;
-
+            var b = await _blockRepository.FirstOrDefaultAsync(p => p.Id == newid);
+            return ObjectMapper.Map<BlockDto>(b);
         }
     }
 }

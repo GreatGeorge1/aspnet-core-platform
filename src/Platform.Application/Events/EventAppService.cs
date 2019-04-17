@@ -10,7 +10,7 @@ using Platform.Professions;
 
 namespace Platform.Events
 {
-    public class EventAppService : AsyncCrudAppService<Event, EventDto, long, PagedResultDto<Event>, CreateEventDto, UpdateEventDto>, IEventAppService
+    public class EventAppService : AsyncCrudAppService<Event, EventDto, long, PagedResultDto<Event>, EventCreateDto, EventUpdateDto>, IEventAppService
     {
         private readonly IRepository<Event, long> eventRepository;
         private readonly IRepository<Profession, long> professionRepository;
@@ -27,7 +27,7 @@ namespace Platform.Events
             this.translationRepository = translationRepository;
         }
 
-        public async Task AddProfession(AddEventProfessionDto input)
+        public async Task AddProfession(EventProfessionAddDto input)
         {
             var event1 = await eventRepository.GetAllIncluding(e=>e.EventProfessions)
                 .Where(e => e.Id == input.EventId).FirstOrDefaultAsync();
@@ -40,9 +40,10 @@ namespace Platform.Events
             event1.EventProfessions.Add(new EventProfession { Event=event1, Profession=profession});
         }
 
-        public async Task AddTranslation(AddEventTranslationDto input, long id)
+        public async Task CreateTranslation(EventTranslationDto input, long id)
         {
             var translation = ObjectMapper.Map(input, new EventTranslations());
+            translation.Id = 0;
             var event1 = await eventRepository.GetAllIncluding(p => p.Translations)
                 .FirstOrDefaultAsync(p => p.Id == id);
             event1.Translations.Add(translation);
@@ -74,7 +75,8 @@ namespace Platform.Events
             var oldts = event1.Translations.ToList();
             foreach (var item in oldts)
             {
-                var ts = ObjectMapper.Map<AddEventTranslationDto>(item);
+                var ts = ObjectMapper.Map<EventTranslationDto>(item);
+                ts.Id = 0;
                 ts.Title = "Copy -- " + ts.Title;
                 event2.Translations.Add(
                     ObjectMapper.Map<EventTranslations>(ts));
@@ -99,7 +101,7 @@ namespace Platform.Events
 
     
 
-        public async Task RemoveProfession(RemoveEventProfessionDto input)
+        public async Task RemoveProfession(EventProfessionRemoveDto input)
         {
             var event1 = await eventRepository.GetAllIncluding(e=>e.EventProfessions)
                 .Where(e => e.Id == input.EventId)
@@ -109,9 +111,9 @@ namespace Platform.Events
             event1.EventProfessions.Remove(ep);
         }
 
-        public async Task RemoveTranslation(RemoveEventTranslationDto input)
+        public async Task DeleteTranslation(EventTranslationDeleteDto input)
         {
-            var ts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.EventTranslationId);
+            var ts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             ts.IsActive = false;
             ts.IsDeleted = true;
             await translationRepository.InsertOrUpdateAsync(ts);

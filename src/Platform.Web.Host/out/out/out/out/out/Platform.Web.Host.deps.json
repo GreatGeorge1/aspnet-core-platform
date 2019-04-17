@@ -3176,7 +3176,6 @@
       },
       "Platform.EntityFrameworkCore/1.0.0": {
         "dependencies": {
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.5.0",
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
@@ -6727,7 +6726,6 @@
       },
       "Platform.EntityFrameworkCore/1.0.0": {
         "dependencies": {
-          "Abp.ZeroCore.IdentityServer4.EntityFrameworkCore": "4.5.0",
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",

@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+
+namespace Platform.Professions.Dtos
+{
+    [AutoMap(typeof(ProfessionTranslations))]
+    public class ProfessionTranslationDto: EntityDto<long>
+    {
+        public bool IsActive { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Base64Image { get; set; }
+        [Url]
+        public string VideoUrl { get; set; }
+        public string Language { get; set; }
+    }
+}

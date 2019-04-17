@@ -1,12 +1,15 @@
 ﻿using Abp.AutoMapper;
+using Abp.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Platform.Authorization;
+using Platform.Professions;
 
 namespace Platform
 {
     [DependsOn(
         typeof(PlatformCoreModule), 
+        typeof(AbpAutoMapperModule),
         typeof(AbpAutoMapperModule))]
     public class PlatformApplicationModule : AbpModule
     {
