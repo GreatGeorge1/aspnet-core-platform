@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json;
-using Platform.Models.Facebook;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Platform.Models.Facebook;
 
 namespace Platform.Authentication.External
 {
@@ -39,7 +37,7 @@ namespace Platform.Authentication.External
                 Name = userInfo.FirstName,
                 EmailAddress = userInfo.UserName,
                 Surname = userInfo.LastName,
-                Provider = InstagramAuthProvider.Name,
+                Provider = Name,
                 ProviderKey = userInfo.Id.ToString()
             };
 

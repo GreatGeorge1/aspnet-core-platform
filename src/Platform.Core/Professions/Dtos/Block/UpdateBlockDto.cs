@@ -1,11 +1,9 @@
-﻿using Abp.AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Abp.AutoMapper;
 
 namespace Platform.Professions.Dtos.Block
 {
-    [AutoMap(typeof(Platform.Professions.Block))]
+    [AutoMap(typeof(Professions.Block))]
     public class UpdateBlockDto:CreateBlockDto
     {
         public long Id { get; set; }

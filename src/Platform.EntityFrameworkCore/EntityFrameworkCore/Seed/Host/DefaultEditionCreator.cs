@@ -1,7 +1,7 @@
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using Abp.Application.Editions;
 using Abp.Application.Features;
+using Microsoft.EntityFrameworkCore;
 using Platform.Editions;
 
 namespace Platform.EntityFrameworkCore.Seed.Host

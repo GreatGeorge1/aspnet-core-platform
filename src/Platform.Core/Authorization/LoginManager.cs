@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Abp.Authorization;
+﻿using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.Configuration;
 using Abp.Configuration.Startup;
@@ -7,6 +6,7 @@ using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Zero.Configuration;
+using Microsoft.AspNetCore.Identity;
 using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
 using Platform.MultiTenancy;

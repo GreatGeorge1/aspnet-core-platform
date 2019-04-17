@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Abp;
 using Abp.Extensions;
 using Abp.Notifications;
 using Abp.Timing;
+using Microsoft.AspNetCore.Mvc;
 using Platform.Controllers;
 
 namespace Platform.Web.Host.Controllers

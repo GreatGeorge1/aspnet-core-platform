@@ -1,8 +1,7 @@
-﻿using Abp.AutoMapper;
-using Platform.Professions.Dtos.Block;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Abp.AutoMapper;
+using Platform.Professions.Dtos.Block;
 
 namespace Platform.Professions.Dtos
 {

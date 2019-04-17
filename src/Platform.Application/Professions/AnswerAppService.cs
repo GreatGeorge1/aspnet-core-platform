@@ -1,12 +1,9 @@
-﻿using Abp.Application.Services;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos.Answer;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Platform.Professions
 {

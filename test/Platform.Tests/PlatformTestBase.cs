@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Abp;
 using Abp.Authorization.Users;
 using Abp.Events.Bus;
@@ -9,6 +8,7 @@ using Abp.Events.Bus.Entities;
 using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.TestBase;
+using Microsoft.EntityFrameworkCore;
 using Platform.Authorization.Users;
 using Platform.EntityFrameworkCore;
 using Platform.EntityFrameworkCore.Seed.Host;

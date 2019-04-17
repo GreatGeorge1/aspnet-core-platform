@@ -1,5 +1,4 @@
-﻿using System;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Platform.Authentication.External;
 

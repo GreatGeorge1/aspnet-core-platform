@@ -8,12 +8,12 @@ using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.IdentityFramework;
 using Abp.Linq.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Platform.Authorization;
 using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
 using Platform.Roles.Dto;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace Platform.Roles
 {

@@ -2,9 +2,6 @@
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Platform.Packages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platform.Controllers
 {

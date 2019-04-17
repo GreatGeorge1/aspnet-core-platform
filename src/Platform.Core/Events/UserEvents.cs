@@ -1,8 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using Platform.Authorization.Users;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platform.Events
 {

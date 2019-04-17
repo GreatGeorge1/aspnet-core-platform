@@ -1,5 +1,5 @@
-﻿using Abp.AutoMapper;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.AutoMapper;
 
 namespace Platform.Professions.Dtos
 {

@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Shouldly;
-using Xunit;
-using Abp.Application.Services.Dto;
 using Platform.Users;
 using Platform.Users.Dto;
+using Shouldly;
+using Xunit;
 
 namespace Platform.Tests.Users
 {

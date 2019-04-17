@@ -1,12 +1,9 @@
-﻿using Abp.AspNetCore.Configuration;
+﻿using System.Linq;
+using System.Reflection;
+using Abp.AspNetCore.Configuration;
 using Abp.AspNetCore.Mvc.Extensions;
 using Abp.Dependency;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Platform.Web.Host.Filters
 {

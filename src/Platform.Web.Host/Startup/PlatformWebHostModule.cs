@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+﻿using Abp.AspNetCore.OData;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using Platform.Configuration;
-using Abp.AspNetCore.OData;
-using Abp.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Platform.Authentication.External;
+using Platform.Configuration;
 
 namespace Platform.Web.Host.Startup
 {

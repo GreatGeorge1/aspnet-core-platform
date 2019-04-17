@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Platform.Sessions;
 using Shouldly;
 using Xunit;
-using Platform.Sessions;
 
 namespace Platform.Tests.Sessions
 {

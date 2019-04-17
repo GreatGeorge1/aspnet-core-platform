@@ -1,10 +1,8 @@
-﻿using Abp.Auditing;
+﻿using System;
+using System.Collections.Generic;
+using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
-using Platform.Packages;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platform.Events
 {

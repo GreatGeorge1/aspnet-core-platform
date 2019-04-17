@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
+using Abp.AspNetCore;
+using Abp.AspNetCore.OData.Configuration;
+using Abp.AspNetCore.SignalR.Hubs;
+using Abp.Castle.Logging.Log4Net;
+using Castle.Facilities.Logging;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData.Formatter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using Castle.Facilities.Logging;
-using Swashbuckle.AspNetCore.Swagger;
-using Abp.AspNetCore;
-using Abp.AspNetCore.OData.Configuration;
-using Abp.Castle.Logging.Log4Net;
-using Platform.Configuration;
-using Platform.Identity;
-using Abp.AspNetCore.SignalR.Hubs;
-using Platform.Professions;
-using System.Reflection;
-using Platform.Web.Host.Filters;
 using Platform.Authorization.Users;
-using Microsoft.AspNetCore.HttpOverrides;
-using Platform.Packages;
+using Platform.Configuration;
 using Platform.Events;
-
+using Platform.Identity;
+using Platform.Packages;
+using Platform.Professions;
+using Platform.Web.Host.Filters;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Platform.Web.Host.Startup
 {

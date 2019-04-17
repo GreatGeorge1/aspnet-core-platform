@@ -1,18 +1,11 @@
-﻿using Abp.AspNetCore.OData.Controllers;
+﻿using System.Linq;
+using Abp.AspNetCore.OData.Controllers;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Web.Models;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Platform.Professions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Platform.Controllers
 {

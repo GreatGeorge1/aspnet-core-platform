@@ -9,12 +9,12 @@ using Abp.IdentityFramework;
 using Abp.Linq.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
+using Microsoft.AspNetCore.Identity;
 using Platform.Authorization;
 using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
 using Platform.Editions;
 using Platform.MultiTenancy.Dto;
-using Microsoft.AspNetCore.Identity;
 
 namespace Platform.MultiTenancy
 {

@@ -1,8 +1,8 @@
-using Microsoft.Extensions.Configuration;
-using Castle.MicroKernel.Registration;
 using Abp.Events.Bus;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using Castle.MicroKernel.Registration;
+using Microsoft.Extensions.Configuration;
 using Platform.Configuration;
 using Platform.EntityFrameworkCore;
 using Platform.Migrator.DependencyInjection;

@@ -1,11 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Abp.Domain.Repositories;
-using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using Platform.Authorization.Users;
-using Platform.Identity;
 using Platform.Models.Facebook;
 
 namespace Platform.Authentication.External
@@ -41,7 +37,7 @@ namespace Platform.Authentication.External
                 Name = userInfo.FirstName,
                 EmailAddress = userInfo.Email,
                 Surname=userInfo.LastName,
-                Provider=FacebookAuthProvider.Name,
+                Provider=Name,
                 ProviderKey=userInfo.Id.ToString()
             };
 

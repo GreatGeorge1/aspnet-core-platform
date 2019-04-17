@@ -1,9 +1,6 @@
-﻿using Platform.Professions.Dtos.Answer;
+﻿using System.Threading.Tasks;
+using Platform.Professions.Dtos.Answer;
 using Platform.Professions.Dtos.Step;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Platform.Professions
 {

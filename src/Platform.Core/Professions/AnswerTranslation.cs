@@ -1,7 +1,7 @@
-﻿using Abp.Auditing;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
-using System.ComponentModel.DataAnnotations;
 
 namespace Platform.Professions
 {

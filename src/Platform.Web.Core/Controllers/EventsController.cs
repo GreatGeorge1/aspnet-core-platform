@@ -1,12 +1,9 @@
-﻿using Abp.AspNetCore.OData.Controllers;
+﻿using System.Linq;
+using Abp.AspNetCore.OData.Controllers;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Microsoft.AspNet.OData;
 using Platform.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Platform.Controllers
 {

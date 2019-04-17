@@ -1,14 +1,9 @@
-﻿using Abp.Auditing;
+﻿using System.Collections.Generic;
+using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
-using Abp.Timing;
 using Platform.Events;
 using Platform.Packages;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
 
 namespace Platform.Professions
 {

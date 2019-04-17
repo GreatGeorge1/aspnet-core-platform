@@ -1,14 +1,12 @@
-﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
-using Abp.Domain.Repositories;
-using Platform.Events.Dtos;
-using Platform.Professions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Abp.Application.Services;
+using Abp.Application.Services.Dto;
+using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Platform.Events.Dtos;
+using Platform.Professions;
 
 namespace Platform.Events
 {

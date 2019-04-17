@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using Abp.Localization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Platform.EntityFrameworkCore.Seed.Host
 {

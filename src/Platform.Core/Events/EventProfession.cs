@@ -1,8 +1,5 @@
 ﻿using Abp.Domain.Entities;
 using Platform.Professions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platform.Events
 {

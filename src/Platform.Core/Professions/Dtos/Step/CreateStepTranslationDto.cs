@@ -1,8 +1,5 @@
-﻿using Abp.AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using Abp.AutoMapper;
 
 namespace Platform.Professions.Dtos.Step
 {

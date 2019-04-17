@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Text;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
+using Abp.AspNetCore.OData;
 using Abp.AspNetCore.SignalR;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using Platform.Authentication.JwtBearer;
 using Platform.Configuration;
 using Platform.EntityFrameworkCore;
-using Platform.Professions;
-using Abp.AspNetCore.OData;
-using Abp.AspNetCore.OData.Configuration;
-using Platform.Authentication.External;
 
 namespace Platform
 {

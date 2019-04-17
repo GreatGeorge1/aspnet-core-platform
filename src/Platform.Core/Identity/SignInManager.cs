@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Abp.Authorization;
+using Abp.Configuration;
+using Abp.Domain.Uow;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Abp.Authorization;
-using Abp.Configuration;
-using Abp.Domain.Uow;
 using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
 using Platform.MultiTenancy;

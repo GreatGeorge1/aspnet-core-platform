@@ -1,9 +1,6 @@
 ﻿using Abp.AutoMapper;
 using AutoMapper;
 using Platform.Professions.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Platform.Professions
 {

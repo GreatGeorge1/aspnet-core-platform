@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Domain.Repositories;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos.Step;
 

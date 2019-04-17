@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Abp.Authorization;
+﻿using Abp.Authorization;
 using Abp.Authorization.Roles;
+using AutoMapper;
 using Platform.Authorization.Roles;
 
 namespace Platform.Roles.Dto

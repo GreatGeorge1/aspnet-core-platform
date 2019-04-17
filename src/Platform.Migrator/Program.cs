@@ -1,9 +1,9 @@
 ﻿using System;
-using Castle.Facilities.Logging;
 using Abp;
 using Abp.Castle.Logging.Log4Net;
 using Abp.Collections.Extensions;
 using Abp.Dependency;
+using Castle.Facilities.Logging;
 
 namespace Platform.Migrator
 {
