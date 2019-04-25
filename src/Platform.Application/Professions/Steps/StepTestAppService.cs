@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos;
 
@@ -20,6 +22,12 @@ namespace Platform.Professions
             this.stepTestRepository = stepTestRepository;
             this.translationRepository = translationRepository;
             this.answerRepository = answerRepository;
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public override Task<StepTestDto> Create(StepTestCreateDto input)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task CreateAnswer(AnswerCreateDto input, long id)

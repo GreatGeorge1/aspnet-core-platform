@@ -62,7 +62,7 @@ namespace Platform.Professions
             return ObjectMapper.Map<ProfessionTranslationDto>(updts);
         }
 
-        public async Task RemoveBlock(BlockDeleteDto input)
+        public async Task DeleteBlock(BlockDeleteDto input)
         {
             var prof = await _professionRepository.GetAllIncluding(p => p.Translations)
               .FirstOrDefaultAsync(p => p.Id == input.ProfessionId);

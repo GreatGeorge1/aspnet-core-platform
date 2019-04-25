@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos;
 
@@ -17,6 +19,12 @@ namespace Platform.Professions
         {
             this.answerRepository = answerRepository;
             this.translationRepository = translationRepository;
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public override Task<AnswerDto> Create(AnswerCreateDto input)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task CreateTranslation(AnswerTranslationDto input, long id)
