@@ -15,27 +15,21 @@ namespace Platform.EntityFrameworkCore
     {
         /* Define a DbSet for each entity of the application */
         public DbSet<Profession> Professions { get; set; }
-        public DbSet<ProfessionTranslations> ProfessionTranslations { get; set; }
+        public DbSet<ProfessionContent> ProfessionContent { get; set; }
         public DbSet<Block> Blocks { get; set; }
-        public DbSet<BlockTranslations> BlockTranslations { get; set; }
-        public DbSet<StepInfo> StepInfos { get; set; }
-        public DbSet<StepTest> StepTests { get; set; }
-        public DbSet<StepBase> Steps { get; set; }
-        public DbSet<StepTranslations> StepTranslations { get; set; }
+        public DbSet<Block> BlockContent { get; set; }
+        public DbSet<Step> Steps { get; set; }
+        public DbSet<StepContent> StepContent { get; set; }
         public DbSet<Answer> Answers { get; set; }
-
+        public DbSet<AnswerContent> AnswerContent { get; set; }
         public DbSet<Package> Packages { get; set; }
-        public DbSet<PackageTranslations> PackageTranslations { get; set; }
-        public DbSet<PackageProfession> PackageProfessions { get; set; }
-
         public DbSet<Event> Events { get; set; }
-        public DbSet<EventTranslations> EventTranslations { get; set; }
-        public DbSet<EventProfession> EventProfessions { get; set; }
-
         public DbSet<Order> Orders { get; set; }
-        public DbSet<UserEvents> UserEvents {get;set;}
+        public DbSet<OrderPackages> OrderPackages { get; set; }
         public DbSet<UserProfessions> UserProfessions { get; set; }
         public DbSet<UserTests> UserTests { get; set; }
+        public DbSet<UserTestAnswers> UserTestAnswers { get; set; }
+        public DbSet<UserSeenSteps> UserSeenSteps { get; set; }
 
         public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
             : base(options)
@@ -47,7 +41,6 @@ namespace Platform.EntityFrameworkCore
         {
             base.OnModelCreating(modelBuilder);
 
-           // modelBuilder.ConfigurePersistedGrantEntity();
             modelBuilder.Entity<ApplicationLanguageText>()
                .Property(p => p.Value)
                .HasMaxLength(100); // any integer that is smaller than 10485760
@@ -57,58 +50,29 @@ namespace Platform.EntityFrameworkCore
                 .WithOne(b => b.Profession)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //modelBuilder.Entity<StepBase>()
-            //    .Property(s => s.Duration)
-            //    .HasConversion<TimeSpanToTicksConverter>();
+            modelBuilder.Entity<Profession>()
+                .HasMany(p => p.Packages)
+                .WithOne(b => b.Profession)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Profession>()
+                .HasMany(p => p.Content)
+                .WithOne(b => b.Core)
+                .OnDelete(DeleteBehavior.Cascade);
 
-           // modelBuilder.Entity<StepInfo>().ToTable("StepInfos");
-           // modelBuilder.Entity<StepTest>();
 
-            modelBuilder.Entity<StepBase>()
-                .ToTable("Steps")
-                .HasDiscriminator<string>("StepType")
-                .HasValue<StepInfo>("Info")
-                .HasValue<StepTest>("Test");
+            modelBuilder.Entity<Profession>()
+                .HasMany(p => p.Events)
+                .WithOne(b => b.Profession)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Step>()
+                .HasMany(s => s.Answers)
+                .WithOne(a => a.Test);
 
             modelBuilder.Entity<Block>()
                 .HasMany(b => b.Steps)
                 .WithOne(s => s.Block)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<PackageProfession>()
-                //в odata не работают композитные ключи(в swagger тоже)
-                //.HasKey(pp => new { pp.PackageId, pp.ProfessionId });
-                .HasKey(pp => pp.Id);
-            modelBuilder.Entity<PackageProfession>()
-                .HasOne(pp => pp.Package)
-                .WithMany(pp => pp.PackageProfessions)
-                .HasForeignKey(pp => pp.PackageId);
-            modelBuilder.Entity<PackageProfession>()
-                .HasOne(pp => pp.Profession)
-                .WithMany(pp => pp.PackageProfessions)
-                .HasForeignKey(pp => pp.ProfessionId);
-
-            modelBuilder.Entity<EventProfession>()
-                .HasKey(ep => ep.Id);
-            modelBuilder.Entity<EventProfession>()
-                .HasOne(ep => ep.Event)
-                .WithMany(ep => ep.EventProfessions)
-                .HasForeignKey(ep => ep.EventId);
-            modelBuilder.Entity<EventProfession>()
-                .HasOne(ep => ep.Profession)
-                .WithMany(ep => ep.EventProfessions)
-                .HasForeignKey(ep => ep.ProfessionId);
-
-            modelBuilder.Entity<UserEvents>()
-                .HasKey(ep => ep.Id);
-            modelBuilder.Entity<UserEvents>()
-                .HasOne(ep => ep.User)
-                .WithMany(ep => ep.UserEvents)
-                .HasForeignKey(ep => ep.UserId);
-            modelBuilder.Entity<UserEvents>()
-                .HasOne(ep => ep.Event)
-                .WithMany(ep => ep.UserEvents)
-                .HasForeignKey(ep => ep.EventId);
 
             modelBuilder.Entity<UserProfessions>()
                 .HasKey(ep => ep.Id);
@@ -126,7 +90,24 @@ namespace Platform.EntityFrameworkCore
                 .WithOne(ut => ut.UserProfession)
                 .OnDelete(DeleteBehavior.Cascade);
 
-      
+            modelBuilder.Entity<OrderPackages>()
+                .HasKey(op => op.Id);
+            modelBuilder.Entity<OrderPackages>()
+                .HasOne(op => op.Order)
+                .WithMany(o => o.OrderPackages);
+            modelBuilder.Entity<OrderPackages>()
+                .HasOne(op => op.Package)
+                .WithMany(p => p.OrderPackages);
+
+            modelBuilder.Entity<UserTestAnswers>()
+                .HasKey(ut => ut.Id);
+            modelBuilder.Entity<UserTestAnswers>()
+                .HasOne(ut => ut.UserTest)
+                .WithMany(ut => ut.UserTestAnswers);
+            modelBuilder.Entity<UserTestAnswers>()
+                .HasOne(ut => ut.Answer)
+                .WithMany(a => a.UserTestAnswers);
+
         }
     }
 }

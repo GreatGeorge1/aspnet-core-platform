@@ -13,23 +13,23 @@ using Platform.Professions;
 namespace Platform.Controllers
 {
     [Authorize(AuthenticationSchemes = "JwtBearer")]
-    public class StepsController : AbpODataEntityController<StepBase, long>, ITransientDependency
+    public class StepsController : AbpODataEntityController<Step, long>, ITransientDependency
     {
-        public StepsController(IRepository<StepBase, long> repository) : base(repository)
+        public StepsController(IRepository<Step, long> repository) : base(repository)
         {
         }
 
-        public override async Task<IActionResult> Put(long key, StepBase update)
-        {
-            return new NotFoundResult();
-        }
-
-        public override async Task<IActionResult> Post(StepBase entity)
+        public override async Task<IActionResult> Put(long key, Step update)
         {
             return new NotFoundResult();
         }
 
-        public override async Task<IActionResult> Patch(long key, Delta<StepBase> entity)
+        public override async Task<IActionResult> Post(Step entity)
+        {
+            return new NotFoundResult();
+        }
+
+        public override async Task<IActionResult> Patch(long key, Delta<Step> entity)
         {
             return new NotFoundResult();
         }

@@ -5,10 +5,8 @@ using Platform.Professions.Dtos;
 
 namespace Platform.Professions
 {
-    public interface IAnswerAppService: IAsyncCrudAppService<AnswerDto, long, PagedResultDto<Answer>, AnswerCreateDto, AnswerUpdateDto>
+    public interface IAnswerAppService: IAsyncCrudAppService<AnswerDto, long, PagedResultDto<Answer>, AnswerCreateDto, AnswerCreateDto>
     {
-        Task CreateTranslation(AnswerTranslationDto input, long id);
-        Task UpdateTranslation(AnswerTranslationDto input);
-        Task DeleteTranslation(AnswerTranslationDeleteDto input);
+        Task<AnswerContentDto> UpdateContent(AnswerContentDto input);
     }
 }

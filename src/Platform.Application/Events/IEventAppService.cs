@@ -5,13 +5,8 @@ using Platform.Events.Dtos;
 
 namespace Platform.Events
 {
-    public interface IEventAppService : IAsyncCrudAppService<EventDto, long, PagedResultDto<Event>, EventCreateDto, EventUpdateDto>
+    public interface IEventAppService : IAsyncCrudAppService<EventDto, long, PagedResultDto<Event>, EventCreateDto, EventCreateDto>
     {
-        Task CreateTranslation(EventTranslationDto input, long id);
-        Task UpdateTranslation(EventTranslationDto input);
-        Task DeleteTranslation(EventTranslationDeleteDto input);
-        Task AddProfession(EventProfessionAddDto input);
-        Task RemoveProfession(EventProfessionRemoveDto input);
-        Task<EventDto> CreateCopy(long id);
+
     }
 }

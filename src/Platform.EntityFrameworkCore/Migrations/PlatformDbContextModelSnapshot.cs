@@ -1037,95 +1037,13 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("Platform.Events.EventProfession", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long>("EventId");
-
-                    b.Property<long>("ProfessionId");
+                    b.Property<long?>("ProfessionId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EventId");
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("EventProfessions");
-                });
-
-            modelBuilder.Entity("Platform.Events.EventTranslations", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Base64Image");
-
-                    b.Property<long>("CoreId");
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<long?>("CreatorUserId");
-
-                    b.Property<long?>("DeleterUserId");
-
-                    b.Property<DateTime?>("DeletionTime");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("Language");
-
-                    b.Property<DateTime?>("LastModificationTime");
-
-                    b.Property<long?>("LastModifierUserId");
-
-                    b.Property<string>("Title");
-
-                    b.Property<string>("VideoUrl");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CoreId");
-
-                    b.ToTable("EventTranslations");
-                });
-
-            modelBuilder.Entity("Platform.Events.UserEvents", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<long?>("CreatorUserId");
-
-                    b.Property<long>("EventId");
-
-                    b.Property<bool>("IsCompleted");
-
-                    b.Property<DateTime?>("LastModificationTime");
-
-                    b.Property<long?>("LastModifierUserId");
-
-                    b.Property<long>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserEvents");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
@@ -1213,7 +1131,59 @@ namespace Platform.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Platform.Packages.OrderPackages", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long>("OrderId");
+
+                    b.Property<long>("PackageId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("PackageId");
+
+                    b.ToTable("OrderPackages");
+                });
+
             modelBuilder.Entity("Platform.Packages.Package", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("Currency");
+
+                    b.Property<long?>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<long?>("ProfessionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProfessionId");
+
+                    b.ToTable("Packages");
+                });
+
+            modelBuilder.Entity("Platform.Professions.Answer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -1228,42 +1198,24 @@ namespace Platform.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool>("IsCorrect");
+
                     b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime");
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<long?>("OrderId");
-
-                    b.Property<decimal>("Price");
+                    b.Property<long?>("TestId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("TestId");
 
-                    b.ToTable("Packages");
+                    b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("Platform.Packages.PackageProfession", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long>("PackageId");
-
-                    b.Property<long>("ProfessionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PackageId");
-
-                    b.HasIndex("ProfessionId");
-
-                    b.ToTable("PackageProfessions");
-                });
-
-            modelBuilder.Entity("Platform.Packages.PackageTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.AnswerContent", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -1292,7 +1244,8 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasMaxLength(300);
 
                     b.Property<string>("VideoUrl");
 
@@ -1300,85 +1253,7 @@ namespace Platform.Migrations
 
                     b.HasIndex("CoreId");
 
-                    b.ToTable("PackageTranslations");
-                });
-
-            modelBuilder.Entity("Platform.Professions.Answer", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<long?>("CreatorUserId");
-
-                    b.Property<long?>("DeleterUserId");
-
-                    b.Property<DateTime?>("DeletionTime");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsCorrect");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("LastModificationTime");
-
-                    b.Property<long?>("LastModifierUserId");
-
-                    b.Property<long?>("StepTestId");
-
-                    b.Property<long?>("UserTestsId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StepTestId");
-
-                    b.HasIndex("UserTestsId");
-
-                    b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("Platform.Professions.AnswerTranslation", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Base64Image");
-
-                    b.Property<int>("CoreId");
-
-                    b.Property<long?>("CoreId1");
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<long?>("CreatorUserId");
-
-                    b.Property<long?>("DeleterUserId");
-
-                    b.Property<DateTime?>("DeletionTime");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("Language");
-
-                    b.Property<DateTime?>("LastModificationTime");
-
-                    b.Property<long?>("LastModifierUserId");
-
-                    b.Property<string>("Title");
-
-                    b.Property<string>("VideoUrl");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CoreId1");
-
-                    b.ToTable("AnswerTranslation");
+                    b.ToTable("AnswerContent");
                 });
 
             modelBuilder.Entity("Platform.Professions.Block", b =>
@@ -1412,10 +1287,10 @@ namespace Platform.Migrations
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("Blocks");
+                    b.ToTable("Block");
                 });
 
-            modelBuilder.Entity("Platform.Professions.BlockTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.Blocks.BlockContent", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -1453,7 +1328,7 @@ namespace Platform.Migrations
 
                     b.HasIndex("CoreId");
 
-                    b.ToTable("BlockTranslations");
+                    b.ToTable("BlockContent");
                 });
 
             modelBuilder.Entity("Platform.Professions.Profession", b =>
@@ -1482,7 +1357,7 @@ namespace Platform.Migrations
                     b.ToTable("Professions");
                 });
 
-            modelBuilder.Entity("Platform.Professions.ProfessionTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.ProfessionContent", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -1520,10 +1395,10 @@ namespace Platform.Migrations
 
                     b.HasIndex("CoreId");
 
-                    b.ToTable("ProfessionTranslations");
+                    b.ToTable("ProfessionContent");
                 });
 
-            modelBuilder.Entity("Platform.Professions.StepBase", b =>
+            modelBuilder.Entity("Platform.Professions.Step", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -1550,19 +1425,16 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<string>("StepType")
-                        .IsRequired();
+                    b.Property<int>("Type");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BlockId");
 
                     b.ToTable("Steps");
-
-                    b.HasDiscriminator<string>("StepType").HasValue("StepBase");
                 });
 
-            modelBuilder.Entity("Platform.Professions.StepTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.StepContent", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -1591,7 +1463,8 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasMaxLength(300);
 
                     b.Property<string>("VideoUrl");
 
@@ -1599,7 +1472,7 @@ namespace Platform.Migrations
 
                     b.HasIndex("CoreId");
 
-                    b.ToTable("StepTranslations");
+                    b.ToTable("StepContent");
                 });
 
             modelBuilder.Entity("Platform.Professions.User.UserProfessions", b =>
@@ -1610,6 +1483,8 @@ namespace Platform.Migrations
                     b.Property<DateTime>("CreationTime");
 
                     b.Property<long?>("CreatorUserId");
+
+                    b.Property<bool>("IsCompleted");
 
                     b.Property<DateTime?>("LastModificationTime");
 
@@ -1630,6 +1505,50 @@ namespace Platform.Migrations
                     b.ToTable("UserProfessions");
                 });
 
+            modelBuilder.Entity("Platform.Professions.User.UserSeenSteps", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<long?>("StepId");
+
+                    b.Property<long?>("UserProfessionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StepId");
+
+                    b.HasIndex("UserProfessionId");
+
+                    b.ToTable("UserSeenSteps");
+                });
+
+            modelBuilder.Entity("Platform.Professions.User.UserTestAnswers", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long>("AnswerId");
+
+                    b.Property<long>("UserTestId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerId");
+
+                    b.HasIndex("UserTestId");
+
+                    b.ToTable("UserTestAnswers");
+                });
+
             modelBuilder.Entity("Platform.Professions.User.UserTests", b =>
                 {
                     b.Property<long>("Id")
@@ -1645,13 +1564,13 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<long?>("StepTestId");
+                    b.Property<long?>("TestId");
 
                     b.Property<long?>("UserProfessionId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StepTestId");
+                    b.HasIndex("TestId");
 
                     b.HasIndex("UserProfessionId");
 
@@ -1706,20 +1625,6 @@ namespace Platform.Migrations
                     b.ToTable("AbpPermissions");
 
                     b.HasDiscriminator().HasValue("UserPermissionSetting");
-                });
-
-            modelBuilder.Entity("Platform.Professions.StepInfo", b =>
-                {
-                    b.HasBaseType("Platform.Professions.StepBase");
-
-                    b.HasDiscriminator().HasValue("Info");
-                });
-
-            modelBuilder.Entity("Platform.Professions.StepTest", b =>
-                {
-                    b.HasBaseType("Platform.Professions.StepBase");
-
-                    b.HasDiscriminator().HasValue("Test");
                 });
 
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
@@ -1822,37 +1727,11 @@ namespace Platform.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
-            modelBuilder.Entity("Platform.Events.EventProfession", b =>
+            modelBuilder.Entity("Platform.Events.Event", b =>
                 {
-                    b.HasOne("Platform.Events.Event", "Event")
-                        .WithMany("EventProfessions")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Platform.Professions.Profession", "Profession")
-                        .WithMany("EventProfessions")
+                        .WithMany("Events")
                         .HasForeignKey("ProfessionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Platform.Events.EventTranslations", b =>
-                {
-                    b.HasOne("Platform.Events.Event", "Core")
-                        .WithMany("Translations")
-                        .HasForeignKey("CoreId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Platform.Events.UserEvents", b =>
-                {
-                    b.HasOne("Platform.Events.Event", "Event")
-                        .WithMany("UserEvents")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Platform.Authorization.Users.User", "User")
-                        .WithMany("UserEvents")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1883,50 +1762,40 @@ namespace Platform.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Platform.Packages.Package", b =>
+            modelBuilder.Entity("Platform.Packages.OrderPackages", b =>
                 {
-                    b.HasOne("Platform.Packages.Order")
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId");
-                });
+                    b.HasOne("Platform.Packages.Order", "Order")
+                        .WithMany("OrderPackages")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity("Platform.Packages.PackageProfession", b =>
-                {
                     b.HasOne("Platform.Packages.Package", "Package")
-                        .WithMany("PackageProfessions")
+                        .WithMany("OrderPackages")
                         .HasForeignKey("PackageId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Platform.Professions.Profession", "Profession")
-                        .WithMany("PackageProfessions")
-                        .HasForeignKey("ProfessionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Platform.Packages.PackageTranslations", b =>
+            modelBuilder.Entity("Platform.Packages.Package", b =>
                 {
-                    b.HasOne("Platform.Packages.Package", "Core")
-                        .WithMany("Translations")
-                        .HasForeignKey("CoreId")
+                    b.HasOne("Platform.Professions.Profession", "Profession")
+                        .WithMany("Packages")
+                        .HasForeignKey("ProfessionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Platform.Professions.Answer", b =>
                 {
-                    b.HasOne("Platform.Professions.StepTest", "StepTest")
+                    b.HasOne("Platform.Professions.Step", "Test")
                         .WithMany("Answers")
-                        .HasForeignKey("StepTestId");
-
-                    b.HasOne("Platform.Professions.User.UserTests")
-                        .WithMany("Answers")
-                        .HasForeignKey("UserTestsId");
+                        .HasForeignKey("TestId");
                 });
 
-            modelBuilder.Entity("Platform.Professions.AnswerTranslation", b =>
+            modelBuilder.Entity("Platform.Professions.AnswerContent", b =>
                 {
                     b.HasOne("Platform.Professions.Answer", "Core")
-                        .WithMany("Translations")
-                        .HasForeignKey("CoreId1");
+                        .WithMany("Content")
+                        .HasForeignKey("CoreId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Platform.Professions.Block", b =>
@@ -1937,23 +1806,23 @@ namespace Platform.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Platform.Professions.BlockTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.Blocks.BlockContent", b =>
                 {
                     b.HasOne("Platform.Professions.Block", "Core")
-                        .WithMany("Translations")
+                        .WithMany("Content")
                         .HasForeignKey("CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Platform.Professions.ProfessionTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.ProfessionContent", b =>
                 {
                     b.HasOne("Platform.Professions.Profession", "Core")
-                        .WithMany("Translations")
+                        .WithMany("Content")
                         .HasForeignKey("CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Platform.Professions.StepBase", b =>
+            modelBuilder.Entity("Platform.Professions.Step", b =>
                 {
                     b.HasOne("Platform.Professions.Block", "Block")
                         .WithMany("Steps")
@@ -1961,10 +1830,10 @@ namespace Platform.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Platform.Professions.StepTranslations", b =>
+            modelBuilder.Entity("Platform.Professions.StepContent", b =>
                 {
-                    b.HasOne("Platform.Professions.StepBase", "Core")
-                        .WithMany("Translations")
+                    b.HasOne("Platform.Professions.Step", "Core")
+                        .WithMany("Content")
                         .HasForeignKey("CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -1982,11 +1851,35 @@ namespace Platform.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Platform.Professions.User.UserSeenSteps", b =>
+                {
+                    b.HasOne("Platform.Professions.Step", "Step")
+                        .WithMany("UserSeenSteps")
+                        .HasForeignKey("StepId");
+
+                    b.HasOne("Platform.Professions.User.UserProfessions", "UserProfession")
+                        .WithMany("UserSeenSteps")
+                        .HasForeignKey("UserProfessionId");
+                });
+
+            modelBuilder.Entity("Platform.Professions.User.UserTestAnswers", b =>
+                {
+                    b.HasOne("Platform.Professions.Answer", "Answer")
+                        .WithMany("UserTestAnswers")
+                        .HasForeignKey("AnswerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Platform.Professions.User.UserTests", "UserTest")
+                        .WithMany("UserTestAnswers")
+                        .HasForeignKey("UserTestId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Platform.Professions.User.UserTests", b =>
                 {
-                    b.HasOne("Platform.Professions.StepTest", "StepTest")
-                        .WithMany()
-                        .HasForeignKey("StepTestId");
+                    b.HasOne("Platform.Professions.Step", "Test")
+                        .WithMany("UserTests")
+                        .HasForeignKey("TestId");
 
                     b.HasOne("Platform.Professions.User.UserProfessions", "UserProfession")
                         .WithMany("UserTests")

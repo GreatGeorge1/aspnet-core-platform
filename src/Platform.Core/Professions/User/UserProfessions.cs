@@ -1,5 +1,4 @@
-﻿using Abp.Auditing;
-using Abp.Domain.Entities;
+﻿using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
@@ -14,17 +13,21 @@ namespace Platform.Professions.User
         public long ProfessionId { get; set; }
         public Authorization.Users.User User { get; set; }
         public long UserId { get; set; }
+
+
         public ICollection<UserTests> UserTests { get; set; }
+        public ICollection<UserSeenSteps> UserSeenSteps { get; set; }
         public int Score { get; set; }
+        public bool IsCompleted { get; set; }
 
         public void CalculateScore()
         {
             var score = 0;
             foreach(var item in this.UserTests)
             {
-                foreach(var thing in item.Answers)
+                foreach(var thing in item.UserTestAnswers)
                 {
-                    if (thing.IsCorrect)
+                    if (thing.Answer.IsCorrect)
                     {
                         score++;
                     }
@@ -32,13 +35,5 @@ namespace Platform.Professions.User
             }
             this.Score = score;
         }
-    }
-    [Audited]
-    public class UserTests : AuditedEntity<long>
-    {
-        public UserProfessions UserProfession { get; set; }
-        public StepTest StepTest { get; set; }
-        public ICollection<Answer> Answers {get;set;}
-        public bool IsCorrect { get; set; }
     }
 }

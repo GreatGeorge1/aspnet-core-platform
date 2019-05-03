@@ -20,9 +20,9 @@ namespace Platform.Tests
         private readonly IRepository<Profession, long> professionRepository;
         private readonly IRepository<Answer, long> answerRepository;
         private readonly IRepository<UserProfessions, long> userProfessionsRepository;
-        private readonly IRepository<StepTest, long> stepTestRepository;
+        private readonly IRepository<Step, long> stepTestRepository;
 
-        public UserTestManager(UserManager userManager, IRepository<Profession, long> professionRepository, IRepository<Answer, long> answerRepository, IRepository<UserProfessions, long> userProfessionsRepository, IRepository<StepTest, long> stepTestRepository)
+        public UserTestManager(UserManager userManager, IRepository<Profession, long> professionRepository, IRepository<Answer, long> answerRepository, IRepository<UserProfessions, long> userProfessionsRepository, IRepository<Step, long> stepTestRepository)
         {
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             this.professionRepository = professionRepository ?? throw new ArgumentNullException(nameof(professionRepository));
@@ -44,7 +44,7 @@ namespace Platform.Tests
                 userprofession = await CreateAndGetUserProfession(prof: profession, user: user);
             }
 
-            var steptest = await SearchTestInProfession(profession, input.TestId) ?? throw new ArgumentNullException(nameof(StepTest));
+            var steptest = await SearchTestInProfession(profession, input.TestId) ?? throw new ArgumentNullException(nameof(Step));
             var answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new ArgumentNullException(nameof(ICollection<Answer>));
 
             int scorecount = 0;
@@ -62,19 +62,20 @@ namespace Platform.Tests
             }
             catch(ArgumentNullException ex)
             {
-                usertest = new UserTests { StepTest = steptest, UserProfession = userprofession, Answers = new List<Answer>() };
+                usertest = new UserTests { Test = steptest, UserProfession = userprofession, UserTestAnswers = new List<UserTestAnswers>() };
             }
 
 
-            if (!usertest.Answers.Any())
+            foreach (var item in answerlist)
             {
-                usertest.Answers = answerlist.ToList();
+                usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest });
+            }
+
+            if (!usertest.UserTestAnswers.Any())
+            {
                 userprofession.UserTests.Add(usertest);
             }
-            else
-            {
-                usertest.Answers = answerlist.ToList();
-            }
+       
             userprofession.CalculateScore();
             await userProfessionsRepository.InsertOrUpdateAsync(userprofession);
             return scorecount;
@@ -85,7 +86,7 @@ namespace Platform.Tests
             var answerlist = new List<Answer>();
             foreach (var item in AnswerIds)
             {
-                var temp = await answerRepository.GetAllIncluding(a=>a.StepTest).FirstOrDefaultAsync(a => a.Id == item && a.StepTest.Id == stepTestId);
+                var temp = await answerRepository.GetAllIncluding(a=>a.Test).FirstOrDefaultAsync(a => a.Id == item && a.Test.Id == stepTestId);
                 if (temp != null)
                 {
                     answerlist.Add(temp);
@@ -100,12 +101,12 @@ namespace Platform.Tests
             {
                 return null;
             }
-            return await userprofession.UserTests.AsQueryable().FirstOrDefaultAsync(ut => ut.StepTest.Id == testid);
+            return await userprofession.UserTests.AsQueryable().FirstOrDefaultAsync(ut => ut.Test.Id == testid);
         }
 
-        private async Task<StepTest> SearchTestInProfession(Profession prof, long testId)
+        private async Task<Step> SearchTestInProfession(Profession prof, long testId)
         {
-            StepTest steptest = null;
+            Step steptest = null;
             foreach (var item in prof.Blocks)
             {
                 steptest = await stepTestRepository.GetAllIncluding(s => s.Answers, s => s.Block).FirstOrDefaultAsync(st => st.Block.Id == item.Id && st.Id == testId);
@@ -140,8 +141,8 @@ namespace Platform.Tests
         private async Task<UserProfessions> GetUserProfession(long userprofessionid)
         {
             return await userProfessionsRepository.GetAll()
-                .Include(up => up.UserTests).ThenInclude(ut => ut.Answers)
-                .Include(up => up.UserTests).ThenInclude(ut => ut.StepTest)
+                .Include(up => up.UserTests).ThenInclude(ut => ut.UserTestAnswers).ThenInclude(ut=>ut.Answer)
+                .Include(up => up.UserTests).ThenInclude(ut => ut.Test)
                 .FirstOrDefaultAsync(up => up.Id == userprofessionid);
         }
 
@@ -172,7 +173,7 @@ namespace Platform.Tests
             {
                 foreach (var thing in block.Steps)
                 {
-                    if (item.StepTest.Id == thing.Id)
+                    if (item.Test.Id == thing.Id)
                     {
                         list.Add(item);
                     }

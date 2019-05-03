@@ -10,10 +10,8 @@ namespace Platform.Authorization.Users
 {
     public class User : AbpUser<User>
     {
-        //public string PhoneNumber { get; set; }
         public DateTime DOB { get; set; }
         public ICollection<Order> Orders {get;set;}
-        public ICollection<UserEvents> UserEvents { get; set; }
         public ICollection<UserProfessions> UserProfessions { get; set; }
 
 

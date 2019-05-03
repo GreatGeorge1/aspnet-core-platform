@@ -10,7 +10,7 @@ namespace Platform.Professions.Dtos
     public class AnswerDto:EntityDto<long>
     {
         public bool IsActive { get; set; }
-        public ICollection<AnswerTranslationDto> Translations { get; set; }
+        public ICollection<AnswerContentDto> Content { get; set; }
         public bool IsCorrect { get; set; }
     }
 
@@ -18,15 +18,8 @@ namespace Platform.Professions.Dtos
     public class AnswerCreateDto : EntityDto<long>
     {
         public bool IsActive { get; set; }
-        public ICollection<AnswerTranslationDto> Translations { get; set; }
+        public ICollection<AnswerContentDto> Content { get; set; }
         public bool IsCorrect { get; set; }
     }
 
-    [AutoMap(typeof(Platform.Professions.Answer))]
-    public class AnswerUpdateDto : EntityDto<long>
-    {
-        public bool IsActive { get; set; }
-        public ICollection<AnswerTranslationDto> Translations { get; set; }
-        public bool IsCorrect { get; set; }
-    }
 }

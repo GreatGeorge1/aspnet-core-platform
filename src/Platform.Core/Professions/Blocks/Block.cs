@@ -2,27 +2,19 @@
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using Platform.Professions.Blocks;
 
 namespace Platform.Professions
 {
     [Audited]
-    public class Block : FullAuditedEntity<long>, IPassivable, IMultiLingualEntity<BlockTranslations>
+    public class Block : FullAuditedEntity<long>, IPassivable
     {
         public bool IsActive { get; set; }
-        public ICollection<BlockTranslations> Translations { get; set; }
-
+        public ICollection<BlockContent> Content { get; set; }
         public int Index { get; set; }
         public int MinScore { get; set; }
         public Profession Profession { get; set; }
 
-        public ICollection<StepBase> Steps { get; set; }
-
-        //[NotMapped]
-        //public int Duration
-        //{ get { return Steps.Sum(s=>s.Duration);  }
-        //    set { } }
-
-
-
+        public ICollection<Step> Steps { get; set; }
     }
 }

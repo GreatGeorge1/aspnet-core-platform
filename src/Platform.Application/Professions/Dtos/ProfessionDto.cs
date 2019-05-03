@@ -12,8 +12,8 @@ namespace Platform.Professions.Dtos
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
         public int MinScore { get; set; }
-        public ICollection<ProfessionTranslationDto> Translations { get; set; }
-        public ICollection<PackageProfessionDto> PackageProfessions { get; set; }
-        public ICollection<EventProfessionDto> EventProfessions { get; set; }
+        public ICollection<ProfessionContentDto> Content { get; set; }
+        public ICollection<PackageDto> Packages { get; set; }
+        public ICollection<EventDto> Events { get; set; }
     }
 }

@@ -5,13 +5,12 @@ using Platform.Professions.Dtos;
 
 namespace Platform.Professions
 {
-    public interface IProfessionAppService:IAsyncCrudAppService<ProfessionDto, long, PagedResultDto<Profession>, ProfessionCreateDto, ProfessionUpdateDto>
+    public interface IProfessionAppService:IAsyncCrudAppService<ProfessionDto, long, PagedResultDto<Profession>, ProfessionCUDto, ProfessionCUDto>
     {
         Task<ProfessionDto> CreateCopy(long id);
         Task<BlockDto> CreateBlock(BlockCreateDto input, long id);
         Task DeleteBlock(BlockDeleteDto input);
-        Task AddTranslation(ProfessionTranslationDto input, long id);
-        Task<ProfessionTranslationDto> UpdateTranslation(ProfessionTranslationDto input);
-        Task DeleteTranslation(ProfessionTranslationDeleteDto input);
+        Task<ProfessionContentDto> UpdateContent(ProfessionContentDto input);
+        Task ChangeContentVersion(long version);
     }
 }

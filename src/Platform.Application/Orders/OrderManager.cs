@@ -19,9 +19,9 @@ namespace Platform.Orders
 
         public OrderManager(IRepository<User, long> userRepository, IRepository<Order, long> orderRepository, IRepository<Package, long> packageRepository)
         {
-            this.userRepository = userRepository;
-            this.orderRepository = orderRepository;
-            this.packageRepository = packageRepository;
+            this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            this.orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
+            this.packageRepository = packageRepository ?? throw new ArgumentNullException(nameof(packageRepository));
         }
 
         public async Task CancelOrder(long OrderId)
@@ -65,14 +65,21 @@ namespace Platform.Orders
                 packages.Add(package);
                 summ += package.Price;
             }
-            var order = new Order { Items = packages, Summ = summ, User = user };
+            var order = new Order { OrderPackages = new List<OrderPackages>(), Summ = summ, User = user };
+
             var newid = await orderRepository.InsertAndGetIdAsync(order);
-            return await orderRepository.FirstOrDefaultAsync(newid);
+            var ord = await orderRepository.FirstOrDefaultAsync(newid);
+            foreach(var item in packages)
+            {
+                ord.OrderPackages.Add(new OrderPackages { Order = ord, Package = item });
+            }
+            await orderRepository.InsertOrUpdateAsync(ord);
+            return await orderRepository.GetAllIncluding(o => o.OrderPackages).FirstOrDefaultAsync(o => o.Id == newid);
         }
 
         public async Task<Order> GetOrderByIdAsync(long OrderId)
         {
-            var order = await orderRepository.FirstOrDefaultAsync(OrderId);
+            var order = await orderRepository.GetAllIncluding(o=>o.OrderPackages).FirstOrDefaultAsync(o=>o.Id==OrderId);
             return order;
         }
     }

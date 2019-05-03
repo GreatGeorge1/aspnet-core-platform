@@ -19,7 +19,8 @@ namespace Platform.Users.Dto
         public DateTime? DOB { get; set; }
 
         public ICollection<OrderDto> Orders{get;set;}
-        public ICollection<UserEventsDto> UserEvents { get; set; }
+        //public ICollection<UserTestDto> UserProfession { get; set; }
+        //public ICollection<UserEventsDto> UserEvents { get; set; }
 
         [Required]
         [StringLength(AbpUserBase.MaxUserNameLength)]

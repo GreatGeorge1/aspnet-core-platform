@@ -11,15 +11,16 @@ using Platform.Professions.Dtos;
 
 namespace Platform.Professions
 {
-    public class AnswerAppService : AsyncCrudAppService<Answer, AnswerDto, long, PagedResultDto<Answer>, AnswerCreateDto, AnswerUpdateDto>, IAnswerAppService
+    public class AnswerAppService : AsyncCrudAppService<Answer, AnswerDto, long, PagedResultDto<Answer>, AnswerCreateDto, AnswerCreateDto>, IAnswerAppService
     {
         private readonly IRepository<Answer, long> answerRepository;
-        private readonly IRepository<AnswerTranslation, long> translationRepository;
-        public AnswerAppService(IRepository<Answer, long> answerRepository,
-            IRepository<AnswerTranslation, long> translationRepository):base(answerRepository)
+        private readonly IRepository<AnswerContent, long> translationRepository;
+
+        public AnswerAppService(IRepository<Answer, long> answerRepository, IRepository<AnswerContent, long> translationRepository)
+            :base(answerRepository)
         {
-            this.answerRepository = answerRepository;
-            this.translationRepository = translationRepository;
+            this.answerRepository = answerRepository ?? throw new ArgumentNullException(nameof(answerRepository));
+            this.translationRepository = translationRepository ?? throw new ArgumentNullException(nameof(translationRepository));
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -28,34 +29,17 @@ namespace Platform.Professions
             throw new NotSupportedException("Создание вне контекста шага запрещено");
         }
 
-        public async Task CreateTranslation(AnswerTranslationDto input, long id)
+        public async Task<AnswerContentDto> UpdateContent(AnswerContentDto input)
         {
-            if (id == 0)
-            {
-                throw new ArgumentException("id cannot be 0 or null");
-            }
-            var translation = ObjectMapper.Map(input, new AnswerTranslation());
-            translation.Id = 0;
-            var answer = await answerRepository.GetAllIncluding(p => p.Translations)
-                .FirstOrDefaultAsync(p => p.Id == id);
-            answer.Translations.Add(translation);
-        }
-
-        public async Task DeleteTranslation(AnswerTranslationDeleteDto input)
-        {
-            var ts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
-            await translationRepository.DeleteAsync(ts);
-        }
-
-        public async Task UpdateTranslation(AnswerTranslationDto input)
-        {
-            var ts = ObjectMapper.Map<AnswerTranslation>(input);
-            await translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+            var ts = ObjectMapper.Map<AnswerContent>(input);
+            var id = await translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+            var updts = await translationRepository.FirstOrDefaultAsync(id);
+            return ObjectMapper.Map<AnswerContentDto>(updts);
         }
 
         protected override IQueryable<Answer> CreateFilteredQuery(PagedResultDto<Answer> input)
         {
-            return answerRepository.GetAllIncluding(p => p.Translations).AsQueryable();
+            return answerRepository.GetAllIncluding(p => p.Content).AsQueryable();
         }
 
         protected override async Task<Answer> GetEntityByIdAsync(long id)
@@ -64,7 +48,7 @@ namespace Platform.Professions
             {
                 throw new ArgumentException("id cannot be 0 or null");
             }
-            var entity = await answerRepository.GetAllIncluding(p => p.Translations).FirstOrDefaultAsync(p => p.Id == id);
+            var entity = await answerRepository.GetAllIncluding(p => p.Content).FirstOrDefaultAsync(p => p.Id == id);
             if (entity == null)
             {
                 throw new EntityNotFoundException(typeof(Answer), id);

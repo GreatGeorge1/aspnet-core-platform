@@ -17,7 +17,7 @@ namespace Platform.Orders
 
         public OrderAppService(OrderManager orderManager)
         {
-            this.orderManager = orderManager;
+            this.orderManager = orderManager ?? throw new ArgumentNullException(nameof(orderManager));
         }
 
         public async Task<OrderDto> CreateOrder(CreateOrderDto input)
