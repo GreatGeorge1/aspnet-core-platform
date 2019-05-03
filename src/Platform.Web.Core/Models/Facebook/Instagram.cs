@@ -22,7 +22,4 @@ namespace Platform.Models.Facebook
         public string LastName { get; set; }
     }
     
-
-  
-
 }

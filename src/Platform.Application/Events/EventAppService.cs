@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Platform.Events.Dtos;
@@ -16,7 +18,6 @@ namespace Platform.Events
         private readonly IRepository<Profession, long> professionRepository;
         private readonly IRepository<EventTranslations, long> translationRepository;
       
-
         public EventAppService(IRepository<Event, long> repository, 
             IRepository<Profession,long> professionRepository,
             IRepository<EventTranslations, long> translationRepository
@@ -42,6 +43,10 @@ namespace Platform.Events
 
         public async Task CreateTranslation(EventTranslationDto input, long id)
         {
+            if (id == 0)
+            {
+                throw new ArgumentException("id cannot be 0 or null");
+            }
             var translation = ObjectMapper.Map(input, new EventTranslations());
             translation.Id = 0;
             var event1 = await eventRepository.GetAllIncluding(p => p.Translations)
@@ -61,6 +66,10 @@ namespace Platform.Events
         /// </summary>
         public async Task<EventDto> CreateCopy(long id)
         {
+            if (id == 0)
+            {
+                throw new ArgumentException("id cannot be 0 or null");
+            }
             var event1 = await eventRepository.GetAllIncluding(p => p.Translations, p => p.EventProfessions)
               .Where(e => e.Id == id).FirstOrDefaultAsync();
 
@@ -99,8 +108,6 @@ namespace Platform.Events
             return ObjectMapper.Map<EventDto>(event2);
         }
 
-    
-
         public async Task RemoveProfession(EventProfessionRemoveDto input)
         {
             var event1 = await eventRepository.GetAllIncluding(e=>e.EventProfessions)
@@ -114,16 +121,35 @@ namespace Platform.Events
         public async Task DeleteTranslation(EventTranslationDeleteDto input)
         {
             var ts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
-            ts.IsActive = false;
-            ts.IsDeleted = true;
-            await translationRepository.InsertOrUpdateAsync(ts);
+            //ts.IsActive = false;
+            //ts.IsDeleted = true;
+            // await translationRepository.InsertOrUpdateAsync(ts);
+            await translationRepository.DeleteAsync(ts);
         }
-
 
         public async Task UpdateTranslation(EventTranslationDto input)
         {
             var ts = ObjectMapper.Map<EventTranslations>(input);
             await translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+        }
+
+        protected override IQueryable<Event> CreateFilteredQuery(PagedResultDto<Event> input)
+        {
+            return eventRepository.GetAllIncluding(p => p.Translations, p => p.EventProfessions).AsQueryable();
+        }
+
+        protected override async Task<Event> GetEntityByIdAsync(long id)
+        {
+            if (id == 0)
+            {
+                throw new ArgumentException("id cannot be 0 or null");
+            }
+            var entity = await eventRepository.GetAllIncluding(p => p.Translations, p => p.EventProfessions).FirstOrDefaultAsync(p => p.Id == id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException(typeof(Event), id);
+            }
+            return entity;
         }
     }
 }

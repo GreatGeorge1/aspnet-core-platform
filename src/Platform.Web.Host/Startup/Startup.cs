@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Abp.AspNetCore;
@@ -6,6 +7,7 @@ using Abp.AspNetCore.OData.Configuration;
 using Abp.AspNetCore.SignalR.Hubs;
 using Abp.Castle.Logging.Log4Net;
 using Castle.Facilities.Logging;
+using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData.Formatter;
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +24,7 @@ using Platform.Events;
 using Platform.Identity;
 using Platform.Packages;
 using Platform.Professions;
+using Platform.Professions.User;
 using Platform.Web.Host.Filters;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -49,18 +52,12 @@ namespace Platform.Web.Host.Startup
                 }
             );
 
-            //services.AddDbContext<PlatformDbContext>(options =>
-            // options.UseNpgsql(
-            //    _appConfiguration.GetConnectionString("DefaultConnection")));
+            IdentityRegistrar.Register(services);
 
-            IdentityRegistrar.Register(services);//.AddDefaultUI(UIFramework.Bootstrap4);
-
-            
-            
             AuthConfigurer.Configure(services, _appConfiguration);
             services.AddSignalR();
             services.AddOData();
-
+            
             // Configure CORS for angular2 UI
             services.AddCors(
                 options => options.AddPolicy(
@@ -94,12 +91,9 @@ namespace Platform.Web.Host.Startup
                     In = "header",
                     Type = "apiKey"
                 });
-               // var xml1 = "../Docs/Platform.Web.Core.xml";
-               // var xml2 = "D:\\Projects\\Lab\\platform\\aspnet-core\\src\\DocsPlatform.Application.xml";
-               // options.IncludeXmlComments(xml1);
+                //options.IncludeXmlComments( XmlCommentsFilePath );
 
             });
-
 
             // Workaround: https://github.com/OData/WebApi/issues/1177
             services.AddMvcCore(options =>
@@ -154,137 +148,10 @@ namespace Platform.Web.Host.Startup
             });
 
 
+            var edm=new ODataConventionModelBuilder();
             app.UseOData(builder =>
             {
-                builder.EntitySet<Profession>("Professions").EntityType
-                        .Filter() // Allow for the $filter Command
-                        .Count() // Allow for the $count Command
-                        .Expand(4) // Allow for the $expand Command
-                        .OrderBy() // Allow for the $orderby Command
-                        .Page() // Allow for the $top and $skip Commands
-                        .Select();// Allow for the $select Command; 
-                        
-                        
-                //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession))
-                //    .AddProperty(typeof(Profession).GetProperty("BlocksCount"));
-                builder.EntitySet<ProfessionTranslations>("ProfessionTranslations").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand() // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<Block>("Blocks").EntityType
-                      .Filter() // Allow for the $filter Command
-                      .Count() // Allow for the $count Command
-                      .Expand(4) // Allow for the $expand Command
-                      .OrderBy() // Allow for the $orderby Command
-                      .Page() // Allow for the $top and $skip Commands
-                      .Select();// Allow for the $select Command; 
-                     // .Property(b => b.StepsCount);
-
-                builder.EntitySet<StepBase>("Steps").EntityType
-                      .Filter() // Allow for the $filter Command
-                      .Count() // Allow for the $count Command
-                      .Expand(4) // Allow for the $expand Command
-                      .OrderBy() // Allow for the $orderby Command
-                      .Page() // Allow for the $top and $skip Commands
-                      .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<StepInfo>("StepInfos").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<StepTest>("StepTests").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<Answer>("Answers").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<Package>("Packages").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<PackageTranslations>("PackageTranslations").EntityType
-                      .Filter() // Allow for the $filter Command
-                      .Count() // Allow for the $count Command
-                      .Expand(4) // Allow for the $expand Command
-                      .OrderBy() // Allow for the $orderby Command
-                      .Page() // Allow for the $top and $skip Commands
-                      .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<Event>("Events").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command;
-
-                builder.EntitySet<EventTranslations>("EventTranslations").EntityType
-                     .Filter() // Allow for the $filter Command
-                     .Count() // Allow for the $count Command
-                     .Expand(4) // Allow for the $expand Command
-                     .OrderBy() // Allow for the $orderby Command
-                     .Page() // Allow for the $top and $skip Commands
-                     .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<EventProfession>("EventProfessions").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-                builder.EntitySet<PackageProfession>("PackageProfessions").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
-                builder.EntitySet<User>("Users").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-                builder.EntitySet<UserEvents>("UserEvents").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-                builder.EntitySet<Order>("Orders").EntityType
-                       .Filter() // Allow for the $filter Command
-                       .Count() // Allow for the $count Command
-                       .Expand(4) // Allow for the $expand Command
-                       .OrderBy() // Allow for the $orderby Command
-                       .Page() // Allow for the $top and $skip Commands
-                       .Select();// Allow for the $select Command; 
-
+                edm = OdataConfigure(builder);
             });
 
             // Return IQueryable from controllers
@@ -299,7 +166,10 @@ namespace Platform.Web.Host.Startup
 
             app.UseMvc(routes =>
             {
-                routes.MapODataServiceRoute(app);
+                //routes.MapODataServiceRoute(app);
+
+                routes.MapODataServiceRoute("ODataRoute", "odata", edm.GetEdmModel());
+                
                 routes.MapRoute(
                     name: "defaultWithArea",
                     template: "{area}/{controller=Home}/{action=Index}/{id?}");
@@ -307,6 +177,7 @@ namespace Platform.Web.Host.Startup
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.EnableDependencyInjection();
             });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
@@ -326,5 +197,157 @@ namespace Platform.Web.Host.Startup
                 options.RoutePrefix = "redoc";
             });
         }
+
+        private ODataConventionModelBuilder OdataConfigure(ODataConventionModelBuilder builder)
+        {
+            builder.EntitySet<Profession>("Professions").EntityType
+                        .Filter() // Allow for the $filter Command
+                        .Count() // Allow for the $count Command
+                        .Expand(4) // Allow for the $expand Command
+                        .OrderBy() // Allow for the $orderby Command
+                        .Page() // Allow for the $top and $skip Commands
+                        .Select();// Allow for the $select Command; 
+
+
+            //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession))
+            //    .AddProperty(typeof(Profession).GetProperty("BlocksCount"));
+            builder.EntitySet<ProfessionTranslations>("ProfessionTranslations").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand() // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<Block>("Blocks").EntityType
+                  .Filter() // Allow for the $filter Command
+                  .Count() // Allow for the $count Command
+                  .Expand(4) // Allow for the $expand Command
+                  .OrderBy() // Allow for the $orderby Command
+                  .Page() // Allow for the $top and $skip Commands
+                  .Select();// Allow for the $select Command; 
+                            // .Property(b => b.StepsCount);
+
+            builder.EntitySet<StepBase>("Steps").EntityType
+                  .Filter() // Allow for the $filter Command
+                  .Count() // Allow for the $count Command
+                  .Expand(4) // Allow for the $expand Command
+                  .OrderBy() // Allow for the $orderby Command
+                  .Page() // Allow for the $top and $skip Commands
+                  .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<StepInfo>("StepInfos").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<StepTest>("StepTests").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<Answer>("Answers").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<Package>("Packages").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<PackageTranslations>("PackageTranslations").EntityType
+                  .Filter() // Allow for the $filter Command
+                  .Count() // Allow for the $count Command
+                  .Expand(4) // Allow for the $expand Command
+                  .OrderBy() // Allow for the $orderby Command
+                  .Page() // Allow for the $top and $skip Commands
+                  .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<Event>("Events").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command;
+
+            builder.EntitySet<EventTranslations>("EventTranslations").EntityType
+                 .Filter() // Allow for the $filter Command
+                 .Count() // Allow for the $count Command
+                 .Expand(4) // Allow for the $expand Command
+                 .OrderBy() // Allow for the $orderby Command
+                 .Page() // Allow for the $top and $skip Commands
+                 .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<EventProfession>("EventProfessions").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+            builder.EntitySet<PackageProfession>("PackageProfessions").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<User>("Users").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+            builder.EntitySet<UserEvents>("UserEvents").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+            builder.EntitySet<UserTests>("UserTests").EntityType
+                  .Filter() // Allow for the $filter Command
+                  .Count() // Allow for the $count Command
+                  .Expand(4) // Allow for the $expand Command
+                  .OrderBy() // Allow for the $orderby Command
+                  .Page() // Allow for the $top and $skip Commands
+                  .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<UserProfessions>("UserProfessions").EntityType
+                  .Filter() // Allow for the $filter Command
+                  .Count() // Allow for the $count Command
+                  .Expand(4) // Allow for the $expand Command
+                  .OrderBy() // Allow for the $orderby Command
+                  .Page() // Allow for the $top and $skip Commands
+                  .Select();// Allow for the $select Command; 
+            builder.EntitySet<Order>("Orders").EntityType
+                   .Filter() // Allow for the $filter Command
+                   .Count() // Allow for the $count Command
+                   .Expand(4) // Allow for the $expand Command
+                   .OrderBy() // Allow for the $orderby Command
+                   .Page() // Allow for the $top and $skip Commands
+                   .Select();// Allow for the $select Command; 
+
+
+
+            return builder;
+        }
+        
     }
 }

@@ -4,16 +4,19 @@ using Abp.Authorization.Users;
 using Abp.Extensions;
 using Platform.Events;
 using Platform.Packages;
+using Platform.Professions.User;
 
 namespace Platform.Authorization.Users
 {
     public class User : AbpUser<User>
     {
-
-        public string PhoneNumber { get; set; }
+        //public string PhoneNumber { get; set; }
         public DateTime DOB { get; set; }
         public ICollection<Order> Orders {get;set;}
         public ICollection<UserEvents> UserEvents { get; set; }
+        public ICollection<UserProfessions> UserProfessions { get; set; }
+
+
         public const string DefaultPassword = "123qwe";
 
         public static string CreateRandomPassword()

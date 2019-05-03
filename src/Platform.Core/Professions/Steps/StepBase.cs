@@ -2,6 +2,7 @@
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using Platform.Professions.User;
 
 namespace Platform.Professions
 {

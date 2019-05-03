@@ -4,6 +4,7 @@ using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Platform.Events;
 using Platform.Packages;
+using Platform.Professions.User;
 
 namespace Platform.Professions
 {
@@ -21,23 +22,7 @@ namespace Platform.Professions
         public ICollection<PackageProfession> PackageProfessions { get; set; }
         public ICollection<EventProfession> EventProfessions { get; set; }
 
-        //[NotMapped]
-        //public int Duration
-        //{
-        //    get { return Blocks.Sum(s => s.Duration); }
-        //    set { }
-        //}
-
-        //[NotMapped]
-        //public int MinScore
-        //{
-        //    get { return Blocks.Sum(s => s.MinScore); }
-        //    set { }
-        //}
-
-        //[NotMapped]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        //public int BlocksCount => Blocks.Count;
+        public ICollection<UserProfessions> UserProfessions { get; set; }
 
     }
 }

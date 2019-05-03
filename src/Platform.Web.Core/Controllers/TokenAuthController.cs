@@ -9,6 +9,7 @@ using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Abp.UI;
+using Abp.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Platform.Authentication.External;
@@ -21,6 +22,7 @@ using Platform.MultiTenancy;
 
 namespace Platform.Controllers
 {
+    //[DontWrapResult]
     [Route("api/[controller]/[action]")]
     public class TokenAuthController : PlatformControllerBase
     {

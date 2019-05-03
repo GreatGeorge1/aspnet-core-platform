@@ -5,6 +5,7 @@ namespace Platform.Authorization.Roles
         public static class Host
         {
             public const string Admin = "Admin";
+            public const string Author = "Author";
         }
 
         public static class Tenants

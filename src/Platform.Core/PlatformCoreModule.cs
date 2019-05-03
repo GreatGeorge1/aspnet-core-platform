@@ -29,7 +29,7 @@ namespace Platform
             PlatformLocalizationConfigurer.Configure(Configuration.Localization);
 
             // Enable this line to create a multi-tenant application.
-            Configuration.MultiTenancy.IsEnabled = PlatformConsts.MultiTenancyEnabled;
+           // Configuration.MultiTenancy.IsEnabled = PlatformConsts.MultiTenancyEnabled;
 
             // Configure roles
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);

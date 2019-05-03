@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,11 +26,15 @@ namespace Platform.Professions
         [ApiExplorerSettings(IgnoreApi = true)]
         public override Task<StepInfoDto> Create(StepInfoCreateDto input)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("Создание вне контекста блока запрещено");
         }
 
         public async Task CreateTranslation(StepTranslationDto input, long id)
         {
+            if (id == 0)
+            {
+                throw new ArgumentException("id cannot be 0 or null");
+            }
             var translation = ObjectMapper.Map(input, new StepTranslations());
             translation.Id = 0;
             var step = await stepInfoRepository.GetAllIncluding(p => p.Translations)
@@ -39,15 +45,32 @@ namespace Platform.Professions
         public async Task DeleteTranslation(StepTranslationDeleteDto input)
         {
             var ts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
-            ts.IsActive = false;
-            ts.IsDeleted = true;
-            await translationRepository.InsertOrUpdateAsync(ts);
+            await translationRepository.DeleteAsync(ts);
         }
 
         public async Task UpdateTranslation(StepTranslationDto input)
         {
             var ts = ObjectMapper.Map<StepTranslations>(input);
             await translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+        }
+
+        protected override IQueryable<StepInfo> CreateFilteredQuery(PagedResultDto<StepInfo> input)
+        {
+            return stepInfoRepository.GetAllIncluding(p => p.Translations).AsQueryable();
+        }
+
+        protected override async Task<StepInfo> GetEntityByIdAsync(long id)
+        {
+            if (id == 0)
+            {
+                throw new ArgumentException("id cannot be 0 or null");
+            }
+            var entity = await stepInfoRepository.GetAllIncluding(p => p.Translations).FirstOrDefaultAsync(p => p.Id == id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException(typeof(StepInfo), id);
+            }
+            return entity;
         }
     }
 }

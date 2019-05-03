@@ -7,6 +7,7 @@ using Platform.Events;
 using Platform.MultiTenancy;
 using Platform.Packages;
 using Platform.Professions;
+using Platform.Professions.User;
 
 namespace Platform.EntityFrameworkCore
 {
@@ -33,6 +34,8 @@ namespace Platform.EntityFrameworkCore
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<UserEvents> UserEvents {get;set;}
+        public DbSet<UserProfessions> UserProfessions { get; set; }
+        public DbSet<UserTests> UserTests { get; set; }
 
         public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
             : base(options)
@@ -86,7 +89,6 @@ namespace Platform.EntityFrameworkCore
                 .HasForeignKey(pp => pp.ProfessionId);
 
             modelBuilder.Entity<EventProfession>()
-                //.HasKey(ep => new { ep.EventId, ep.ProfessionId });
                 .HasKey(ep => ep.Id);
             modelBuilder.Entity<EventProfession>()
                 .HasOne(ep => ep.Event)
@@ -98,7 +100,6 @@ namespace Platform.EntityFrameworkCore
                 .HasForeignKey(ep => ep.ProfessionId);
 
             modelBuilder.Entity<UserEvents>()
-                //.HasKey(ep => new { ep.EventId, ep.ProfessionId });
                 .HasKey(ep => ep.Id);
             modelBuilder.Entity<UserEvents>()
                 .HasOne(ep => ep.User)
@@ -109,6 +110,23 @@ namespace Platform.EntityFrameworkCore
                 .WithMany(ep => ep.UserEvents)
                 .HasForeignKey(ep => ep.EventId);
 
+            modelBuilder.Entity<UserProfessions>()
+                .HasKey(ep => ep.Id);
+            modelBuilder.Entity<UserProfessions>()
+                .HasOne(ep => ep.User)
+                .WithMany(ep => ep.UserProfessions)
+                .HasForeignKey(ep => ep.UserId);
+            modelBuilder.Entity<UserProfessions>()
+                .HasOne(ep => ep.Profession)
+                .WithMany(ep => ep.UserProfessions)
+                .HasForeignKey(ep => ep.ProfessionId);
+
+            modelBuilder.Entity<UserProfessions>()
+                .HasMany(up => up.UserTests)
+                .WithOne(ut => ut.UserProfession)
+                .OnDelete(DeleteBehavior.Cascade);
+
+      
         }
     }
 }

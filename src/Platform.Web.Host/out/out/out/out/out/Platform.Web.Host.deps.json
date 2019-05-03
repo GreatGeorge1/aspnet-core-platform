@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2/linux-x64",
-    "signature": "572c3d9503fdeaccef06e7e74d81408e85b83a3b"
+    "signature": "b9c71f92ed00a1d445af8614d64fc576947cc382"
   },
   "compilationOptions": {
     "defines": [
@@ -35,7 +35,7 @@
           "Microsoft.Extensions.Logging": "2.2.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "2.2.0",
           "Microsoft.NETCore.App": "2.2.1",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.5.4",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.7.2",
           "Microsoft.VisualStudio.Web.BrowserLink": "2.2.0",
           "Platform.Web.Core": "1.0.0",
           "Swashbuckle.AspNetCore.ReDoc": "4.0.1"
@@ -1698,7 +1698,7 @@
           "lib/netstandard1.1/Microsoft.Spatial.dll": {}
         }
       },
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.5.4": {},
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.7.2": {},
       "Microsoft.VisualStudio.Web.BrowserLink/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
@@ -3077,7 +3077,7 @@
           "Microsoft.Extensions.Logging": "2.2.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "2.2.0",
           "Microsoft.NETCore.App": "2.2.1",
-          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.5.4",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.7.2",
           "Microsoft.VisualStudio.Web.BrowserLink": "2.2.0",
           "Platform.Web.Core": "1.0.0",
           "Swashbuckle.AspNetCore.ReDoc": "4.0.1"
@@ -4981,7 +4981,7 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.5.4": {},
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.7.2": {},
       "Microsoft.VisualStudio.Web.BrowserLink/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
@@ -7436,12 +7436,12 @@
       "path": "microsoft.spatial/7.5.0",
       "hashPath": "microsoft.spatial.7.5.0.nupkg.sha512"
     },
-    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.5.4": {
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.7.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gbLngsMOphnjVACPdo6Bc6K2RI/YpyxcFWPkABr4pzv39YfG3zV3QASeIf+iSjgaR9We2MJOGwOcnrkuIG9gWg==",
-      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.5.4",
-      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.5.4.nupkg.sha512"
+      "sha512": "sha512-Bs/FPrXY8Rch414+W+mptQ2Qhx1kdOK1YWUxKvJRMpj2nXyjRnITcJAfSr4z1ansnQaz5vz1qLPJfB47VTWo/Q==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.7.2",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.7.2.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.BrowserLink/2.2.0": {
       "type": "package",

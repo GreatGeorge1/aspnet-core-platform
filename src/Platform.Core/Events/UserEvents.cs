@@ -5,7 +5,7 @@ namespace Platform.Events
 {
     public class UserEvents:AuditedEntity<long>
     {
-        public int Score { get; set; }
+       // public int Score { get; set; }
         public bool IsCompleted { get; set; }
         public long EventId { get; set; }
         public Event Event { get; set; }
