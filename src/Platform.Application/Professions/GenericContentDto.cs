@@ -8,10 +8,9 @@ using System.Text;
 
 namespace Platform.Professions
 {
-    public abstract class GenericContentDto<TContent, TKey> 
+    public abstract class GenericContentDto<TContent, TKey> : EntityDto<TKey>
         where TContent : IEntity<TKey>, IPassivable, IMedia
     {
-        public TKey Id { get; set; }
         public bool IsActive { get; set; }
         public string Language { get; set; }
         public string Title { get; set; }

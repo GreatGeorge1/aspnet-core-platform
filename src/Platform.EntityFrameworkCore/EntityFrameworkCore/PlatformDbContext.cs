@@ -7,6 +7,7 @@ using Platform.Events;
 using Platform.MultiTenancy;
 using Platform.Packages;
 using Platform.Professions;
+using Platform.Professions.Blocks;
 using Platform.Professions.User;
 
 namespace Platform.EntityFrameworkCore
@@ -17,7 +18,7 @@ namespace Platform.EntityFrameworkCore
         public DbSet<Profession> Professions { get; set; }
         public DbSet<ProfessionContent> ProfessionContent { get; set; }
         public DbSet<Block> Blocks { get; set; }
-        public DbSet<Block> BlockContent { get; set; }
+        public DbSet<BlockContent> BlockContent { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<StepContent> StepContent { get; set; }
         public DbSet<Answer> Answers { get; set; }
@@ -73,6 +74,8 @@ namespace Platform.EntityFrameworkCore
                 .HasMany(b => b.Steps)
                 .WithOne(s => s.Block)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Block>().ToTable("Blocks");
 
             modelBuilder.Entity<UserProfessions>()
                 .HasKey(ep => ep.Id);

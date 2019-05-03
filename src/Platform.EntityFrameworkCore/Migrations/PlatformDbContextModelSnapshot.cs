@@ -1287,7 +1287,7 @@ namespace Platform.Migrations
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("Block");
+                    b.ToTable("Blocks");
                 });
 
             modelBuilder.Entity("Platform.Professions.Blocks.BlockContent", b =>

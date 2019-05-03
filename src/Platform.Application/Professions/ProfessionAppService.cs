@@ -43,7 +43,9 @@ namespace Platform.Professions
         public async Task<ProfessionContentDto> UpdateContent(ProfessionContentDto input)
         {
             var ts = ObjectMapper.Map<ProfessionContent>(input);
-            var updid= await _translationRepository.InsertOrUpdateAndGetIdAsync(ts);
+            var old = await _translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+            
+
             var updts = await _translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             return ObjectMapper.Map<ProfessionContentDto>(updts);
         }

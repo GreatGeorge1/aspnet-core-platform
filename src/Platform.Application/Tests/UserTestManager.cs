@@ -129,6 +129,10 @@ namespace Platform.Tests
         private async Task<UserProfessions> GetUserProfession(long userid, long professionid)
         {
             var temp = await userProfessionsRepository.FirstOrDefaultAsync(up => up.ProfessionId == professionid && up.UserId == userid);
+            if (null == temp)
+            {
+                return null;
+            }
             return await GetUserProfession(temp.Id);
             //return await userProfessionsRepository.GetAll()
             //    .Include(up => up.UserTests).ThenInclude(ut => ut.Answers)

@@ -46,11 +46,13 @@ namespace Platform.Professions
             {
                 throw new ArgumentException("Block id cannot be 0 or null");
             }
-            var block = await repository.FirstOrDefaultAsync(p => p.Id == id);
-            var step = ObjectMapper.Map(input, new Step());
+            var block = await repository.GetAllIncluding(b=>b.Steps).FirstOrDefaultAsync(p => p.Id == id);
+            var step = ObjectMapper.Map<Step>(input);
             step.Block = block;
-            var newid = await stepRepository.InsertAndGetIdAsync(step);
-           // var s= await stepInfoRepository.FirstOrDefaultAsync(p => p.Id == newid);
+            block.Steps.Add(step);
+            await repository.InsertOrUpdateAsync(block);
+            //var newid = await stepRepository.InsertAndGetIdAsync(step);
+            // var s= await stepInfoRepository.FirstOrDefaultAsync(p => p.Id == newid);
             //s.Block = block;
         }
 

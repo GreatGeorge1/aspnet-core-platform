@@ -704,7 +704,7 @@ namespace Platform.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Block",
+                name: "Blocks",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
