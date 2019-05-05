@@ -8,7 +8,7 @@ namespace Platform.Professions.Dtos
     public class BlockUpdateDto : EntityDto<long>
     {
         public bool IsActive { get; set; }
-        public ICollection<BlockContentDto> Content { get; set; }
+        //public ICollection<BlockContentDto> Content { get; set; }
         public int Index { get; set; }
         public int MinScore { get; set; }
     }

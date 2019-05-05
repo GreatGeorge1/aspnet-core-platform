@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.UI;
 
 namespace Platform.Tests
 {
@@ -34,6 +35,15 @@ namespace Platform.Tests
 
         public async Task<UserAnswersDto> GetUserAnswersForProfession(long userid, long professionid)
         {
+            if (userid == 0)
+            {
+                throw new UserFriendlyException("userid в url не может быть 0 или null");
+            }
+
+            if (professionid == 0)
+            {
+                throw new UserFriendlyException("professionid в url не может быть 0 или null");
+            }
             if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
             {
                 if (AbpSession.UserId != userid)
@@ -51,11 +61,25 @@ namespace Platform.Tests
                     usertests.Add(ObjectMapper.Map<UserTestResponseDto>(thing));
                 }
                 temp.BlockAnswers.Add(new BlockAnswers { BlockId = item.Key.Id, UserTests = usertests });
+                
             }
             return temp;
         }
         public async Task<UserAnswersDto> GetUserAnswersForBlock(long userid, long professionid, long blockid)
         {
+            if (userid == 0)
+            {
+                throw new UserFriendlyException("userid в url не может быть 0 или null");
+            }
+            if (professionid == 0)
+            {
+                throw new UserFriendlyException("professionid в url не может быть 0 или null");
+            }
+            if (blockid == 0)
+            {
+                throw new UserFriendlyException("blockid в url не может быть 0 или null");
+            }
+            
             if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
             {
                 if (AbpSession.UserId != userid)

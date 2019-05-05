@@ -5,7 +5,7 @@ using Platform.Professions.Dtos;
 
 namespace Platform.Professions
 {
-    public interface IProfessionAppService:IAsyncCrudAppService<ProfessionDto, long, PagedResultDto<Profession>, ProfessionCUDto, ProfessionCUDto>
+    public interface IProfessionAppService:IAsyncCrudAppService<ProfessionDto, long, PagedResultDto<Profession>, ProfessionCreateDto, ProfessionUpdateDto>
     {
         Task<ProfessionDto> CreateCopy(long id);
         Task<BlockDto> CreateBlock(BlockCreateDto input, long id);

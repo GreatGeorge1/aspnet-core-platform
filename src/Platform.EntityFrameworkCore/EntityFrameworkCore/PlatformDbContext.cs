@@ -32,6 +32,8 @@ namespace Platform.EntityFrameworkCore
         public DbSet<UserTestAnswers> UserTestAnswers { get; set; }
         public DbSet<UserSeenSteps> UserSeenSteps { get; set; }
 
+        public DbSet<Author> Authors { get; set; }
+
         public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
             : base(options)
         {
@@ -50,6 +52,11 @@ namespace Platform.EntityFrameworkCore
                 .HasMany(p => p.Blocks)
                 .WithOne(b => b.Profession)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Profession>()
+                .HasOne(p => p.Author)
+                .WithMany(b => b.Professions)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Profession>()
                 .HasMany(p => p.Packages)

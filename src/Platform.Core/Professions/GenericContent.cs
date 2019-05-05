@@ -21,5 +21,33 @@ namespace Platform.Professions
         public string Base64Image { get; set; }
         [Url]
         public string VideoUrl { get; set; }
+
+        public virtual void Update<TContent>(TContent newcontent) where TContent : GenericContent<TCore, TKey>
+        {
+            if (newcontent.Title != null)
+            {
+                this.Title = newcontent.Title;
+            }
+
+            if (newcontent.Description != null)
+            {
+                this.Description = newcontent.Description;
+            }
+
+            if (newcontent.Base64Image != null)
+            {
+                this.Base64Image = newcontent.Base64Image;
+            }
+
+            if (newcontent.VideoUrl != null)
+            {
+                this.VideoUrl = newcontent.VideoUrl;
+            }
+
+            if (newcontent.Language != null)
+            {
+                this.Language = newcontent.Language;
+            }
+        }
     }
 }

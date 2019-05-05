@@ -5,6 +5,7 @@ using Abp.Authorization;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Platform.Professions;
@@ -12,6 +13,7 @@ using Platform.Professions;
 namespace Platform.Controllers
 {
     [Authorize(AuthenticationSchemes = "JwtBearer")]
+    [Expand(MaxDepth = 10)]
     public class BlocksController : AbpODataEntityController<Block, long>, ITransientDependency
     {
         public BlocksController(IRepository<Block, long> repository) : base(repository)

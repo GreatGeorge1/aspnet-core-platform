@@ -5,13 +5,14 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Abp.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos;
 
 namespace Platform.Professions
 {
-    public class AnswerAppService : AsyncCrudAppService<Answer, AnswerDto, long, PagedResultDto<Answer>, AnswerCreateDto, AnswerCreateDto>, IAnswerAppService
+    public class AnswerAppService : AsyncCrudAppService<Answer, AnswerDto, long, PagedResultDto<Answer>, AnswerCreateDto, AnswerUpdateDto>, IAnswerAppService
     {
         private readonly IRepository<Answer, long> answerRepository;
         private readonly IRepository<AnswerContent, long> translationRepository;
@@ -26,14 +27,21 @@ namespace Platform.Professions
         [ApiExplorerSettings(IgnoreApi = true)]
         public override Task<AnswerDto> Create(AnswerCreateDto input)
         {
-            throw new NotSupportedException("Создание вне контекста шага запрещено");
+            throw new UserFriendlyException("Создание вне контекста шага запрещено");
         }
 
         public async Task<AnswerContentDto> UpdateContent(AnswerContentDto input)
         {
+            if (input.Id == 0)
+            {
+                throw new UserFriendlyException("id cannot be 0 or null");
+            }
             var ts = ObjectMapper.Map<AnswerContent>(input);
-            var id = await translationRepository.InsertOrUpdateAndGetIdAsync(ts);
-            var updts = await translationRepository.FirstOrDefaultAsync(id);
+            var old = await translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+
+            old.Update(ts);
+            await translationRepository.InsertOrUpdateAsync(old);
+            var updts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             return ObjectMapper.Map<AnswerContentDto>(updts);
         }
 
@@ -46,7 +54,7 @@ namespace Platform.Professions
         {
             if (id == 0)
             {
-                throw new ArgumentException("id cannot be 0 or null");
+                throw new UserFriendlyException("id в url не может быть 0 или null");
             }
             var entity = await answerRepository.GetAllIncluding(p => p.Content).FirstOrDefaultAsync(p => p.Id == id);
             if (entity == null)

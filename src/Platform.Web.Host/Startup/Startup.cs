@@ -24,6 +24,7 @@ using Platform.Events;
 using Platform.Identity;
 using Platform.Packages;
 using Platform.Professions;
+using Platform.Professions.Blocks;
 using Platform.Professions.User;
 using Platform.Web.Host.Filters;
 using Swashbuckle.AspNetCore.Swagger;
@@ -203,10 +204,27 @@ namespace Platform.Web.Host.Startup
 
         private ODataConventionModelBuilder OdataConfigure(ODataConventionModelBuilder builder)
         {
+
             builder.EntitySet<Profession>("Professions").EntityType
                         .Filter() // Allow for the $filter Command
                         .Count() // Allow for the $count Command
                         .Expand(4) // Allow for the $expand Command
+                        .OrderBy() // Allow for the $orderby Command
+                        .Page() // Allow for the $top and $skip Commands
+                        .Select();// Allow for the $select Command; 
+            
+            builder.EntitySet<ProfessionContent>("ProfessionContent").EntityType
+                .Filter() // Allow for the $filter Command
+                .Count() // Allow for the $count Command
+                .Expand(4) // Allow for the $expand Command
+                .OrderBy() // Allow for the $orderby Command
+                .Page() // Allow for the $top and $skip Commands
+                .Select();// Allow for the $select Command; 
+
+            builder.EntitySet<Author>("Authors").EntityType
+                        .Filter() // Allow for the $filter Command
+                        .Count() // Allow for the $count Command
+                        .Expand(10) // Allow for the $expand Command
                         .OrderBy() // Allow for the $orderby Command
                         .Page() // Allow for the $top and $skip Commands
                         .Select();// Allow for the $select Command; 
@@ -219,6 +237,13 @@ namespace Platform.Web.Host.Startup
                   .Page() // Allow for the $top and $skip Commands
                   .Select();// Allow for the $select Command; 
                             // .Property(b => b.StepsCount);
+            builder.EntitySet<BlockContent>("BlockContent").EntityType
+                .Filter() // Allow for the $filter Command
+                .Count() // Allow for the $count Command
+                .Expand(4) // Allow for the $expand Command
+                .OrderBy() // Allow for the $orderby Command
+                .Page() // Allow for the $top and $skip Commands
+                .Select();// Allow for the $select Command;            
 
             builder.EntitySet<Step>("Steps").EntityType
                   .Filter() // Allow for the $filter Command
@@ -228,6 +253,14 @@ namespace Platform.Web.Host.Startup
                   .Page() // Allow for the $top and $skip Commands
                   .Select();// Allow for the $select Command; 
 
+            builder.EntitySet<StepContent>("StepContent").EntityType
+                .Filter() // Allow for the $filter Command
+                .Count() // Allow for the $count Command
+                .Expand(4) // Allow for the $expand Command
+                .OrderBy() // Allow for the $orderby Command
+                .Page() // Allow for the $top and $skip Commands
+                .Select();// Allow for the $select Command;      
+            
             builder.EntitySet<Answer>("Answers").EntityType
                    .Filter() // Allow for the $filter Command
                    .Count() // Allow for the $count Command
@@ -236,6 +269,14 @@ namespace Platform.Web.Host.Startup
                    .Page() // Allow for the $top and $skip Commands
                    .Select();// Allow for the $select Command; 
 
+            builder.EntitySet<AnswerContent>("AnswerContent").EntityType
+                .Filter() // Allow for the $filter Command
+                .Count() // Allow for the $count Command
+                .Expand(4) // Allow for the $expand Command
+                .OrderBy() // Allow for the $orderby Command
+                .Page() // Allow for the $top and $skip Commands
+                .Select();// Allow for the $select Command;      
+            
             builder.EntitySet<Package>("Packages").EntityType
                    .Filter() // Allow for the $filter Command
                    .Count() // Allow for the $count Command
@@ -285,7 +326,9 @@ namespace Platform.Web.Host.Startup
                    .Page() // Allow for the $top and $skip Commands
                    .Select();// Allow for the $select Command; 
 
-
+            //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession)).AddProperty(typeof(Profession).GetProperty("MinScore"));
+            //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession)).AddProperty(typeof(Profession).GetProperty("Duration"));
+            //builder.StructuralTypes.First(t => t.ClrType == typeof(Block)).AddProperty(typeof(Block).GetProperty("Duration"));
 
             return builder;
         }

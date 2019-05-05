@@ -5,11 +5,13 @@ using Abp.AspNetCore.OData.Controllers;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Microsoft.AspNet.OData;
+using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Mvc;
 using Platform.Events;
 
 namespace Platform.Controllers
 {
+    [Expand(MaxDepth = 10)]
     public class EventsController : AbpODataEntityController<Event, long>, ITransientDependency
     {
         public EventsController(IRepository<Event, long> repository) : base(repository)

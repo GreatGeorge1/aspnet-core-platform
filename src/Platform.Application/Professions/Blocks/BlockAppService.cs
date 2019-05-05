@@ -5,6 +5,7 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Abp.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Blocks;
@@ -29,14 +30,21 @@ namespace Platform.Professions
         [ApiExplorerSettings(IgnoreApi = true)]
         public override Task<BlockDto> Create(BlockCreateDto input)
         {
-            throw new NotSupportedException("Создание вне контекста профессии запрещено");
+            throw new UserFriendlyException("Создание вне контекста профессии запрещено");
         }
 
         public async Task<BlockContentDto> UpdateContent(BlockContentDto input)
         {
+            if (input.Id == 0)
+            {
+                throw new UserFriendlyException("id cannot be 0 or null");
+            }
             var ts = ObjectMapper.Map<BlockContent>(input);
-            var updid = await translationRepository.InsertOrUpdateAndGetIdAsync(ts);
-            var updts = await translationRepository.FirstOrDefaultAsync(updid);
+            var old = await translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+
+            old.Update(ts);
+            await translationRepository.InsertOrUpdateAsync(old);
+            var updts = await translationRepository.FirstOrDefaultAsync(p => p.Id == input.Id);
             return ObjectMapper.Map<BlockContentDto>(updts);
         }
 
@@ -44,7 +52,7 @@ namespace Platform.Professions
         {
             if (id == 0)
             {
-                throw new ArgumentException("Block id cannot be 0 or null");
+                throw new UserFriendlyException("id в url не может быть 0 или null");
             }
             var block = await repository.GetAllIncluding(b=>b.Steps).FirstOrDefaultAsync(p => p.Id == id);
             var step = ObjectMapper.Map<Step>(input);
@@ -75,7 +83,7 @@ namespace Platform.Professions
         {
             if (id == 0)
             {
-                throw new ArgumentException("id cannot be 0 or null");
+                throw new UserFriendlyException("id в url не может быть 0 или null");
             }
             var entity = await repository.GetAllIncluding(p => p.Content, p => p.Steps).FirstOrDefaultAsync(p => p.Id == id);
             if (entity == null)

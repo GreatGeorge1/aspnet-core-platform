@@ -15,5 +15,6 @@ namespace Platform.Professions.Dtos
         public ICollection<ProfessionContentDto> Content { get; set; }
         public ICollection<PackageDto> Packages { get; set; }
         public ICollection<EventDto> Events { get; set; }
+        public AuthorDto Author { get; set; }
     }
 }

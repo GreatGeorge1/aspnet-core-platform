@@ -10,8 +10,8 @@ using Platform.EntityFrameworkCore;
 namespace Platform.Migrations
 {
     [DbContext(typeof(PlatformDbContext))]
-    [Migration("20190503190415_init")]
-    partial class init
+    [Migration("20190505155748_author")]
+    partial class author
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1258,6 +1258,30 @@ namespace Platform.Migrations
                     b.ToTable("AnswerContent");
                 });
 
+            modelBuilder.Entity("Platform.Professions.Author", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Base64Image");
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("ExtensionData");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<long?>("LastModifierUserId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("Platform.Professions.Block", b =>
                 {
                     b.Property<long>("Id")
@@ -1289,7 +1313,7 @@ namespace Platform.Migrations
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("Block");
+                    b.ToTable("Blocks");
                 });
 
             modelBuilder.Entity("Platform.Professions.Blocks.BlockContent", b =>
@@ -1338,6 +1362,8 @@ namespace Platform.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<long?>("AuthorId");
+
                     b.Property<DateTime>("CreationTime");
 
                     b.Property<long?>("CreatorUserId");
@@ -1355,6 +1381,8 @@ namespace Platform.Migrations
                     b.Property<long?>("LastModifierUserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Professions");
                 });
@@ -1814,6 +1842,14 @@ namespace Platform.Migrations
                         .WithMany("Content")
                         .HasForeignKey("CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Platform.Professions.Profession", b =>
+                {
+                    b.HasOne("Platform.Professions.Author", "Author")
+                        .WithMany("Professions")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Platform.Professions.ProfessionContent", b =>

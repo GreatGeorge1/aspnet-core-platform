@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.UI;
 
 namespace Platform.Tests
 {
@@ -33,8 +34,8 @@ namespace Platform.Tests
 
         public async Task<int> SubmitTest(UserTestDto input)
         {
-            var user = await userManager.GetUserByIdAsync(input.UserId) ?? throw new ArgumentNullException(nameof(User));
-            var profession = await GetProfession(input.ProfessionId) ?? throw new ArgumentNullException(nameof(Profession));
+            var user = await userManager.GetUserByIdAsync(input.UserId) ?? throw new UserFriendlyException($"User: {input.UserId} does not exist");
+            var profession = await GetProfession(input.ProfessionId) ?? throw new UserFriendlyException($"Profession: {input.ProfessionId} does not exist");
             UserProfessions userprofession;
             try
             {
@@ -44,8 +45,8 @@ namespace Platform.Tests
                 userprofession = await CreateAndGetUserProfession(prof: profession, user: user);
             }
 
-            var steptest = await SearchTestInProfession(profession, input.TestId) ?? throw new ArgumentNullException(nameof(Step));
-            var answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new ArgumentNullException(nameof(ICollection<Answer>));
+            var steptest = await SearchTestInProfession(profession, input.TestId) ?? throw new UserFriendlyException($"Step: {input.TestId} does not exist in profession: {input.ProfessionId}");
+            var answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new UserFriendlyException($"Answers: {input.AnswerIds.ToString()} does not exist in step: {input.TestId}");
 
             int scorecount = 0;
             foreach (var item in answerlist)
@@ -64,16 +65,17 @@ namespace Platform.Tests
             {
                 usertest = new UserTests { Test = steptest, UserProfession = userprofession, UserTestAnswers = new List<UserTestAnswers>() };
             }
-
-
-            foreach (var item in answerlist)
-            {
-                usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest });
-            }
+            
 
             if (!usertest.UserTestAnswers.Any())
             {
                 userprofession.UserTests.Add(usertest);
+            }
+
+            usertest.UserTestAnswers = new List<UserTestAnswers>();
+            foreach (var item in answerlist)
+            {
+                usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest });
             }
        
             userprofession.CalculateScore();
@@ -101,7 +103,7 @@ namespace Platform.Tests
             {
                 return null;
             }
-            return await userprofession.UserTests.AsQueryable().FirstOrDefaultAsync(ut => ut.Test.Id == testid);
+            return userprofession.UserTests.AsQueryable().FirstOrDefault(ut => ut.Test.Id == testid);
         }
 
         private async Task<Step> SearchTestInProfession(Profession prof, long testId)
@@ -159,14 +161,14 @@ namespace Platform.Tests
 
         public async Task<ICollection<UserTests>> GetUserAnswers(long professionid, long blockid, long userid)
         {
-            var user = await userManager.GetUserByIdAsync(userid) ?? throw new ArgumentException("User does not exist");
-            var profession = await GetProfession(professionid) ?? throw new ArgumentException("Profession does not exist");
+            var user = await userManager.GetUserByIdAsync(userid) ?? throw new UserFriendlyException("User does not exist");
+            var profession = await GetProfession(professionid) ?? throw new UserFriendlyException("Profession does not exist");
             var userprofession = await GetUserProfession(userid: user.Id, professionid: profession.Id);
             if (userprofession == null)
             {
                 userprofession = await CreateAndGetUserProfession(prof: profession, user: user);
             }
-            var block=await profession.Blocks.AsQueryable().FirstOrDefaultAsync(b=>b.Id==blockid) ?? throw new ArgumentException($"block {blockid} not exist in profession {professionid}");
+            var block= profession.Blocks.AsQueryable().FirstOrDefault(b=>b.Id==blockid) ?? throw new UserFriendlyException($"block {blockid} not exist in profession {professionid}");
             return await SearchUserTestsByBlock(userprofession: userprofession, block: block);
         }
 
@@ -188,8 +190,8 @@ namespace Platform.Tests
 
         public async Task<Dictionary<Block,ICollection<UserTests>>> GetUserAnswers(long professionid, long userid)
         {
-            var user = await userManager.GetUserByIdAsync(userid) ?? throw new ArgumentException("User does not exist");
-            var profession = await GetProfession(professionid) ?? throw new ArgumentException("Profession does not exist");
+            var user = await userManager.GetUserByIdAsync(userid) ?? throw new UserFriendlyException("User does not exist");
+            var profession = await GetProfession(professionid) ?? throw new UserFriendlyException("Profession does not exist");
             var userprofession = await GetUserProfession(userid: user.Id, professionid: profession.Id);
             if (userprofession == null)
             {

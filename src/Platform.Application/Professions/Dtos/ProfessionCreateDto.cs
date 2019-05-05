@@ -7,10 +7,10 @@ using System.Text;
 namespace Platform.Professions.Dtos
 {
     [AutoMap(typeof(Profession))]
-    public class ProfessionCUDto: EntityDto<long>
+    public class ProfessionCreateDto: EntityDto<long>
     {
         public bool IsActive { get; set; }
-        public int MinScore { get; set; }
+        //public int MinScore { get; set; }
         public ICollection<ProfessionContentDto> Content { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using Platform.EntityFrameworkCore;
 namespace Platform.Migrations
 {
     [DbContext(typeof(PlatformDbContext))]
-    [Migration("20190503192345_testfix")]
-    partial class testfix
+    [Migration("20190504171708_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1289,7 +1289,7 @@ namespace Platform.Migrations
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("Block");
+                    b.ToTable("Blocks");
                 });
 
             modelBuilder.Entity("Platform.Professions.Blocks.BlockContent", b =>

@@ -723,9 +723,9 @@ namespace Platform.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Block", x => x.Id);
+                    table.PrimaryKey("PK_Blocks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Block_Professions_ProfessionId",
+                        name: "FK_Blocks_Professions_ProfessionId",
                         column: x => x.ProfessionId,
                         principalTable: "Professions",
                         principalColumn: "Id",
@@ -959,9 +959,9 @@ namespace Platform.Migrations
                 {
                     table.PrimaryKey("PK_BlockContent", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BlockContent_Block_CoreId",
+                        name: "FK_BlockContent_Blocks_CoreId",
                         column: x => x.CoreId,
-                        principalTable: "Block",
+                        principalTable: "Blocks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -989,9 +989,9 @@ namespace Platform.Migrations
                 {
                     table.PrimaryKey("PK_Steps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Steps_Block_BlockId",
+                        name: "FK_Steps_Blocks_BlockId",
                         column: x => x.BlockId,
-                        principalTable: "Block",
+                        principalTable: "Blocks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1522,14 +1522,14 @@ namespace Platform.Migrations
                 column: "TestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Block_ProfessionId",
-                table: "Block",
-                column: "ProfessionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BlockContent_CoreId",
                 table: "BlockContent",
                 column: "CoreId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Blocks_ProfessionId",
+                table: "Blocks",
+                column: "ProfessionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_ProfessionId",
@@ -1738,7 +1738,7 @@ namespace Platform.Migrations
                 name: "UserProfessions");
 
             migrationBuilder.DropTable(
-                name: "Block");
+                name: "Blocks");
 
             migrationBuilder.DropTable(
                 name: "AbpUsers");

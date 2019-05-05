@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.UI;
 
 namespace Platform.Orders
 {
@@ -30,7 +31,7 @@ namespace Platform.Orders
         {
             if (OrderId == 0)
             {
-                throw new ArgumentException("id cannot be 0 or null");
+                throw new UserFriendlyException("id в url не может быть 0 или null");
             }
             var order = await orderManager.GetOrderByIdAsync(OrderId);
             if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
@@ -46,7 +47,7 @@ namespace Platform.Orders
         {
             if (OrderId == 0)
             {
-                throw new ArgumentException("id cannot be 0 or null");
+                throw new UserFriendlyException("id в url не может быть 0 или null");
             }
             var order = await orderManager.GetOrderByIdAsync(OrderId);
             if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
