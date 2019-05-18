@@ -7,21 +7,23 @@ using System.Text;
 
 namespace Platform.Professions
 {
-    public class Author : AuditedEntity<long>, IExtendableObject
+    public class Author : AuditedEntity<long>
     {
-        public string ExtensionData { get; set; }
+       // public string ExtensionData { get; set; }
         public string Name { get; set; }
+        public string Language { get; set; }
         public string Base64Image { get; set; }
+        public string Description { get; set; }
         public ICollection<Profession> Professions { get; set; }
 
-        public void SetOrUpdateExtesnsionData<T>(string key, T value) where T : Type
-        {
-            this.SetData(key, value);
-        }
-
-        public T GetExtensionData<T>(string key) where T : Type
-        {
-            return this.GetData<T>(key);
-        }
+//        public void SetOrUpdateExtesnsionData<T>(string key, T value) where T : Type
+//        {
+//            this.SetData(key, value);
+//        }
+//
+//        public T GetExtensionData<T>(string key) where T : Type
+//        {
+//            return this.GetData<T>(key);
+//        }
     }
 }

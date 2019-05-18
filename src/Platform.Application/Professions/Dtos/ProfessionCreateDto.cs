@@ -3,6 +3,8 @@ using Abp.AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Platform.Events.Dtos;
+using Platform.Packages.Dtos;
 
 namespace Platform.Professions.Dtos
 {
@@ -11,6 +13,8 @@ namespace Platform.Professions.Dtos
     {
         public bool IsActive { get; set; }
         //public int MinScore { get; set; }
-        public ICollection<ProfessionContentDto> Content { get; set; }
+        public PackageDto Package { get; set; }
+        public EventDto Event { get; set; }
+        public ProfessionContentDto Content { get; set; }
     }
 }

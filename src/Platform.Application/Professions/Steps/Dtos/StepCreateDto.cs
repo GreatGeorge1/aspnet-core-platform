@@ -12,7 +12,7 @@ namespace Platform.Professions.Dtos
         [Required]
         public StepType Type { get; set; }
         public bool IsActive { get; set; }
-        public ICollection<StepContentDto> Content { get; set; }
+        public StepContentDto Content { get; set; }
         public int Duration { get; set; }
         public int Index { get; set; }
     }

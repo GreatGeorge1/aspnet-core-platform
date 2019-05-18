@@ -10,7 +10,7 @@ namespace Platform.Professions.Dtos
     public class BlockDto : EntityDto<long>
     {
         public bool IsActive { get; set; }
-        public ICollection<BlockContentDto> Content { get; set; }
+        public BlockContentDto Content { get; set; }
         public int Index { get; set; }
         public int MinScore { get; set; }
         public ICollection<StepDto> Steps { get; set; }

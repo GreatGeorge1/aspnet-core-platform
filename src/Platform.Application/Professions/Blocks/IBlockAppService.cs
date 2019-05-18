@@ -7,9 +7,9 @@ namespace Platform.Professions
 {
     public interface IBlockAppService: IAsyncCrudAppService<BlockDto, long, PagedResultDto<Block>, BlockCreateDto, BlockUpdateDto>
     {
-        Task CreateStep(StepCreateDto input, long id);
+        Task<StepDto> CreateStep(StepCreateDto input, long id);
         Task DeleteStep(StepDeleteDto input);
-        Task<BlockContentDto> UpdateContent(BlockContentDto input);
+        Task<BlockContentDto> UpdateContent(BlockContentUpdateDto input);
         Task ChangeContentVersion(long version);
     }
 }

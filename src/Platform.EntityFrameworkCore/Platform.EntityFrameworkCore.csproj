@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
@@ -26,6 +26,9 @@
     <Compile Remove="Migrations\20190331180049_step_duration.Designer.cs" />
     <Compile Remove="Migrations\20190505165913_stage.cs" />
     <Compile Remove="Migrations\20190505165913_stage.Designer.cs" />
+    <Compile Remove="Migrations\20190507234318_file1.cs" />
+    <Compile Remove="Migrations\20190507234318_file1.Designer.cs" />
+    <Compile Remove="Migrations\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
@@ -37,6 +40,20 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Platform.Application\Platform.Application.csproj" />
     <ProjectReference Include="..\Platform.Core\Platform.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Migrations\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\20190514140951_init.cs" />
+    <Compile Include="Migrations\20190514140951_init.designer.cs" />
+    <Compile Include="Migrations\20190517085143_files.cs" />
+    <Compile Include="Migrations\20190517085143_files.designer.cs" />
+    <Compile Include="Migrations\PlatformDbContextModelSnapshot.cs" />
   </ItemGroup>
 </Project>

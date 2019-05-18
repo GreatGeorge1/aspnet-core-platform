@@ -37,22 +37,22 @@ namespace Platform.Professions
         public async Task<ProfessionDto> CreateCopy(long id)
         {
             throw new NotImplementedException();
-            
         }
 
         /// <summary>
-        /// Обновляет контент профессии, где id => ProfessionTranslations.Id
+        /// Обновляет контент профессии, где id => Content.Id
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<ProfessionContentDto> UpdateContent(ProfessionContentDto input)
+        public async Task<ProfessionContentDto> UpdateContent(ProfessionContentUpdateDto input)
         {
             if (input.Id == 0)
             {
                 throw new UserFriendlyException("id cannot be 0 or null");
             }
             var ts = ObjectMapper.Map<ProfessionContent>(input);
-            var old = await _translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+            var old = await _translationRepository.GetAllIncluding(p => p.Core)
+                .FirstOrDefaultAsync(p => p.Id == input.Id)??throw new EntityNotFoundException(typeof(ProfessionContent),input.Id);
 
             old.Update(ts);
             await _translationRepository.InsertOrUpdateAsync(old);
@@ -62,12 +62,13 @@ namespace Platform.Professions
 
         public async Task DeleteBlock(BlockDeleteDto input)
         {
-            var prof = await _professionRepository.GetAllIncluding(p => p.Content)
-              .FirstOrDefaultAsync(p => p.Id == input.ProfessionId);
+            if (input.BlockId == 0)
+            {
+                throw new UserFriendlyException("BlockId не может быть 0 или null");
+            }
             var block = await _blockRepository.GetAllIncluding(p => p.Content)
-              .FirstOrDefaultAsync(p => p.Id == input.BlockId);
-            block.IsActive = false;
-            block.IsDeleted = true;
+              .FirstOrDefaultAsync(p => p.Id == input.BlockId) ?? throw new EntityNotFoundException(typeof(Block), input.BlockId);
+            await _blockRepository.DeleteAsync(block);
         }
 
         public async Task<BlockDto> CreateBlock(BlockCreateDto input, long id)
@@ -76,7 +77,7 @@ namespace Platform.Professions
             {
                 throw new UserFriendlyException("id в url не может быть 0 или null");
             }
-            var prof = await _professionRepository.FirstOrDefaultAsync(p => p.Id == id);
+            var prof = await _professionRepository.FirstOrDefaultAsync(p => p.Id == id)??throw new EntityNotFoundException(typeof(Profession),id);
             var block = ObjectMapper.Map<Block>(input);
             block.Profession = prof;
             var newid = await _blockRepository.InsertAndGetIdAsync(block);
@@ -86,7 +87,7 @@ namespace Platform.Professions
 
         protected override IQueryable<Profession> CreateFilteredQuery(PagedResultDto<Profession> input)
         {
-            return _professionRepository.GetAllIncluding(p => p.Content, p=>p.Events, p=>p.Packages, p=>p.Blocks, p => p.Author).AsQueryable();
+            return _professionRepository.GetAllIncluding(p => p.Content, p=>p.Event, p=>p.Package, p=>p.Blocks, p => p.Author).AsQueryable();
         }
 
         protected override async Task<Profession> GetEntityByIdAsync(long id)
@@ -95,7 +96,7 @@ namespace Platform.Professions
             {
                 throw new UserFriendlyException("id cannot be 0 or null");
             }
-            var entity = await _professionRepository.GetAllIncluding(p => p.Content, p => p.Events, p => p.Packages, p => p.Blocks, p=>p.Author).FirstOrDefaultAsync(p => p.Id == id);
+            var entity = await _professionRepository.GetAllIncluding(p => p.Content, p => p.Event, p => p.Package, p => p.Blocks, p=>p.Author).FirstOrDefaultAsync(p => p.Id == id);
             if (entity == null)
             {
                 throw new EntityNotFoundException(typeof(Profession), id);
@@ -119,8 +120,9 @@ namespace Platform.Professions
             {
                 throw new UserFriendlyException("authorid cannot be 0 or null");
             }
-            var author = await _authorRepository.FirstOrDefaultAsync(a => a.Id == authorid);
-            var profession = await _professionRepository.GetAllIncluding(p => p.Author, p=>p.Content).FirstOrDefaultAsync(p => p.Id == id);
+            var author = await _authorRepository.FirstOrDefaultAsync(a => a.Id == authorid)??throw new EntityNotFoundException(typeof(Author),authorid);
+            var profession = await _professionRepository.GetAllIncluding(p => p.Author, p=>p.Content)
+                .FirstOrDefaultAsync(p => p.Id == id)??throw new EntityNotFoundException(typeof(Profession),id);
             profession.SetAuthor(author);
             //await _professionRepository.InsertOrUpdateAsync(profession);
         }

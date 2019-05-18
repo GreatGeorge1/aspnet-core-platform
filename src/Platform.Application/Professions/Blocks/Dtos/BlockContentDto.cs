@@ -12,4 +12,9 @@ namespace Platform.Professions.Dtos
     public class BlockContentDto : GenericContentDto<BlockContent, long>
     {
     }
+    
+    [AutoMap(typeof(BlockContent))]
+    public class BlockContentUpdateDto : GenericContentUpdateDto<BlockContent, long>
+    {
+    }
 }

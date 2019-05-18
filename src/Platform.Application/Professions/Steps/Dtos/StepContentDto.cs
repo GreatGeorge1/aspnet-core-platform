@@ -11,4 +11,9 @@ namespace Platform.Professions.Dtos
     public class StepContentDto : GenericContentDto<StepContent, long>
     {
     }
+    
+    [AutoMap(typeof(StepContent))]
+    public class StepContentUpdateDto : GenericContentUpdateDto<StepContent, long>
+    {
+    }
 }

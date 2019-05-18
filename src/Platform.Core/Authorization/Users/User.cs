@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using Platform.Events;
@@ -13,8 +15,11 @@ namespace Platform.Authorization.Users
         public DateTime DOB { get; set; }
         public ICollection<Order> Orders {get;set;}
         public ICollection<UserProfessions> UserProfessions { get; set; }
-
-
+        
+        [Required]
+        [StringLength(150)]
+        public override string Name { get; set; }
+        
         public const string DefaultPassword = "123qwe";
 
         public static string CreateRandomPassword()
@@ -29,7 +34,7 @@ namespace Platform.Authorization.Users
                 TenantId = tenantId,
                 UserName = AdminUserName,
                 Name = AdminUserName,
-                Surname = AdminUserName,
+               // Surname = AdminUserName,
                 EmailAddress = emailAddress,
                 Roles = new List<UserRole>()
             };
@@ -38,5 +43,10 @@ namespace Platform.Authorization.Users
 
             return user;
         }
+
+        [NotMapped]
+        private new string Surname { get; set; }
+        [NotMapped]
+        private new string FullName { get; }
     }
 }

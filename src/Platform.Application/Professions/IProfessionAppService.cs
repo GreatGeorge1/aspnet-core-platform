@@ -10,7 +10,8 @@ namespace Platform.Professions
         Task<ProfessionDto> CreateCopy(long id);
         Task<BlockDto> CreateBlock(BlockCreateDto input, long id);
         Task DeleteBlock(BlockDeleteDto input);
-        Task<ProfessionContentDto> UpdateContent(ProfessionContentDto input);
+        Task<ProfessionContentDto> UpdateContent(ProfessionContentUpdateDto input);
         Task ChangeContentVersion(long version);
+        Task SetAuthor(long id, long authorid);
     }
 }

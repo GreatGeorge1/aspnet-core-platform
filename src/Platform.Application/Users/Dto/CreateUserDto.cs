@@ -22,12 +22,12 @@ namespace Platform.Users.Dto
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(AbpUserBase.MaxNameLength)]
+        [StringLength(150)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(AbpUserBase.MaxSurnameLength)]
-        public string Surname { get; set; }
+//        [Required]
+//        [StringLength(AbpUserBase.MaxSurnameLength)]
+//        public string Surname { get; set; }
 
         [Required]
         [EmailAddress]

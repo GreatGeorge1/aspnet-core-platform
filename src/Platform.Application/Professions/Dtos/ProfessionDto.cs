@@ -12,9 +12,9 @@ namespace Platform.Professions.Dtos
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
         public int MinScore { get; set; }
-        public ICollection<ProfessionContentDto> Content { get; set; }
-        public ICollection<PackageDto> Packages { get; set; }
-        public ICollection<EventDto> Events { get; set; }
+        public ProfessionContentDto Content { get; set; }
+        public PackageDto Package { get; set; }
+        public EventDto Event { get; set; }
         public AuthorDto Author { get; set; }
     }
 }

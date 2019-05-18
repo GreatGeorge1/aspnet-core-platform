@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Abp.UI;
 using Newtonsoft.Json;
 using Platform.Models.Facebook;
 
@@ -17,7 +18,7 @@ namespace Platform.Authentication.External
             string userAccessTokenResponse =await  GetUserToken(accessCode);
             if(String.IsNullOrEmpty(userAccessTokenResponse))
             {
-                throw new ArgumentNullException("userAccessTokenResponse is null or empty");
+                throw new UserFriendlyException("Instagram userAccessTokenResponse is null or empty");
             }
             var userAccessToken = JsonConvert.DeserializeObject<InstagramUserAccessToken>(userAccessTokenResponse);
             var str = userAccessToken.User.FullName.Trim().Split(" ", 2);

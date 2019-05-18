@@ -964,7 +964,7 @@ namespace Platform.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(64);
+                        .HasMaxLength(150);
 
                     b.Property<string>("NormalizedEmailAddress")
                         .IsRequired()
@@ -986,10 +986,6 @@ namespace Platform.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasMaxLength(128);
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(64);
 
                     b.Property<int?>("TenantId");
 
@@ -1037,13 +1033,26 @@ namespace Platform.Migrations
 
                     b.Property<long?>("LastModifierUserId");
 
-                    b.Property<long?>("ProfessionId");
+                    b.Property<long>("ProfessionId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfessionId");
+                    b.HasIndex("ProfessionId")
+                        .IsUnique();
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("Platform.Files.SingleFile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
                 });
 
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
@@ -1174,11 +1183,12 @@ namespace Platform.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<long?>("ProfessionId");
+                    b.Property<long>("ProfessionId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfessionId");
+                    b.HasIndex("ProfessionId")
+                        .IsUnique();
 
                     b.ToTable("Packages");
                 });
@@ -1247,11 +1257,16 @@ namespace Platform.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(300);
 
+                    b.Property<long>("Version");
+
                     b.Property<string>("VideoUrl");
+
+                    b.Property<string>("_fileurls");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoreId");
+                    b.HasIndex("CoreId")
+                        .IsUnique();
 
                     b.ToTable("AnswerContent");
                 });
@@ -1267,7 +1282,9 @@ namespace Platform.Migrations
 
                     b.Property<long?>("CreatorUserId");
 
-                    b.Property<string>("ExtensionData");
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Language");
 
                     b.Property<DateTime?>("LastModificationTime");
 
@@ -1346,11 +1363,16 @@ namespace Platform.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(300);
 
+                    b.Property<long>("Version");
+
                     b.Property<string>("VideoUrl");
+
+                    b.Property<string>("_fileurls");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoreId");
+                    b.HasIndex("CoreId")
+                        .IsUnique();
 
                     b.ToTable("BlockContent");
                 });
@@ -1417,11 +1439,16 @@ namespace Platform.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(300);
 
+                    b.Property<long>("Version");
+
                     b.Property<string>("VideoUrl");
+
+                    b.Property<string>("_fileurls");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoreId");
+                    b.HasIndex("CoreId")
+                        .IsUnique();
 
                     b.ToTable("ProfessionContent");
                 });
@@ -1494,11 +1521,16 @@ namespace Platform.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(300);
 
+                    b.Property<long>("Version");
+
                     b.Property<string>("VideoUrl");
+
+                    b.Property<string>("_fileurls");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoreId");
+                    b.HasIndex("CoreId")
+                        .IsUnique();
 
                     b.ToTable("StepContent");
                 });
@@ -1565,6 +1597,10 @@ namespace Platform.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<long>("AnswerId");
+
+                    b.Property<string>("Text");
+
+                    b.Property<int>("Type");
 
                     b.Property<long>("UserTestId");
 
@@ -1758,9 +1794,9 @@ namespace Platform.Migrations
             modelBuilder.Entity("Platform.Events.Event", b =>
                 {
                     b.HasOne("Platform.Professions.Profession", "Profession")
-                        .WithMany("Events")
-                        .HasForeignKey("ProfessionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Event")
+                        .HasForeignKey("Platform.Events.Event", "ProfessionId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Platform.MultiTenancy.Tenant", b =>
@@ -1806,9 +1842,9 @@ namespace Platform.Migrations
             modelBuilder.Entity("Platform.Packages.Package", b =>
                 {
                     b.HasOne("Platform.Professions.Profession", "Profession")
-                        .WithMany("Packages")
-                        .HasForeignKey("ProfessionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Package")
+                        .HasForeignKey("Platform.Packages.Package", "ProfessionId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Platform.Professions.Answer", b =>
@@ -1821,8 +1857,8 @@ namespace Platform.Migrations
             modelBuilder.Entity("Platform.Professions.AnswerContent", b =>
                 {
                     b.HasOne("Platform.Professions.Answer", "Core")
-                        .WithMany("Content")
-                        .HasForeignKey("CoreId")
+                        .WithOne("Content")
+                        .HasForeignKey("Platform.Professions.AnswerContent", "CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1837,8 +1873,8 @@ namespace Platform.Migrations
             modelBuilder.Entity("Platform.Professions.Blocks.BlockContent", b =>
                 {
                     b.HasOne("Platform.Professions.Block", "Core")
-                        .WithMany("Content")
-                        .HasForeignKey("CoreId")
+                        .WithOne("Content")
+                        .HasForeignKey("Platform.Professions.Blocks.BlockContent", "CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1853,8 +1889,8 @@ namespace Platform.Migrations
             modelBuilder.Entity("Platform.Professions.ProfessionContent", b =>
                 {
                     b.HasOne("Platform.Professions.Profession", "Core")
-                        .WithMany("Content")
-                        .HasForeignKey("CoreId")
+                        .WithOne("Content")
+                        .HasForeignKey("Platform.Professions.ProfessionContent", "CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1869,8 +1905,8 @@ namespace Platform.Migrations
             modelBuilder.Entity("Platform.Professions.StepContent", b =>
                 {
                     b.HasOne("Platform.Professions.Step", "Core")
-                        .WithMany("Content")
-                        .HasForeignKey("CoreId")
+                        .WithOne("Content")
+                        .HasForeignKey("Platform.Professions.StepContent", "CoreId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -1,4 +1,5 @@
 ﻿using Abp.AspNetCore.OData;
+using Abp.AspNetCore.SignalR;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Microsoft.AspNetCore.Hosting;
@@ -9,7 +10,7 @@ using Platform.Configuration;
 namespace Platform.Web.Host.Startup
 {
     [DependsOn(
-       typeof(PlatformWebCoreModule), typeof(AbpAspNetCoreODataModule))]
+       typeof(PlatformWebCoreModule), typeof(AbpAspNetCoreODataModule),typeof(AbpAspNetCoreSignalRModule))]
     public class PlatformWebHostModule: AbpModule
     {
         private readonly IHostingEnvironment _env;
@@ -32,16 +33,16 @@ namespace Platform.Web.Host.Startup
             externalAuthConfiguration.Providers.Add(
                 new ExternalLoginProviderInfo(
                    InstagramAuthProvider.Name,
-                   "ecb21ea05f404e5ea836f8e39ca842ec",
-                   "41c0a7977ff441e19d2d1ea877b164f0",
+                   "2fb449df1bd84999898a1a87a81f939c",
+                   "7413c43d4590436db88b8708eda073fb",
                    typeof(InstagramAuthProvider)
                )
            );
             externalAuthConfiguration.Providers.Add(
                  new ExternalLoginProviderInfo(
                     FacebookAuthProvider.Name,
-                    "352709768684264",
-                    "4576fa336138a84932b88ab6f41bf92e",
+                    "452281665522672",
+                    "0b92d9516e76f82580526cd57167ac65",
                     typeof(FacebookAuthProvider)
                 )
             );

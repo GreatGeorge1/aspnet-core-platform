@@ -43,6 +43,7 @@ namespace Platform.Tests
             {
                 NormalizeDbContext(context);
                 new TenantRoleAndUserBuilder(context, 1).Create();
+                new ProfessionBuilder(context,1).Create();
             });
 
             LoginAsDefaultTenantAdmin();

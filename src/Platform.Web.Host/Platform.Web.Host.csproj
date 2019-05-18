@@ -21,6 +21,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Update="backend-3311c610f785.p12">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -34,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.AspNetCore.OData" Version="4.5.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>

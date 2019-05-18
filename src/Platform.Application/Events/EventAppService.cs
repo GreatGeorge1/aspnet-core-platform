@@ -6,6 +6,7 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Abp.UI;
 using Microsoft.EntityFrameworkCore;
 using Platform.Events.Dtos;
 using Platform.Professions;
@@ -26,13 +27,17 @@ namespace Platform.Events
 
         public override async Task<EventDto> Create(EventCreateDto input)
         {
+            if (input.ProfessionId == 0)
+            {
+                throw new UserFriendlyException("ProfessionId не может быть 0 или null");
+            }
             var event1 = new Event
             {
                 IsActive = input.IsActive,
                 DateEnd = input.DateEnd,
                 DateStart=input.DateStart
             };
-            var profession = await professionRepository.FirstOrDefaultAsync(p => p.Id == input.ProfessionId) ?? throw new ArgumentNullException(nameof(Profession));
+            var profession = await professionRepository.FirstOrDefaultAsync(p => p.Id == input.ProfessionId) ?? throw new EntityNotFoundException(typeof(Profession),input.ProfessionId);
             event1.Profession = profession;
             var newid = await eventRepository.InsertAndGetIdAsync(event1);
             var np = await eventRepository.GetAllIncluding(p => p.Profession).FirstOrDefaultAsync(p => p.Id == newid);
@@ -41,7 +46,12 @@ namespace Platform.Events
 
         public override async Task<EventDto> Update(EventCreateDto input)
         {
-            var event1 = await eventRepository.GetAllIncluding(p => p.Profession).FirstOrDefaultAsync(p => p.Id == input.Id);
+            if (input.Id == 0)
+            {
+                throw new UserFriendlyException("EventId не может быть 0 или null");
+            }
+            var event1 = await eventRepository.GetAllIncluding(p => p.Profession)
+                             .FirstOrDefaultAsync(p => p.Id == input.Id) ?? throw new EntityNotFoundException(typeof(Event),input.Id);
             event1.DateStart = input.DateStart;
             event1.DateEnd = input.DateEnd;
             event1.IsActive = input.IsActive;
@@ -61,6 +71,11 @@ namespace Platform.Events
                 throw new EntityNotFoundException(typeof(Event), id);
             }
             return entity;
+        }
+        
+        protected override IQueryable<Event> CreateFilteredQuery(PagedResultDto<Event> input)
+        {
+            return eventRepository.GetAllIncluding(p => p.Profession).AsQueryable();
         }
     }
 }

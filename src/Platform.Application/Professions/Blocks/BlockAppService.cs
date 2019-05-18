@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
@@ -33,14 +34,15 @@ namespace Platform.Professions
             throw new UserFriendlyException("Создание вне контекста профессии запрещено");
         }
 
-        public async Task<BlockContentDto> UpdateContent(BlockContentDto input)
+        public async Task<BlockContentDto> UpdateContent(BlockContentUpdateDto input)
         {
             if (input.Id == 0)
             {
                 throw new UserFriendlyException("id cannot be 0 or null");
             }
             var ts = ObjectMapper.Map<BlockContent>(input);
-            var old = await translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+            var old = await translationRepository.GetAllIncluding(p => p.Core)
+                .FirstOrDefaultAsync(p => p.Id == input.Id)??throw new EntityNotFoundException(typeof(BlockContent),input.Id);
 
             old.Update(ts);
             await translationRepository.InsertOrUpdateAsync(old);
@@ -48,30 +50,32 @@ namespace Platform.Professions
             return ObjectMapper.Map<BlockContentDto>(updts);
         }
 
-        public async Task CreateStep(StepCreateDto input, long id)
+        public async Task<StepDto> CreateStep(StepCreateDto input, long id)
         {
             if (id == 0)
             {
                 throw new UserFriendlyException("id в url не может быть 0 или null");
             }
-            var block = await repository.GetAllIncluding(b=>b.Steps).FirstOrDefaultAsync(p => p.Id == id);
+            var block = await repository.GetAll().Include(b=>b.Steps).ThenInclude(s=>s.Content)
+                            .FirstOrDefaultAsync(p => p.Id == id)??throw new EntityNotFoundException(typeof(Block), id);
             var step = ObjectMapper.Map<Step>(input);
+            
             step.Block = block;
-            block.Steps.Add(step);
-            await repository.InsertOrUpdateAsync(block);
-            //var newid = await stepRepository.InsertAndGetIdAsync(step);
-            // var s= await stepInfoRepository.FirstOrDefaultAsync(p => p.Id == newid);
-            //s.Block = block;
+            var newid = await stepRepository.InsertOrUpdateAndGetIdAsync(step);
+            var newstep = await stepRepository.GetAllIncluding(b => b.Answers, b => b.Content, b => b.Block)
+                .FirstOrDefaultAsync(s=>s.Id==newid);
+            return ObjectMapper.Map<StepDto>(newstep);
         }
 
         public async Task DeleteStep(StepDeleteDto input)
         {
-            var block = await repository.GetAllIncluding(p => p.Content)
-              .FirstOrDefaultAsync(p => p.Id == input.BlockId);
+            if (input.StepId == 0)
+            {
+                throw new UserFriendlyException("StepId не может быть 0 или null");
+            }
             var step = await stepRepository.GetAllIncluding(p => p.Content)
-              .FirstOrDefaultAsync(p => p.Id == input.StepId) ?? throw new ArgumentNullException(nameof(Step));
-            step.IsActive = false;
-            step.IsDeleted = true;
+              .FirstOrDefaultAsync(p => p.Id == input.StepId) ?? throw new EntityNotFoundException(typeof(Step), input.StepId);
+            await stepRepository.DeleteAsync(step);
         }
 
         protected override IQueryable<Block> CreateFilteredQuery(PagedResultDto<Block> input)

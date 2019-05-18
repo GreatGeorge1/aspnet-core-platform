@@ -13,27 +13,16 @@ namespace Platform.Professions
 {
     [Audited]
    // [Table("AppProfessions")]
-    public class Profession : FullAuditedEntity<long>, IPassivable
+    public class Profession : FullAuditedEntity<long>, IPassivable, IHasContent<Profession, ProfessionContent, long>
     {
-       // public int BlocksCount { get; private set; }
-
-        //private void CalculateBlocksCount()
-        //{
-        //    int count = 0;
-        //    if (this.Blocks.Any())
-        //    {
-        //        count = this.Blocks.Count; 
-        //    }
-        //    this.BlocksCount= count;
-        //}
-
-        //public int Duration { get; private set; }
-       // public virtual int MinScore { get; set; }
         public bool IsActive { get; set; }
-        public ICollection<ProfessionContent> Content { get; set; }
+        //public ICollection<ProfessionContent> Content { get; set; }
+        public ProfessionContent Content { get; set; }
         public ICollection<Block> Blocks { get; set; }
-        public ICollection<Package> Packages { get; set; }
-        public ICollection<Event> Events { get; set; }
+       // public ICollection<Package> Packages { get; set; }
+        public Package Package { get; set; }
+        // public ICollection<Event> Events { get; set; }
+        public Event Event { get; set; }
         public ICollection<UserProfessions> UserProfessions { get; set; }
         public Author Author { get; set; }
         public void SetAuthor(Author author)
@@ -41,43 +30,36 @@ namespace Platform.Professions
             this.Author = author;
         }
 
-        //public int CalculateMinScore()
-        //{
-        //    int score = 0;
-        //    try
-        //    {
-        //        if (this.Blocks.Any())
-        //        {
-        //            foreach (var item in this.Blocks)
-        //            {
-        //                score += item.MinScore;
-        //            }
-        //        }
-        //    }catch(Exception e)
-        //    {
+        public static Profession CreateTestProfession(bool isActive)
+        {
+            var profession = new Profession();
+           // profession.Content=new List<ProfessionContent>();
+            profession.Blocks=new List<Block>();
+           // profession.Events=new List<Event>();
+           // profession.Packages=new List<Package>();
+            profession.UserProfessions=new List<UserProfessions>();
+            profession.IsActive = isActive;
+            return profession;
+        }
 
-        //    }
-        //    return score;
-        //}
+        public void Update(Profession newprof)
+        {
+            if (newprof.Package != null)
+            {
+                newprof.Package.Profession = this;
+                this.Package = newprof.Package;
+            }
 
-        //private int CalculateDuration()
-        //{
-        //    int duration = 0;
-        //    try
-        //    {
-        //        if (this.Blocks.Any())
-        //        {
-        //            foreach (var item in this.Blocks)
-        //            {
-        //                duration += item.Duration;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
+            if (newprof.Event != null)
+            {
+                newprof.Event.Profession = this;
+                this.Event = newprof.Event;
+            }
 
-        //    }
-        //    return duration;
-        //}
+            if (newprof.IsActive != this.IsActive)
+            {
+                
+            }
+        }
     }
 }

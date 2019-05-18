@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Abp.UI;
+using NSubstitute.ExceptionExtensions;
 using Platform.Sessions;
 using Shouldly;
 using Xunit;
@@ -15,6 +18,7 @@ namespace Platform.Tests.Sessions
         }
 
         [MultiTenantFact]
+       // [ExpectedException(typeof(UserFriendlyException), "")]
         public async Task Should_Get_Current_User_When_Logged_In_As_Host()
         {
             // Arrange
@@ -22,12 +26,11 @@ namespace Platform.Tests.Sessions
 
             // Act
             var output = await _sessionAppService.GetCurrentLoginInformations();
-
             // Assert
             var currentUser = await GetCurrentUserAsync();
             output.User.ShouldNotBe(null);
             output.User.Name.ShouldBe(currentUser.Name);
-            output.User.Surname.ShouldBe(currentUser.Surname);
+            output.User.PhoneNumber.ShouldBe(currentUser.PhoneNumber);
 
             output.Tenant.ShouldBe(null);
         }

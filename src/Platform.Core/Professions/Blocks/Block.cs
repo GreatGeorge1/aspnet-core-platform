@@ -9,10 +9,10 @@ using Platform.Professions.Blocks;
 namespace Platform.Professions
 {
     [Audited]
-    public class Block : FullAuditedEntity<long>, IPassivable
+    public class Block : FullAuditedEntity<long>, IPassivable, IHasContent<Block, BlockContent, long>
     {
         public bool IsActive { get; set; }
-        public ICollection<BlockContent> Content { get; set; }
+        public BlockContent Content { get; set; }
         public int Index { get; set; }
         public int MinScore { get; set; }
        // public int Duration { get; private set; }
@@ -33,5 +33,16 @@ namespace Platform.Professions
         //    }
         //    this.Duration = duration;
         //}
+
+        public static Block CreateTestBlock(bool isActive)
+        {
+            var block=new Block();
+           // block.Content=new List<BlockContent>();
+            block.IsActive = isActive;
+            block.Steps=new List<Step>();
+            block.Index = 0;
+            block.MinScore = 0;
+            return block;
+        }
     }
 }

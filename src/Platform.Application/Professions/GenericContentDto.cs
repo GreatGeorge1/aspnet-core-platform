@@ -11,12 +11,26 @@ namespace Platform.Professions
     public abstract class GenericContentDto<TContent, TKey> : EntityDto<TKey>
         where TContent : IEntity<TKey>, IPassivable, IMedia
     {
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public string Language { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Base64Image { get; set; }
         [Url]
         public string VideoUrl { get; set; }
+        public List<string> FileUrs { get; set; }
+    }
+    
+    public abstract class GenericContentUpdateDto<TContent, TKey> : EntityDto<TKey>
+        where TContent : IEntity<TKey>, IPassivable, IMedia
+    {
+        public bool? IsActive { get; set; }
+        public string Language { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Base64Image { get; set; }
+        [Url]
+        public string VideoUrl { get; set; }
+        //public List<string> FileUrs { get; set; }
     }
 }

@@ -19,29 +19,29 @@ namespace Platform.Users.Dto
         public DateTime? DOB { get; set; }
 
         public ICollection<OrderDto> Orders{get;set;}
-        //public ICollection<UserTestDto> UserProfession { get; set; }
-        //public ICollection<UserEventsDto> UserEvents { get; set; }
 
         [Required]
         [StringLength(AbpUserBase.MaxUserNameLength)]
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(AbpUserBase.MaxNameLength)]
+        [StringLength(150)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(AbpUserBase.MaxSurnameLength)]
-        public string Surname { get; set; }
-
+        //[Required]
+        //[StringLength(AbpUserBase.MaxSurnameLength)]
+        //public string Surname { get; set; }
+        
         [Required]
         [EmailAddress]
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string EmailAddress { get; set; }
+        
+        public bool IsEmailConfirmed { get; set; }
 
         public bool IsActive { get; set; }
 
-        public string FullName { get; set; }
+       // public string FullName { get; set; }
 
         public DateTime? LastLoginTime { get; set; }
 

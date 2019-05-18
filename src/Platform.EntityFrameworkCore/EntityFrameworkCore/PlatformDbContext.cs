@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
 using Platform.Events;
+using Platform.Files;
 using Platform.MultiTenancy;
 using Platform.Packages;
 using Platform.Professions;
 using Platform.Professions.Blocks;
 using Platform.Professions.User;
+using System;
 
 namespace Platform.EntityFrameworkCore
 {
@@ -31,7 +33,7 @@ namespace Platform.EntityFrameworkCore
         public DbSet<UserTests> UserTests { get; set; }
         public DbSet<UserTestAnswers> UserTestAnswers { get; set; }
         public DbSet<UserSeenSteps> UserSeenSteps { get; set; }
-
+        public DbSet<SingleFile> Files { get; set; }
         public DbSet<Author> Authors { get; set; }
 
         public PlatformDbContext(DbContextOptions<PlatformDbContext> options)
@@ -58,20 +60,30 @@ namespace Platform.EntityFrameworkCore
                 .WithMany(b => b.Professions)
                 .OnDelete(DeleteBehavior.SetNull);
 
+//            modelBuilder.Entity<Profession>()
+//                .HasMany(p => p.Packages)
+//                .WithOne(b => b.Profession)
+//                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Profession>()
-                .HasMany(p => p.Packages)
+                .HasOne(p => p.Package)
                 .WithOne(b => b.Profession)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<Package>(p => p.ProfessionId)
+                .OnDelete(DeleteBehavior.SetNull);
+           // modelBuilder.Entity<Profession>().ToTable("Professions"); 
+         //   modelBuilder.Entity<Package>().ToTable("Professions");
+            
             modelBuilder.Entity<Profession>()
-                .HasMany(p => p.Content)
+                .HasOne(p => p.Content)
                 .WithOne(b => b.Core)
                 .OnDelete(DeleteBehavior.Cascade);
 
 
             modelBuilder.Entity<Profession>()
-                .HasMany(p => p.Events)
+                .HasOne(p => p.Event)
                 .WithOne(b => b.Profession)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<Event>(p => p.ProfessionId)
+                .OnDelete(DeleteBehavior.SetNull);
+           // modelBuilder.Entity<Event>().ToTable("Professions");
 
             modelBuilder.Entity<Step>()
                 .HasMany(s => s.Answers)
@@ -117,6 +129,8 @@ namespace Platform.EntityFrameworkCore
             modelBuilder.Entity<UserTestAnswers>()
                 .HasOne(ut => ut.Answer)
                 .WithMany(a => a.UserTestAnswers);
+
+            
 
         }
     }

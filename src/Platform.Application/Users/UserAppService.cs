@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
+using Abp.Authorization.Users;
+using Abp.BackgroundJobs;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
@@ -19,6 +21,7 @@ using Platform.Authorization;
 using Platform.Authorization.Accounts;
 using Platform.Authorization.Roles;
 using Platform.Authorization.Users;
+using Platform.Background;
 using Platform.Roles.Dto;
 using Platform.Users.Dto;
 
@@ -33,6 +36,7 @@ namespace Platform.Users
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IAbpSession _abpSession;
         private readonly LogInManager _logInManager;
+        private readonly IBackgroundJobManager _backgroundJobManager;
 
         public UserAppService(
             IRepository<User, long> repository,
@@ -41,7 +45,8 @@ namespace Platform.Users
             IRepository<Role> roleRepository,
             IPasswordHasher<User> passwordHasher,
             IAbpSession abpSession,
-            LogInManager logInManager)
+            LogInManager logInManager,
+            IBackgroundJobManager backgroundJobManager)
             : base(repository)
         {
             _userManager = userManager;
@@ -50,29 +55,42 @@ namespace Platform.Users
             _passwordHasher = passwordHasher;
             _abpSession = abpSession;
             _logInManager = logInManager;
+            _backgroundJobManager = backgroundJobManager;
         }
 
+        [AbpAllowAnonymous]
         public override async Task<UserDto> Create(CreateUserDto input)
         {
-            //TODO:disable admin create
-            CheckCreatePermission();
-
             var user = ObjectMapper.Map<User>(input);
-
-            user.TenantId = AbpSession.TenantId;
+            var tenantId = 1;
+            //user.TenantId = AbpSession.TenantId;
+            user.TenantId = tenantId;
             user.IsEmailConfirmed = true;
-
-            await _userManager.InitializeOptionsAsync(AbpSession.TenantId);
+            await _userManager.InitializeOptionsAsync(tenantId);
 
             CheckErrors(await _userManager.CreateAsync(user, input.Password));
-
-            if (input.RoleNames != null)
+            user.Roles=new List<UserRole>();
+            if (PermissionChecker.IsGranted(PermissionNames.Pages_Users))
             {
-                CheckErrors(await _userManager.SetRoles(user, input.RoleNames));
+                if (input.RoleNames != null)
+                {
+                    CheckErrors(await _userManager.SetRoles(user, input.RoleNames));
+                }
             }
-
+            
             CurrentUnitOfWork.SaveChanges();
 
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.EmailAddress,
+                    Subject = $"Реєстрація Choizy.org",
+                    isHtml = true,
+                    Message = $@"Вітаємо з реєстрацією на профорієнтаційній платформі ChoiZY!<br><br>
+                                Обирати професію з нами легко та швидко!<br><br>
+                                Виникли питання? Звертайтесь до нас: <a href = 'mailto: info@choizy.org'>info@choizy.org</a><br>"
+                });
+            
             return MapToEntityDto(user);
         }
 

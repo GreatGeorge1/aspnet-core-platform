@@ -79,6 +79,7 @@ namespace Platform.Web.Host.Startup
             );
 
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
+            
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info { Title = "Platform API", Version = "v1" });
@@ -166,7 +167,6 @@ namespace Platform.Web.Host.Startup
                     return httpContext.Request.Path.Value.StartsWith("/odata");
                 };
             });
-
 
             app.UseMvc(routes =>
             {
@@ -328,8 +328,8 @@ namespace Platform.Web.Host.Startup
 
             //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession)).AddProperty(typeof(Profession).GetProperty("MinScore"));
             //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession)).AddProperty(typeof(Profession).GetProperty("Duration"));
-            //builder.StructuralTypes.First(t => t.ClrType == typeof(Block)).AddProperty(typeof(Block).GetProperty("Duration"));
-
+            builder.StructuralTypes.First(t => t.ClrType == typeof(ProfessionContent)).AddCollectionProperty(typeof(ProfessionContent).GetProperty("FileUrls"));
+            builder.EntityType<ProfessionContent>().Ignore(p=>p._fileurls);
             return builder;
         }
         

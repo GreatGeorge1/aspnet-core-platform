@@ -3,8 +3,11 @@ using Platform.Professions;
 using Platform.Professions.User;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Platform.Tests
 {
@@ -21,5 +24,11 @@ namespace Platform.Tests
         public long ProfessionId { get; set; }
         public long TestId { get; set; }
         public ICollection<long> AnswerIds { get; set; }
+        public string Text { get; set; }
+        [Required]
+        [EnumDataType(typeof(StepType))]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public AnswerType Type { get; set; }
     }
+    
 }

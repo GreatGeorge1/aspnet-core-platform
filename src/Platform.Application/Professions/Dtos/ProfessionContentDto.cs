@@ -9,4 +9,9 @@ namespace Platform.Professions.Dtos
     public class ProfessionContentDto : GenericContentDto<ProfessionContent, long>
     {
     }
+    
+    [AutoMap(typeof(ProfessionContent))]
+    public class ProfessionContentUpdateDto : GenericContentUpdateDto<ProfessionContent, long>
+    {
+    }
 }

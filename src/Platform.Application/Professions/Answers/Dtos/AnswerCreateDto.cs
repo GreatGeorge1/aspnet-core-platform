@@ -8,7 +8,7 @@ namespace Platform.Professions.Dtos
     public class AnswerCreateDto : EntityDto<long>
     {
         public bool IsActive { get; set; }
-        public ICollection<AnswerContentDto> Content { get; set; }
+        public AnswerContentDto Content { get; set; }
         public bool IsCorrect { get; set; }
     }
 

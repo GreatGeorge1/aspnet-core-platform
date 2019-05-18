@@ -10,7 +10,9 @@ namespace Platform.Professions.Dtos
     public class AuthorDto : EntityDto<long>
     {
         public string Name { get; set; }
+        public string Language { get; set; }
         public string Base64Image { get; set; }
+        public string Description { get; set; }
         public ICollection<ProfessionIdDto> Professions { get; set; }
     }
 
@@ -18,7 +20,9 @@ namespace Platform.Professions.Dtos
     public class AuthorCreateDto : EntityDto<long>
     {
         public string Name { get; set; }
+        public string Language { get; set; }
         public string Base64Image { get; set; }
+        public string Description { get; set; }
     }
 
     [AutoMap(typeof(Profession))]

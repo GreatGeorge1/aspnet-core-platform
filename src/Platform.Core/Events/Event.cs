@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Abp.Auditing;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
@@ -18,6 +19,8 @@ namespace Platform.Events
         public DateTime DateStart { get; set; }
         public DateTime? DateEnd { get; set; }
 
+        [Required]
         public Profession Profession { get; set; }
+        public long ProfessionId { get; set; }
     }
 }

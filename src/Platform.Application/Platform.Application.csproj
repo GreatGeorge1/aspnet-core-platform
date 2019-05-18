@@ -15,6 +15,11 @@
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Abp.MailKit" Version="4.5.0" />
+    <PackageReference Include="FluentFTP" Version="24.0.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.40.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Platform.Core\Platform.Core.csproj" />
   </ItemGroup>
   <ItemGroup>

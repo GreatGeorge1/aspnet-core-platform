@@ -7,8 +7,8 @@ namespace Platform.Professions
 {
     public interface IStepAppService : IAsyncCrudAppService<StepDto, long, PagedResultDto<Step>, StepCreateDto, StepUpdateDto>
     {
-        Task<StepContentDto> UpdateContent(StepContentDto input);   
-        Task CreateAnswer(AnswerCreateDto input, long id);
+        Task<StepContentDto> UpdateContent(StepContentUpdateDto input);   
+        Task<AnswerDto> CreateAnswer(AnswerCreateDto input, long id);
         Task DeleteAnswer(AnswerDeleteDto input);
     }
 }

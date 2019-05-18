@@ -32,5 +32,6 @@
     <PackageReference Include="Abp.ZeroCore" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.5.0" />
+    <PackageReference Include="Unidecode.NET" Version="1.4.0" />
   </ItemGroup>
 </Project>

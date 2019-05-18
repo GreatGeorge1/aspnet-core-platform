@@ -3,6 +3,8 @@ using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace Platform.Professions
@@ -10,6 +12,12 @@ namespace Platform.Professions
     public abstract class GenericContent<TCore, TKey> : FullAuditedEntity<TKey>, IPassivable, IMedia
         where TCore : IEntity<TKey>
     {
+        protected GenericContent()
+        {
+            _fileurls = String.Empty;
+            IsActive = false;
+        }
+
         public TCore Core { get; set; }
         public long CoreId { get; set; }
         public string Language { get; set; }
@@ -21,6 +29,28 @@ namespace Platform.Professions
         public string Base64Image { get; set; }
         [Url]
         public string VideoUrl { get; set; }
+
+        [NotMapped]
+        public ICollection<string> FileUrls { get; set; }
+        public string _fileurls
+        {
+            get
+            {
+                return string.Join(",", FileUrls);
+            }
+            set {
+                if(value != null)
+                {
+                    FileUrls = value.Split(',').ToList();
+                }
+                else
+                {
+                    FileUrls = new List<string>();
+                }
+            }
+        }
+        public long Version { get; set; }
+        
 
         public virtual void Update<TContent>(TContent newcontent) where TContent : GenericContent<TCore, TKey>
         {
@@ -47,6 +77,11 @@ namespace Platform.Professions
             if (newcontent.Language != null)
             {
                 this.Language = newcontent.Language;
+            }
+
+            if (newcontent.IsActive != this.IsActive)
+            {
+                this.IsActive = newcontent.IsActive;
             }
         }
     }

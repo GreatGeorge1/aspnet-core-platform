@@ -1,5 +1,6 @@
 ﻿using Abp.AutoMapper;
 using Abp.Configuration;
+using Abp.MailKit;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Platform.Authorization;
@@ -10,12 +11,13 @@ namespace Platform
     [DependsOn(
         typeof(PlatformCoreModule), 
         typeof(AbpAutoMapperModule),
-        typeof(AbpAutoMapperModule))]
+        typeof(AbpMailKitModule))]
     public class PlatformApplicationModule : AbpModule
     {
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<PlatformAuthorizationProvider>();
+            Configuration.Settings.Providers.Add<EmailSettingsProvider>();
         }
 
         public override void Initialize()

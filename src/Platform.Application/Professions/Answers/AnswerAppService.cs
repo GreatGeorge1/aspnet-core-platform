@@ -37,7 +37,8 @@ namespace Platform.Professions
                 throw new UserFriendlyException("id cannot be 0 or null");
             }
             var ts = ObjectMapper.Map<AnswerContent>(input);
-            var old = await translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+            var old = await translationRepository.GetAllIncluding(p => p.Core)
+                .FirstOrDefaultAsync(p => p.Id == input.Id)??throw new EntityNotFoundException(typeof(AnswerContent),input.Id);
 
             old.Update(ts);
             await translationRepository.InsertOrUpdateAsync(old);

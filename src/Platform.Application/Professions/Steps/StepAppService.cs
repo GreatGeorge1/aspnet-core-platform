@@ -32,41 +32,50 @@ namespace Platform.Professions
             throw new UserFriendlyException("Создание вне контекста блока запрещено");
         }
 
-        public async Task CreateAnswer(AnswerCreateDto input, long id)
+        public async Task<AnswerDto> CreateAnswer(AnswerCreateDto input, long id)
         {
             if (id == 0)
             {
                 throw new UserFriendlyException("id в url не может быть 0 или null");
             }
-            var step = await stepRepository.FirstOrDefaultAsync(p => p.Id == id);
+            var step = await stepRepository.FirstOrDefaultAsync(p => p.Id == id)??throw new EntityNotFoundException(typeof(Step),id);
             if (step.Type == StepType.Info)
             {
                 throw new UserFriendlyException("нельзя создать ответ для шага типа Info");
             }
+            if (step.Type == StepType.Open)
+            {
+                throw new UserFriendlyException("нельзя создать ответ для шага типа Open");
+            }
             var answer = ObjectMapper.Map(input, new Answer());
             answer.Test = step;
             var newid = await answerRepository.InsertAndGetIdAsync(answer);
+            return ObjectMapper.Map<AnswerDto>(
+                await answerRepository.GetAllIncluding(a => a.Content, a => a.Test)
+                    .FirstOrDefaultAsync(a => a.Id == newid));
         }
 
         public async Task DeleteAnswer(AnswerDeleteDto input)
         {
-            //TODO cleanup
-            var step = await stepRepository.GetAllIncluding(p => p.Content)
-              .FirstOrDefaultAsync(p => p.Id == input.StepTestId);
+            if (input.AnswerId == 0)
+            {
+                throw new UserFriendlyException("AnswerId cannot be 0 or null");
+            }
             var answer = await answerRepository.GetAllIncluding(p => p.Content)
-              .FirstOrDefaultAsync(p => p.Id == input.AnswerId);
-            answer.IsActive = false;
-            answer.IsDeleted = true;
+                             .FirstOrDefaultAsync(p => p.Id == input.AnswerId) ??
+                         throw new EntityNotFoundException(typeof(Answer), input.AnswerId);
+            await answerRepository.DeleteAsync(answer);
         }
      
-        public async Task<StepContentDto> UpdateContent(StepContentDto input)
+        public async Task<StepContentDto> UpdateContent(StepContentUpdateDto input)
         {
             if (input.Id == 0)
             {
                 throw new UserFriendlyException("id cannot be 0 or null");
             }
             var ts = ObjectMapper.Map<StepContent>(input);
-            var old = await translationRepository.GetAllIncluding(p => p.Core).FirstOrDefaultAsync(p => p.Id == input.Id);
+            var old = await translationRepository.GetAllIncluding(p => p.Core)
+                          .FirstOrDefaultAsync(p => p.Id == input.Id)??throw new EntityNotFoundException(typeof(StepContent),input.Id);
 
             old.Update(ts);
             await translationRepository.InsertOrUpdateAsync(old);

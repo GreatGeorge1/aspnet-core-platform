@@ -4,6 +4,7 @@ using Abp.AspNetCore;
 using Abp.AspNetCore.Configuration;
 using Abp.AspNetCore.OData;
 using Abp.AspNetCore.SignalR;
+using Abp.MailKit;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.Configuration;
@@ -21,7 +22,8 @@ namespace Platform
          typeof(PlatformEntityFrameworkModule),
          typeof(AbpAspNetCoreModule),
         typeof(AbpAspNetCoreSignalRModule),
-        typeof(AbpAspNetCoreODataModule)
+        typeof(AbpAspNetCoreODataModule),
+         typeof(AbpMailKitModule)
      )]
     public class PlatformWebCoreModule : AbpModule
     {
@@ -50,6 +52,7 @@ namespace Platform
 
             ConfigureTokenAuth();
 
+           // Configuration.ReplaceService<IMailKitSmtpBuilder, MyMailKitSmtpBuilder>();
            // var builder = Configuration.Modules.AbpAspNetCoreOData().ODataModelBuilder;
           // builder.EntitySet<Profession>("Professions");
         }

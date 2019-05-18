@@ -10,10 +10,10 @@ using Platform.Professions.User;
 namespace Platform.Professions
 {
     [Audited]
-    public class Step : FullAuditedEntity<long>, IPassivable
+    public class Step : FullAuditedEntity<long>, IPassivable, IHasContent<Step, StepContent, long>
     {
         public bool IsActive { get; set; }
-        public ICollection<StepContent> Content { get; set; }
+        public StepContent Content { get; set; }
         public int Duration { get; set; }
         public Block Block { get; set; }
         public int Index { get; set; }
@@ -30,7 +30,8 @@ namespace Platform.Professions
     public enum StepType
     {
         Info,
-        Test
+        Test,
+        Open
     }
    
 }

@@ -46,16 +46,24 @@ namespace Platform.Tests
             }
 
             var steptest = await SearchTestInProfession(profession, input.TestId) ?? throw new UserFriendlyException($"Step: {input.TestId} does not exist in profession: {input.ProfessionId}");
-            var answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new UserFriendlyException($"Answers: {input.AnswerIds.ToString()} does not exist in step: {input.TestId}");
 
-            int scorecount = 0;
-            foreach (var item in answerlist)
+            ICollection<Answer> answerlist=new List<Answer>();
+            int scorecount=0;
+            
+            if (input.Type != AnswerType.Open)
             {
-                if (item.IsCorrect)
+                answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new UserFriendlyException($"Answers: {input.AnswerIds.ToString()} does not exist in step: {input.TestId}");
+
+                scorecount = 0;
+                foreach (var item in answerlist)
                 {
-                    scorecount++;
+                    if (item.IsCorrect)
+                    {
+                        scorecount++;
+                    }
                 }
             }
+
             UserTests usertest;
             try
             {
@@ -73,12 +81,19 @@ namespace Platform.Tests
             }
 
             usertest.UserTestAnswers = new List<UserTestAnswers>();
-            foreach (var item in answerlist)
+            if (input.Type != AnswerType.Open)
             {
-                usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest });
+                foreach (var item in answerlist)
+                {
+                    usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest});
+                }
+                userprofession.CalculateScore();
             }
-       
-            userprofession.CalculateScore();
+            else
+            {
+                usertest.UserTestAnswers.Add(new UserTestAnswers { UserTest = usertest, Text = input.Text});
+            }
+            
             await userProfessionsRepository.InsertOrUpdateAsync(userprofession);
             return scorecount;
         }
