@@ -13,5 +13,6 @@ namespace Platform.Professions
         Task<ProfessionContentDto> UpdateContent(ProfessionContentUpdateDto input);
         Task ChangeContentVersion(long version);
         Task SetAuthor(long id, long authorid);
+        //Task Subscribe(long userid, long professionid);
     }
 }

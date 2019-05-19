@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Abp.Authorization;
 using Abp.Authorization.Users;
+using Abp.BackgroundJobs;
+using Abp.Domain.Repositories;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Abp.UI;
@@ -16,6 +18,7 @@ using Platform.Authentication.External;
 using Platform.Authentication.JwtBearer;
 using Platform.Authorization;
 using Platform.Authorization.Users;
+using Platform.Background;
 using Platform.Identity;
 using Platform.Models.TokenAuth;
 using Platform.MultiTenancy;
@@ -33,6 +36,8 @@ namespace Platform.Controllers
         private readonly IExternalAuthConfiguration _externalAuthConfiguration;
         private readonly IExternalAuthManager _externalAuthManager;
         private readonly UserRegistrationManager _userRegistrationManager;
+        private readonly IRepository<User, long> _userRepository; 
+        private readonly IBackgroundJobManager _backgroundJobManager;
 
         private readonly SignInManager _signInManager;
 
@@ -44,7 +49,9 @@ namespace Platform.Controllers
             IExternalAuthConfiguration externalAuthConfiguration,
             IExternalAuthManager externalAuthManager,
             UserRegistrationManager userRegistrationManager,
-            SignInManager signInManager)
+            SignInManager signInManager,
+            IRepository<User, long> userRepository,
+            IBackgroundJobManager backgroundJobManager)
         {
             _logInManager = logInManager;
             _tenantCache = tenantCache;
@@ -54,6 +61,8 @@ namespace Platform.Controllers
             _externalAuthManager = externalAuthManager;
             _userRegistrationManager = userRegistrationManager;
             _signInManager = signInManager;
+            _userRepository = userRepository;
+            _backgroundJobManager = backgroundJobManager;
         }
 
         [HttpPost]
@@ -146,14 +155,40 @@ namespace Platform.Controllers
 
         private async Task<User> RegisterExternalUserAsync(ExternalAuthUserInfo externalUser)
         {
-            var user = await _userRegistrationManager.RegisterAsync(
-                externalUser.Name,
-                externalUser.Surname,
-                externalUser.EmailAddress,
-                externalUser.EmailAddress,
-                Authorization.Users.User.CreateRandomPassword(),
-                true
-            );
+            //TODO
+            var userexist = await _userRepository.FirstOrDefaultAsync(u => u.EmailAddress == externalUser.EmailAddress);
+            User user;
+            if (userexist == null)
+            {
+                user = await _userRegistrationManager.RegisterAsync(
+                    externalUser.Name,
+                    externalUser.Surname,
+                    externalUser.EmailAddress,
+                    externalUser.EmailAddress,
+                    Authorization.Users.User.CreateRandomPassword(),
+                    true
+                );
+                if (!user.EmailAddress.Contains("facebook"))
+                {
+                    await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                        new SendEmailArgs
+                        {
+                            Email = user.EmailAddress,
+                            Subject = $"Реєстрація Choizy.org",
+                            isHtml = true,
+                            Message = $@"Вітаємо з реєстрацією на профорієнтаційній платформі ChoiZY!<br><br>
+                                Обирати професію з нами легко та швидко!<br><br>
+                                Щоб заходити через звичайний вхід, виконайте інструкції по адресі
+                                <a href = 'https://www.choizy.org/RemindPassword'>https://www.choizy.org/RemindPassword</a><br><br>
+                                <b><a href = 'https://www.choizy.org/RemindPassword'> Або натисніть тут</a></b><br><br>
+                                Виникли питання? Звертайтесь до нас: <a href = 'mailto: info@choizy.org'>info@choizy.org</a><br>"
+                        });
+                }
+            }
+            else
+            {
+                user = userexist;
+            }
 
             user.Logins = new List<UserLogin>
             {

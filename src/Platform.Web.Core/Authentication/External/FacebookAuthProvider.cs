@@ -1,7 +1,9 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Abp.BackgroundJobs;
 using Abp.UI;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Platform.Models.Facebook;
 
@@ -11,6 +13,9 @@ namespace Platform.Authentication.External
     {
         private static readonly HttpClient Client = new HttpClient();
         public const string Name = "Facebook";
+
+        
+        
         public override async Task<ExternalAuthUserInfo> GetUserInfo(string accessCode)
         {
             //gen app access token

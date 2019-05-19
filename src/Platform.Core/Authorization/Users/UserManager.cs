@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.Configuration;
@@ -53,6 +54,17 @@ namespace Platform.Authorization.Users
                 organizationUnitSettings, 
                 settingManager)
         {
+            Options.Password = new PasswordOptions
+            {
+                RequireDigit =false,
+                RequiredLength = 6,
+                RequireLowercase = false,
+                RequireUppercase = false,
+                RequiredUniqueChars = 0,
+                RequireNonAlphanumeric = false
+            };
         }
     }
+    
+    
 }

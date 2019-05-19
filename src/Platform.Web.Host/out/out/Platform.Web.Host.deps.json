@@ -3209,6 +3209,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
+          "Platform.Application": "1.0.0",
           "Platform.Core": "1.0.0"
         },
         "compile": {
@@ -6772,6 +6773,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "2.2.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.1",
+          "Platform.Application": "1.0.0",
           "Platform.Core": "1.0.0"
         },
         "runtime": {

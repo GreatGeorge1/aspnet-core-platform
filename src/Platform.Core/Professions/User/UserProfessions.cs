@@ -18,6 +18,9 @@ namespace Platform.Professions.User
         public ICollection<UserTests> UserTests { get; set; }
         public ICollection<UserSeenSteps> UserSeenSteps { get; set; }
         public int Score { get; set; }
+        /// <summary>
+        /// False by Default
+        /// </summary>
         public bool IsCompleted { get; set; }
 
         public void CalculateScore()
@@ -34,6 +37,13 @@ namespace Platform.Professions.User
                 }
             }
             this.Score = score;
+        }
+
+        public void Init()
+        {
+            this.UserTests=new List<UserTests>();
+            this.UserSeenSteps=new List<UserSeenSteps>();
+            this.IsCompleted = false;
         }
     }
 }

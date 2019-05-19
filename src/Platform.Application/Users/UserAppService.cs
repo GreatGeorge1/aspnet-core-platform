@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Abp.Application.Services;
@@ -205,6 +206,72 @@ namespace Platform.Users
             return true;
         }
 
+        [AbpAllowAnonymous]
+        public async Task<bool> RecoverPassword(RecoverPasswordDto input)
+        {
+            var token = input.ResetCode;
+            var user = await _userManager.GetUserByIdAsync(input.UserId)??throw new UserFriendlyException($"Такий користувач не існує");
+            (await _userManager.ResetPasswordAsync(user, token.Trim(), input.NewPassword.Trim())).CheckErrors();
+            
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.EmailAddress,
+                    Subject = "Відновлення паролю - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                               Пароль змінено<br><br>
+                              "
+                });
+            return true;
+        }
+
+        [AbpAllowAnonymous]
+        public async Task<bool> SendRecoveryCodeOnEmail(SendResetCodeDto input)
+        {
+            var user = await _userManager.FindByNameOrEmailAsync(input.UserNameOrEmail)??throw new UserFriendlyException($"Такий користувач не існує: {input.UserNameOrEmail}");
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var url = input.ResetFormUrl.Trim();
+            var urlToken = WebUtility.HtmlEncode(resetToken);
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.EmailAddress,
+                    Subject = "Відновлення паролю - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                                <a href = '{url}/?userid={user.Id}&token={urlToken}'>Натисніть сюди, щоб перейти до відновлення паролю</a><br><br>
+                                Або перейдіть за посиланням:  <a href = '{url}/?userid={user.Id}&token={urlToken}'>{url}/?userid={user.Id}&token={urlToken}</a><br><br>
+                                Це посилання буде дійсне 24 години<br><br>
+                              "
+                });
+            return true;
+        }
+        
+        [AbpAllowAnonymous]
+        public async Task<bool> SendRecoveryCodeOnEmail2(SendResetCodeDto input)
+        {
+            var user = await _userManager.FindByNameOrEmailAsync(input.UserNameOrEmail)??throw new UserFriendlyException($"Такий користувач не існує: {input.UserNameOrEmail}");
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var url = input.ResetFormUrl.Trim();
+            var urlToken = WebUtility.HtmlEncode(resetToken);
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.EmailAddress,
+                    Subject = "Встановлення паролю - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                                <a href = '{url}/?userid={user.Id}&token={urlToken}'>Натисніть сюди, для встановлення паролю</a><br><br>
+                                Або перейдіть по адресі:  <a href = '{url}/?userid={user.Id}&token={urlToken}'>{url}/?userid={user.Id}&token={urlToken}</a><br><br>
+                                Ця адреса буде дійсна 24 години.<br><br>
+                                Token: {resetToken}
+                              "
+                });
+            return true;
+        }
+
+        
         public async Task<bool> ResetPassword(ResetPasswordDto input)
         {
             if (_abpSession.UserId == null)

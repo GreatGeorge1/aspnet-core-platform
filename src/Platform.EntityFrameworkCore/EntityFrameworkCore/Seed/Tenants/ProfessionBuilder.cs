@@ -215,6 +215,27 @@ namespace Platform.EntityFrameworkCore.Seed.Tenants
             }
             
             _context.Professions.Add(profession);
+            var prof2= Profession.CreateTestProfession(true);
+            prof2.Id = 100;
+            _context.Professions.Add(prof2);   
+            var prof3= Profession.CreateTestProfession(true);
+            prof3.Id = 101;
+            _context.Professions.Add(prof3);  
+            var prof4= Profession.CreateTestProfession(true);
+            prof4.Id = 102;
+            _context.Professions.Add(prof4);  
+            //userprofessions
+            var up1 = new UserProfessions();
+            up1.Init();
+            up1.ProfessionId = 101;
+            up1.UserId = 2;
+            _context.UserProfessions.Add(up1);
+            var up2 = new UserProfessions();
+            up2.Init();
+            up2.ProfessionId = 102;
+            up2.UserId = 2;
+            _context.UserProfessions.Add(up2);
+            
             _context.SaveChanges();
         }
     }
