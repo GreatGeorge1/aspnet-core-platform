@@ -33,7 +33,7 @@ namespace Platform
                     client.Connect ("smtp.gmail.com", 587);
                     
                     
-                    client.Authenticate(Encoding.UTF8, "info@choizy.org", "kDGsgs19sdf");
+                    client.Authenticate(Encoding.UTF8, "info@choizy.org", "kDGsgs19sdfkDGsgs19sdf");
                     
                     var message = new MimeMessage();
                     
@@ -71,7 +71,7 @@ namespace Platform
                     client.Connect ("smtp.gmail.com", 587);
                     
                     
-                    client.Authenticate(Encoding.UTF8, "info@choizy.org", "kDGsgs19sdf");
+                    client.Authenticate(Encoding.UTF8, "info@choizy.org", "kDGsgs19sdfkDGsgs19sdf");
                     
                     var message = new MimeMessage();
                     

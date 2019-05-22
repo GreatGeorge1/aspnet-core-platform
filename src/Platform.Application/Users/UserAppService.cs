@@ -17,6 +17,7 @@ using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Platform.Authorization;
 using Platform.Authorization.Accounts;
@@ -247,7 +248,7 @@ namespace Platform.Users
                 });
             return true;
         }
-        
+        [ApiExplorerSettings(IgnoreApi = true)]
         [AbpAllowAnonymous]
         public async Task<bool> SendRecoveryCodeOnEmail2(SendResetCodeDto input)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.AspNetCore.OData.Controllers;
 using Abp.Authorization;
@@ -23,6 +24,17 @@ namespace Platform.Controllers
         public override async Task<IActionResult> Put(long key, Block update)
         {
             return new NotFoundResult();
+        }
+
+        [EnableQuery(MaxExpansionDepth = 0)]
+        public override IQueryable<Block> Get()
+        {
+            return base.Get();
+        }
+        [EnableQuery(MaxExpansionDepth = 0)]
+        public override SingleResult<Block> Get([FromODataUri] long key)
+        {
+            return base.Get(key);
         }
 
         public override async Task<IActionResult> Post(Block entity)

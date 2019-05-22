@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Platform.Professions.User
 {
-    public class UserProfessions : AuditedEntity<long>
+    public class UserProfessions : AuditedEntity<long>, ISoftDelete
     {
         public Profession Profession { get; set; }
         public long ProfessionId { get; set; }
@@ -45,5 +45,7 @@ namespace Platform.Professions.User
             this.UserSeenSteps=new List<UserSeenSteps>();
             this.IsCompleted = false;
         }
+
+        public bool IsDeleted { get; set; }
     }
 }

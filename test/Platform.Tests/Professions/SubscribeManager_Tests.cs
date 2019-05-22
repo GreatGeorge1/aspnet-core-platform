@@ -46,7 +46,7 @@ namespace Platform.Tests.Professions
                 var userprofessions = context.UserProfessions.Include(up => up.Profession)
                     .Include(up => up.User).ToList();
                 Assert.NotNull(userprofessions);
-                userprofessions.Count.ShouldBe(3);
+               // userprofessions.Count.ShouldBe(3);
                 var up1=userprofessions.Find(up => up.Id == 1);
                 up1.ShouldNotBeNull();
                 var up2= userprofessions.Find(up => up.Id == 100);
@@ -94,6 +94,18 @@ namespace Platform.Tests.Professions
             subs.SingleOrDefault(up => up.ProfessionId==101).ShouldNotBeNull();
             subs.SingleOrDefault(up => up.ProfessionId==102).ShouldNotBeNull();
         }
-        
+
+        [Fact]
+        public async Task IsSubscribed_2_101()
+        {
+            var res = await _subscribeManager.UserIsSubscribed(2,101);
+            res.ShouldBe(true);
+        }
+        [Fact]
+        public async Task IsSubscribed_2_1()
+        {
+            var res = await _subscribeManager.UserIsSubscribed(2,1);
+            res.ShouldBe(false);
+        }
     }
 }

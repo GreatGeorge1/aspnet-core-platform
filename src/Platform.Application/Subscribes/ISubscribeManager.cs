@@ -10,5 +10,6 @@ namespace Platform.Subscribes
         Task<bool> SubscribeToProfession(long userid, long professionid);
         Task<bool> UnsubscribeToProfession(long userid, long professionid);
         Task<ICollection<UserProfessions>> GetSubscriptions(long userid);
+        Task<bool> UserIsSubscribed(long userid, long professionid);
     }
 }

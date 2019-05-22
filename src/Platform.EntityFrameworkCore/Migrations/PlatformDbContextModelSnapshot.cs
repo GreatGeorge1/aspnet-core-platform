@@ -1546,6 +1546,8 @@ namespace Platform.Migrations
 
                     b.Property<bool>("IsCompleted");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<DateTime?>("LastModificationTime");
 
                     b.Property<long?>("LastModifierUserId");

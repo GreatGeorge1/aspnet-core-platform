@@ -45,8 +45,23 @@ namespace Platform.Subscribes
                              throw new EntityNotFoundException(typeof(Profession), professionid);
             if (user.UserProfessions == null || !user.UserProfessions.Any())
             {
+                using (UnitOfWorkManager.Current.DisableFilter(AbpDataFilters.SoftDelete))
+                {
+                    var userprofession = await _userProfessionsRepository
+                        .GetAll().Include(up => up.User)
+                        .Include(up => up.Profession)
+                        .Where(up=> up.ProfessionId==profession.Id)
+                        .Where(up=>up.UserId==user.Id)
+                        .FirstOrDefaultAsync();
+                    if (userprofession != null)
+                    {
+                        userprofession.UnDelete();
+                        return true;
+                    }
+                    
+                }
                 user.UserProfessions=new List<UserProfessions>();
-                var up=new UserProfessions()
+                var up1=new UserProfessions()
                 {
                     User=user,
                     Profession = profession,
@@ -54,7 +69,7 @@ namespace Platform.Subscribes
                     UserSeenSteps = new List<UserSeenSteps>(),
                     IsCompleted = false
                 };
-                user.UserProfessions.Add(up);
+                user.UserProfessions.Add(up1);
             }
             else
             {
@@ -118,6 +133,24 @@ namespace Platform.Subscribes
               .Where(up=>up.UserId==user.Id)
                 .ToListAsync();
             return ups;
+        }
+        [UnitOfWork]
+        public async Task<bool> UserIsSubscribed(long userid, long professionid)
+        {
+            var user = await _userRepository.FirstOrDefaultAsync(u=>u.Id==userid)??throw new EntityNotFoundException(typeof(User), userid);
+            var profession = await _professionRepository.FirstOrDefaultAsync(p => p.Id == professionid) ??
+                             throw new EntityNotFoundException(typeof(Profession), professionid);
+            var userprofession = await _userProfessionsRepository
+                .GetAllIncluding(up => up.User, up => up.Profession)
+                .Where(up=> up.ProfessionId==profession.Id)
+                .Where(up=>up.UserId==user.Id)
+                .FirstOrDefaultAsync();
+            if (userprofession != null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

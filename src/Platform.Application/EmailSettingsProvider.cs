@@ -18,7 +18,7 @@ namespace Platform
                 new SettingDefinition("Abp.Net.Mail.Smtp.UserName",
                     "info@choizy.org"),
                 new SettingDefinition("Abp.Net.Mail.Smtp.Password",
-                    "kDGsgs19sdf"),
+                    "kDGsgs19sdfkDGsgs19sdf"),
                 new SettingDefinition("Abp.Net.Mail.Smtp.EnableSsl",
                     "true"),
                 new SettingDefinition("Abp.Net.Mail.Smtp.UseDefaultCredentials",

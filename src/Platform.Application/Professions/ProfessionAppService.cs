@@ -11,27 +11,37 @@ using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.UI;
+using AutoMapper;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Platform.Professions.Dtos;
+using Platform.Professions.User;
+using Platform.Subscribes;
 
 namespace Platform.Professions
 {
     [AbpAuthorize]
     public class ProfessionAppService : AsyncCrudAppService<Profession,ProfessionDto, long, PagedResultDto<Profession>, ProfessionCreateDto, ProfessionUpdateDto>, IProfessionAppService
     {
-        private readonly IRepository<Profession, long> _professionRepository;
-        private readonly IRepository<ProfessionContent, long> _translationRepository;
-        private readonly IRepository<Block, long> _blockRepository;
-        private readonly IRepository<Author, long> _authorRepository;
+        [NotNull]private readonly IRepository<Profession, long> _professionRepository;
+        [NotNull]private readonly IRepository<ProfessionContent, long> _translationRepository;
+        [NotNull]private readonly IRepository<Block, long> _blockRepository;
+        [NotNull]private readonly IRepository<Author, long> _authorRepository;
+        [NotNull]private readonly ISubscribeManager _subscribeManager;
 
-        public ProfessionAppService(IRepository<Profession, long> professionRepository, IRepository<ProfessionContent, long> translationRepository, IRepository<Block, long> blockRepository, IRepository<Author, long> authorRepository)
+        public ProfessionAppService([NotNull]IRepository<Profession, long> professionRepository, 
+            [NotNull] IRepository<ProfessionContent, long> translationRepository, 
+            [NotNull] IRepository<Block, long> blockRepository, 
+            [NotNull] IRepository<Author, long> authorRepository,
+            [NotNull] ISubscribeManager subscribeManager)
             :base(professionRepository)
         {
             _professionRepository = professionRepository ?? throw new ArgumentNullException(nameof(professionRepository));
             _translationRepository = translationRepository ?? throw new ArgumentNullException(nameof(translationRepository));
             _blockRepository = blockRepository ?? throw new ArgumentNullException(nameof(blockRepository));
             _authorRepository = authorRepository ?? throw new ArgumentNullException(nameof(authorRepository));
+            _subscribeManager = subscribeManager ?? throw new ArgumentNullException(nameof(subscribeManager));
         }
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ProfessionDto> CreateCopy(long id)
@@ -125,6 +135,94 @@ namespace Platform.Professions
                 .FirstOrDefaultAsync(p => p.Id == id)??throw new EntityNotFoundException(typeof(Profession),id);
             profession.SetAuthor(author);
             //await _professionRepository.InsertOrUpdateAsync(profession);
+        }
+
+        public async Task Subscribe(long professionid)
+        {
+            var userid = AbpSession.UserId ?? 0;
+            if (userid != 0)
+            {
+                if (professionid == 0)
+                {
+                    throw new UserFriendlyException("professionid in uri cannot be null or 0");
+                }
+
+                await _subscribeManager.SubscribeToProfession(userid, professionid);
+            }
+            else
+            {
+                throw new UserFriendlyException("session user not set");
+            }
+        }
+        public async Task Unsubscribe(long professionid)
+        {
+            var userid = AbpSession.UserId ?? 0;
+            if (userid != 0)
+            {
+                if (professionid == 0)
+                {
+                    throw new UserFriendlyException("professionid in uri cannot be null or 0");
+                }
+
+                await _subscribeManager.UnsubscribeToProfession(userid, professionid);
+            }
+            else
+            {
+                throw new UserFriendlyException("session user not set");
+            }
+        }
+
+        public async Task<ICollection<UserProfessionsDto>> GetSubscriptions()
+        {
+            var userid = AbpSession.UserId ?? 0;
+            if (userid != 0)
+            {
+                var res = await _subscribeManager.GetSubscriptions(userid);
+                var result = new List<UserProfessionsDto>();
+                foreach (var item in res)
+                {
+                    result.Add(ObjectMapper.Map<UserProfessionsDto>(item));
+                }
+                return result;
+            }
+
+            throw new UserFriendlyException("session user not set");
+        }
+        
+        public async Task<ICollection<UserProfessionsDto>> GetUserSubscriptions(long userid)
+        {
+            if (userid != 0)
+            {
+                var res = await _subscribeManager.GetSubscriptions(userid);
+                var result = new List<UserProfessionsDto>();
+                foreach (var item in res)
+                {
+                    result.Add(ObjectMapper.Map<UserProfessionsDto>(item));
+                }
+                return result;
+            }
+
+            throw new UserFriendlyException("user not set");
+        }
+        
+        public async Task<bool> CheckSubscribe(long professionid)
+        {
+            var userid = AbpSession.UserId ?? 0;
+            if (userid != 0)
+            {
+                if (professionid == 0)
+                {
+                    throw new UserFriendlyException("professionid in uri cannot be null or 0");
+                }
+
+                var res=await _subscribeManager.UserIsSubscribed(userid, professionid);
+                return res;
+
+            }
+            else
+            {
+                throw new UserFriendlyException("session user not set");
+            }
         }
     }
 }

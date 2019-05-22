@@ -8,6 +8,7 @@ namespace Platform.Professions.Dtos
     [AutoMap(typeof(ProfessionContent))]
     public class ProfessionContentDto : GenericContentDto<ProfessionContent, long>
     {
+        
     }
     
     [AutoMap(typeof(ProfessionContent))]
