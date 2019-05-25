@@ -56,6 +56,8 @@
     <Compile Include="Migrations\20190517085143_files.designer.cs" />
     <Compile Include="Migrations\20190519161656_up_softdelete.cs" />
     <Compile Include="Migrations\20190519161656_up_softdelete.designer.cs" />
+    <Compile Include="Migrations\20190524144549_test_fix.cs" />
+    <Compile Include="Migrations\20190524144549_test_fix.designer.cs" />
     <Compile Include="Migrations\PlatformDbContextModelSnapshot.cs" />
   </ItemGroup>
 </Project>

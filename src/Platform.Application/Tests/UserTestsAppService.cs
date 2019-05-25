@@ -6,7 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.BackgroundJobs;
 using Abp.UI;
+using JetBrains.Annotations;
+using Platform.Professions.User;
 
 namespace Platform.Tests
 {
@@ -14,10 +17,14 @@ namespace Platform.Tests
     public class UserTestsAppService : ApplicationService, IUserTestAppService
     {
         private readonly IUserTestManager userTestManager;
+        [NotNull] private readonly IBackgroundJobManager _backgroundJobManager;
 
-        public UserTestsAppService(IUserTestManager userTestManager)
+        public UserTestsAppService(IUserTestManager userTestManager,
+            IBackgroundJobManager backgroundJobManager)
         {
             this.userTestManager = userTestManager ?? throw new ArgumentNullException(nameof(userTestManager));
+            this._backgroundJobManager = backgroundJobManager ??
+                                         throw new ArgumentNullException(nameof(backgroundJobManager));
         }
 
         public async Task<SubmitResponseDto> Submit(UserTestDto input)
@@ -30,6 +37,11 @@ namespace Platform.Tests
                 }
             }
             var res = await userTestManager.SubmitTest(input);
+            if (input.Type == AnswerType.Open)
+            {
+                
+                return new SubmitResponseDto { CorrectCount = 0, AnswersCount = 0 };
+            }
             return new SubmitResponseDto { CorrectCount = res, AnswersCount = input.AnswerIds.Count };
         }
 

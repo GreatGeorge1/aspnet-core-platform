@@ -111,7 +111,8 @@ namespace Platform.Controllers
                         {
                             AccessToken = accessToken,
                             EncryptedAccessToken = GetEncrpyedAccessToken(accessToken),
-                            ExpireInSeconds = (int)_configuration.Expiration.TotalSeconds
+                            ExpireInSeconds = (int)_configuration.Expiration.TotalSeconds,
+                            UserId = loginResult.User.Id
                         };
                     }
                 case AbpLoginResultType.UnknownExternalLogin:

@@ -25,8 +25,8 @@ namespace Platform.Tests
         public long TestId { get; set; }
         public ICollection<long> AnswerIds { get; set; }
         public string Text { get; set; }
-        [Required]
-        [EnumDataType(typeof(StepType))]
+        //[Required]
+        //[EnumDataType(typeof(StepType))]
         [JsonConverter(typeof(StringEnumConverter))]
         public AnswerType Type { get; set; }
     }

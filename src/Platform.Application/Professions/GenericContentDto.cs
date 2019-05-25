@@ -16,7 +16,7 @@ namespace Platform.Professions
         public string Title { get; set; }
         public string Description { get; set; }
         public string Base64Image { get; set; }
-        [Url]
+     //   [Url]
         public string VideoUrl { get; set; }
         public List<string> FileUrs { get; set; }
     }
@@ -29,7 +29,7 @@ namespace Platform.Professions
         public string Title { get; set; }
         public string Description { get; set; }
         public string Base64Image { get; set; }
-        [Url]
+      //  [Url]
         public string VideoUrl { get; set; }
         //public List<string> FileUrs { get; set; }
     }

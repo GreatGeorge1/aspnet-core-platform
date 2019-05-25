@@ -9,5 +9,6 @@
         public int ExpireInSeconds { get; set; }
 
         public bool WaitingForActivation { get; set; }
+        public long UserId { get; set; }
     }
 }

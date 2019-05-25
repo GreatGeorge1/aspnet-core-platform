@@ -52,6 +52,7 @@ namespace Platform.Controllers
                                 Email: <a href = 'mailto: {input.Email}'>{input.Email}</a><br><br>
                                 Досвід викладача <b>{(input.DosvidVykl?"Так":"Ні")}</b><br><br>
                                 Досвід зйомки відео <b>{(input.DosvidVideo?"Так":"Ні")}</b><br><br>
+                                Телефон: <b>{input.Phone}</b><br><br>
                                 Вид діяльності <b>{input.Profession}</b><br><br>
                                 Місце роботи <b>{input.Company}</b><br><br>
                                 Про мене: <b>{input.Description}</b><br><br>
@@ -84,6 +85,21 @@ namespace Platform.Controllers
                                 Послуга: <b>{input.Package}</b><br><br>"
                 });
         }
+        
+        [HttpPost]
+        public async Task SendFeedback([FromBody]FeedbackSendEmailDto input){
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = "info@choizy.org",
+                    Subject = $"Фідбек - {input.Email}",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{input.Name}</b><br><br>
+                                Email: <a href = 'mailto: {input.Email}'>{input.Email}</a><br><br>
+                                Телефон: <b>{input.Phone}</b><br><br>
+                                Текст: <b>{input.Text}</b><br><br>"
+                });
+        }
     }
     
     public class AuthorSendEmailDto{
@@ -95,6 +111,7 @@ namespace Platform.Controllers
         public string Profession { get; set; }
         public string Company { get; set; }
         public ICollection<string> FileUrls { get; set; }
+        public string Phone { get; set; }
     }
     
     public class PsychoSendEmailDto{
@@ -102,6 +119,13 @@ namespace Platform.Controllers
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Package { get; set; }
+    }
+    
+    public class FeedbackSendEmailDto{
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Text { get; set; }
     }
     
 }

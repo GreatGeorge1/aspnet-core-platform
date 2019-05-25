@@ -11,17 +11,17 @@ namespace Platform.Professions.User
     public class UserTestAnswers : Entity<long>
     {
         public long UserTestId { get; set; }
-        [Required]
+     //   [Required]
         public UserTests UserTest { get; set; }
         public Answer Answer { get; set; }
         public long AnswerId { get; set; }
         public string Text { get; set; }
         [Required]
-        [EnumDataType(typeof(StepType))]
-        [JsonConverter(typeof(StringEnumConverter))]
+       // [EnumDataType(typeof(StepType))]
         public AnswerType Type { get; set; }
     }
     
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AnswerType
     {
         Open,
