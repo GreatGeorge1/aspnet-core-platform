@@ -35,6 +35,8 @@ namespace Platform.Payment.Dtos
         //public UserInfo UserInfo { get; set; }
         [JsonProperty("order")]
         public Payment.Dtos.OrderMin Order { get; set; }
+        [JsonProperty("urls")]
+        public Urls Urls { get; set; }
         //[JsonProperty("urls")]
         //public Urls Urls { get; set; }
 //        [JsonProperty("bankingDetailsId")]

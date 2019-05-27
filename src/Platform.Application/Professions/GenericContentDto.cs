@@ -18,7 +18,7 @@ namespace Platform.Professions
         public string Base64Image { get; set; }
      //   [Url]
         public string VideoUrl { get; set; }
-        public List<string> FileUrs { get; set; }
+        public ICollection<string> FileUrls { get; set; }
     }
     
     public abstract class GenericContentUpdateDto<TContent, TKey> : EntityDto<TKey>

@@ -20,9 +20,9 @@ namespace Platform.Payment
     {
         private ILogger _logger { get; set; }
         private const string testhost = "https://api.easypay.ua";
-        private const string secret = "test";
-        private const string partnerKey = "easypay-test";
-        private const string serviceKey = "MERCHANT-TEST";
+        private const string secret = "ldrgrErivr7#5*DKdosFKSEo0408sd2#;F";
+        private const string partnerKey = "choizy.easypay";
+        private const string serviceKey = "CHOIZY";
 
         public EasyPayService()
         {
@@ -102,46 +102,73 @@ namespace Platform.Payment
             }
         }
 
+         public async Task<CreateOrderResponse> CreateOrder(CreateApp createApp, long orderid, string description, double amount, Urls urls)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+               // try
+                {
+                    using (var request = new HttpRequestMessage(HttpMethod.Post,$"{testhost}/api/merchant/createOrder" ))
+                    {
+                        var createDto = new Payment.Dtos.CreateOrderMinDto()
+                        {
+                            Urls = urls,
+                            Order = new OrderMin()
+                            {
+                                ServiceKey = serviceKey,
+                                OrderId = orderid.ToString(),
+                                Description = description,
+                                Amount=amount,
+                            }
+                        };
+                        var json = JsonConvert.SerializeObject(createDto);
+                        using (var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
+                        {
+                            stringContent.Headers.Add("PartnerKey", partnerKey);
+                            stringContent.Headers.Add("locale", "ua");
+                            stringContent.Headers.Add("AppId", createApp.AppId);
+                            stringContent.Headers.Add("PageId",createApp.PageId);
+                            var sign = Sign(json, secret);
+                            stringContent.Headers.Add("Sign", sign);
+                            
+                            request.Content = stringContent;
+                            using (var response = await client
+                                .SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
+                            {
+                                response.EnsureSuccessStatusCode();
+                                var createOrder = JsonConvert.DeserializeObject<CreateOrderResponse>(response.Content.ReadAsStringAsync().Result);
+                                return createOrder;
+                            }
+                        }
+                    }
+                }
+               // catch (Exception e)
+               // {
+                   // throw new UserFriendlyException(e.Message);
+               // }
+                
+            }
+        }
+        
+        public async Task CheckOrderState(CreateApp createApp, long orderId, long? transactionId=null)
+        {
+            
+        }
+
         private string Sign(string requestBody,string secret)
         {
             return Convert.ToBase64String(SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(secret+requestBody)));
         }
-        
-        private string CreateToken(string message, string secret)
+
+        public async Task<bool> CheckSign(string body, string sign)
         {
-            secret = secret ?? "";
-            var encoding = new System.Text.UTF8Encoding();
-            byte[] keyByte = encoding.GetBytes(secret);
-            byte[] messageBytes = encoding.GetBytes(message);
-            using (var hmacsha256 = new HMACSHA1(keyByte))
+            var newsign = Sign(body, secret);
+            if (sign.Equals(newsign))
             {
-                byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
-                return Convert.ToBase64String(hashmessage);
+                return true;
             }
-        }
-        public static string ComputeHash(string plainText, string salt)
-        {
-            // Convert plain text into a byte array.
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
 
-            SHA256Managed hash = new SHA256Managed();
-
-            // Compute hash value of salt.
-            byte[] plainHash = hash.ComputeHash(plainTextBytes);
-
-            byte[] concat = new byte[plainHash.Length + saltBytes.Length];
-
-            System.Buffer.BlockCopy(saltBytes, 0, concat, 0, saltBytes.Length);
-            System.Buffer.BlockCopy(plainHash, 0, concat, saltBytes.Length, plainHash.Length);
-
-            byte[] tHashBytes = hash.ComputeHash(concat);
-
-            // Convert result into a base64-encoded string.
-            string hashValue = Convert.ToBase64String(tHashBytes);
-
-            // Return the result.
-            return hashValue;
+            return false;
         }
     }
 }

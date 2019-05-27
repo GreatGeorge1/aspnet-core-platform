@@ -11,7 +11,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.BackgroundJobs;
+using Abp.Domain.Uow;
 using Abp.UI;
+using Platform.Background;
 
 namespace Platform.Tests
 {
@@ -22,16 +25,24 @@ namespace Platform.Tests
         private readonly IRepository<Answer, long> answerRepository;
         private readonly IRepository<UserProfessions, long> userProfessionsRepository;
         private readonly IRepository<Step, long> stepTestRepository;
+        private readonly IBackgroundJobManager _backgroundJobManager;
 
-        public UserTestManager(UserManager userManager, IRepository<Profession, long> professionRepository, IRepository<Answer, long> answerRepository, IRepository<UserProfessions, long> userProfessionsRepository, IRepository<Step, long> stepTestRepository)
+        public UserTestManager(UserManager userManager, 
+            IRepository<Profession, long> professionRepository, 
+            IRepository<Answer, long> answerRepository, 
+            IRepository<UserProfessions, long> userProfessionsRepository, 
+            IRepository<Step, long> stepTestRepository,
+            IBackgroundJobManager backgroundJobManager)
         {
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             this.professionRepository = professionRepository ?? throw new ArgumentNullException(nameof(professionRepository));
             this.answerRepository = answerRepository ?? throw new ArgumentNullException(nameof(answerRepository));
             this.userProfessionsRepository = userProfessionsRepository ?? throw new ArgumentNullException(nameof(userProfessionsRepository));
             this.stepTestRepository = stepTestRepository ?? throw new ArgumentNullException(nameof(stepTestRepository));
+            this._backgroundJobManager=backgroundJobManager?? throw new ArgumentNullException(nameof(backgroundJobManager));
         }
 
+        [UnitOfWork]
         public async Task<int> SubmitTest(UserTestDto input)
         {
             var user = await userManager.GetUserByIdAsync(input.UserId) ?? throw new UserFriendlyException($"User: {input.UserId} does not exist");
@@ -50,19 +61,18 @@ namespace Platform.Tests
             ICollection<Answer> answerlist=new List<Answer>();
             int scorecount=0;
             
-            if (input.Type != AnswerType.Open)
-            {
-                answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new UserFriendlyException($"Answers: {input.AnswerIds.ToString()} does not exist in step: {input.TestId}");
+           
+            answerlist = await SearchAnswersForTestByIds(steptest.Id, input.AnswerIds) ?? throw new UserFriendlyException($"Answers: {input.AnswerIds.ToString()} does not exist in step: {input.TestId}");
 
-                scorecount = 0;
-                foreach (var item in answerlist)
+            scorecount = 0;
+            foreach (var item in answerlist)
+            {
+                if (item.IsCorrect)
                 {
-                    if (item.IsCorrect)
-                    {
-                        scorecount++;
-                    }
+                    scorecount++;
                 }
             }
+            
 
             UserTests usertest;
             try
@@ -81,23 +91,67 @@ namespace Platform.Tests
             }
 
             usertest.UserTestAnswers = new List<UserTestAnswers>();
-            if (input.Type != AnswerType.Open)
+            foreach (var item in answerlist)
             {
-                foreach (var item in answerlist)
-                {
-                    usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest});
-                }
-                userprofession.CalculateScore();
+                usertest.UserTestAnswers.Add(new UserTestAnswers { Answer = item, UserTest = usertest});
             }
-            else
-            {
-                usertest.UserTestAnswers.Add(new UserTestAnswers { UserTest = usertest, Text = input.Text});
-            }
-            
+            userprofession.CalculateScore();
             await userProfessionsRepository.InsertOrUpdateAsync(userprofession);
             return scorecount;
         }
 
+         public async Task<int> SubmitOpen(UserTestDto input)
+        {
+            var user = await userManager.GetUserByIdAsync(input.UserId) ?? throw new UserFriendlyException($"User: {input.UserId} does not exist");
+            var profession = await GetProfessionWithContent(input.ProfessionId) ?? throw new UserFriendlyException($"Profession: {input.ProfessionId} does not exist");
+//            UserProfessions userprofession;
+//            try
+//            {
+//                userprofession = await GetUserProfession(userid: user.Id, professionid: profession.Id) ?? throw new ArgumentNullException(nameof(UserProfessions));
+//            }catch(ArgumentNullException e)
+//            {
+//                userprofession = await CreateAndGetUserProfession(prof: profession, user: user);
+//            }
+//
+            var steptest = await SearchTestInProfessionWithContent(profession, input.TestId) ?? throw new UserFriendlyException($"Step: {input.TestId} does not exist in profession: {input.ProfessionId}");
+//            
+//            UserTests usertest;
+//            try
+//            {
+//               usertest = await FindUserTestByTestId(testid: steptest.Id, userprofession: userprofession) ?? throw new ArgumentNullException(nameof(UserTests));    
+//            }
+//            catch(ArgumentNullException ex)
+//            {
+//                usertest = new UserTests { Test = steptest, UserProfession = userprofession, UserTestAnswers = new List<UserTestAnswers>() };
+//            }
+//            
+//            if (!usertest.UserTestAnswers.Any())
+//            {
+//                userprofession.UserTests.Add(usertest);
+//            }
+//            usertest.UserTestAnswers = new List<UserTestAnswers>();
+//            usertest.UserTestAnswers.Add(new UserTestAnswers { UserTest = usertest, Text = input.Text});
+//            await userProfessionsRepository.InsertOrUpdateAsync(userprofession);
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = "info@choizy.org",
+                    Subject = $"Розгорнута відповідь - {user.EmailAddress}",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                                Email: <a href = 'mailto: {user.EmailAddress}'>{user.EmailAddress}</a><br><br>
+                                Телефон: <b>{user.PhoneNumber}</b><br><br>
+                                Курс <b>{profession.Content.Title}</b><br><br>
+                                Питання <b>{steptest.Content.Title}</b><br>
+                                <b>{steptest.Content.Description}</b><br><br>
+                                Відповідь студента: <b>{input.Text}</b><br><br>
+                             "
+                });
+
+            return 0;
+        }
+        
+        
         private async Task<ICollection<Answer>> SearchAnswersForTestByIds(long stepTestId,ICollection<long> AnswerIds)
         {
             var answerlist = new List<Answer>();
@@ -133,7 +187,21 @@ namespace Platform.Tests
                 }
             }
             return steptest;
-        }     
+        }   
+        
+        private async Task<Step> SearchTestInProfessionWithContent(Profession prof, long testId)
+        {
+            Step steptest = null;
+            foreach (var item in prof.Blocks)
+            {
+                steptest = await stepTestRepository.GetAllIncluding(s => s.Answers, s => s.Block,s=>s.Content).FirstOrDefaultAsync(st => st.Block.Id == item.Id && st.Id == testId);
+                if (steptest != null)
+                {
+                    break;
+                }
+            }
+            return steptest;
+        }    
 
         private async Task<Profession> GetProfession(long profId)
         {
@@ -142,7 +210,16 @@ namespace Platform.Tests
                 .ThenInclude(b=>b.Steps)
                 .FirstOrDefaultAsync(p => p.Id == profId);
         }
-
+        private async Task<Profession> GetProfessionWithContent(long profId)
+        {
+            return await professionRepository.GetAll()
+                .Include(p=>p.Content)
+                .Include(p => p.Blocks)
+                .ThenInclude(b=>b.Steps)
+                .FirstOrDefaultAsync(p => p.Id == profId);
+        }
+        
+        [UnitOfWork]
         private async Task<UserProfessions> GetUserProfession(long userid, long professionid)
         {
             var temp = await userProfessionsRepository.FirstOrDefaultAsync(up => up.ProfessionId == professionid && up.UserId == userid);
@@ -159,6 +236,7 @@ namespace Platform.Tests
             //    .FirstOrDefaultAsync(up => up.Profession.Id==professionid && up.User.Id==userid);
         }
 
+        [UnitOfWork]
         private async Task<UserProfessions> GetUserProfession(long userprofessionid)
         {
             return await userProfessionsRepository.GetAll()
@@ -166,7 +244,7 @@ namespace Platform.Tests
                 .Include(up => up.UserTests).ThenInclude(ut => ut.Test)
                 .FirstOrDefaultAsync(up => up.Id == userprofessionid);
         }
-
+        [UnitOfWork]
         private async Task<UserProfessions> CreateAndGetUserProfession(Profession prof, User user)
         {
             var newid = await userProfessionsRepository.InsertAndGetIdAsync(new UserProfessions { Profession = prof, User = user, UserTests = new List<UserTests>() });

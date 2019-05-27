@@ -139,6 +139,38 @@ namespace Platform.EntityFrameworkCore.Seed.Tenants
                 test.Answers.Add(ans1);
                 test.Answers.Add(ans2);
                 block.Steps.Add(test);
+                
+                var test2 = new Step()
+                {
+                    Block = block,
+                    IsActive = false,
+                    Index = 0,
+                    Duration = 5,
+                    Type = StepType.Test,
+                    UserSeenSteps = new List<UserSeenSteps>(),
+                    //Content=new List<StepContent>(),
+                    Answers = new List<Answer>()
+                };
+                info.Content=new StepContent()
+                {
+                    Core=test,
+                    Title="StepTest",
+                    Description = "desc",
+                    Language = "ru-RU"
+                };
+
+                var ans3 = new Answer()
+                {
+                    // Content = new List<AnswerContent>(),
+                    UserTestAnswers = new List<UserTestAnswers>(),
+                    IsCorrect = true,
+                    IsActive = false,
+                    Test = test
+                };
+                
+                test2.Answers.Add(ans3);
+                block.Steps.Add(test2);
+                
                 //open 
                 var open = new Step()
                 {
@@ -159,6 +191,26 @@ namespace Platform.EntityFrameworkCore.Seed.Tenants
                     Language = "ru-RU"
                 };
                 block.Steps.Add(open);
+                
+                var open2 = new Step()
+                {
+                    Block = block,
+                    IsActive = false,
+                    Index = 0,
+                    Duration = 5,
+                    Type = StepType.Open,
+                    UserSeenSteps = new List<UserSeenSteps>(),
+                    // Content=new List<StepContent>(),
+                    Answers = new List<Answer>()
+                };
+                info.Content=new StepContent()
+                {
+                    Core=test,
+                    Title="StepOpen2",
+                    Description = "desc",
+                    Language = "ru-RU"
+                };
+                block.Steps.Add(open2);
                 
                 profession.Blocks.Add(block);
             }

@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using FluentFTP;
 using System.Text.Encodings.Web;
+using Abp.UI;
 using Unidecode.NET;
 
 namespace Platform.Controllers
@@ -55,15 +56,22 @@ namespace Platform.Controllers
             await fileService.client.ConnectAsync();
             await fileService.client.DownloadFileAsync(newpath, ftpurl);
             await fileService.client.DisconnectAsync();
-
-            Response.Clear();
-            Response.ContentType = "application/octet-stream";
-            Response.Headers.Append("Content-Disposition", "filename=" + newpath);
-            await Response.SendFileAsync(newpath);
-            System.IO.File.Delete(newpath);
-            return Ok();
+            try
+            {
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(newpath, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, GetContentType(newpath), newpath);
+            }
+            finally
+            {
+               System.IO.File.Delete(newpath);
+            }
         }
-
+        
         private string GetContentType(string path)
         {
             var types = GetMimeTypes();
@@ -85,7 +93,18 @@ namespace Platform.Controllers
                 {".jpg", "image/jpeg"},
                 {".jpeg", "image/jpeg"},
                 {".gif", "image/gif"},
-                {".csv", "text/csv"}
+                {".csv", "text/csv"},
+                {".zip","application/zip"},
+                {".pptx","application/vnd.openxmlformats-officedocument.presentationml.presentation"},
+                {".ppt","application/vnd.ms-powerpoint"},
+                {".rar", "application/x-rar-compressed"},
+                {".bmp","image/bmp"},
+                {".rtf","application/rtf"},
+                {".tiff","image/tiff"},
+                {".tif","image/tiff"},
+                {".gz","application/tar+gzip"},
+                {".tar.gz","application/tar+gzip"},
+                {".tgz","application/tar+gzip"},
             };
         }
 
@@ -202,6 +221,23 @@ namespace Platform.Controllers
 
             return Json(uploadedData);
         }
+        
+        
+        [Authorize(AuthenticationSchemes = "JwtBearer")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(FileDeleteDto input)
+        {
+            _ = await _backgroundJobManager.EnqueueAsync<DeleteFileFromFtpJob, DeleteFileFromFtpArgs>(
+            new DeleteFileFromFtpArgs
+            {
+                Path = input.Path,
+                ParentType = input.ParentType,
+                ParentId = input.ParentId,
+                UserId = AbpSession.UserId ?? 0
+            });
+            return Ok();
+        }
+        
 
         private static Encoding GetEncoding(MultipartSection section)
         {
@@ -226,6 +262,19 @@ namespace Platform.Controllers
         [Required]
         public long ParentId { get; set; }
     }
+    
+    public class FileDeleteDto
+    {
+        [Required]
+        [EnumDataType(typeof(ParentType))]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ParentType ParentType { get; set; }
+        [Required]
+        public long ParentId { get; set; }
+        [Required]
+        public string Path { get; set; }
+    }
+    
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class DisableFormValueModelBindingAttribute : Attribute, IResourceFilter

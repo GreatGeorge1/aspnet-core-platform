@@ -1,26 +1,23 @@
-﻿using Abp.BackgroundJobs;
-using Abp.Dependency;
-using Abp.Domain.Entities;
-using Abp.Domain.Repositories;
-using Abp.Domain.Uow;
-using Abp.Events.Bus;
-using FluentFTP;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Platform.Files;
-using Platform.Professions;
-using Platform.Professions.Blocks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Abp.BackgroundJobs;
+using Abp.Dependency;
+using Abp.Domain.Entities;
+using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
+using Abp.Events.Bus;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Platform.Files;
+using Platform.Professions;
+using Platform.Professions.Blocks;
 
 namespace Platform.Background
 {
-    public class UploadFileToFtpJob : BackgroundJob<UploadFileToFtpArgs>, ITransientDependency
+    public class DeleteFileFromFtpJob: BackgroundJob<DeleteFileFromFtpArgs>, ITransientDependency
     {
         private readonly IRepository<Profession, long> professionRepository;
         private readonly IRepository<Block, long> blockRepository;
@@ -29,8 +26,8 @@ namespace Platform.Background
         private readonly IRepository<SingleFile, long> fileRepository;
         private readonly FileDomainService fileService;
         public IEventBus EventBus { get; set; }
-
-        public UploadFileToFtpJob(IRepository<Profession, long> professionRepository, 
+        
+        public DeleteFileFromFtpJob(IRepository<Profession, long> professionRepository, 
             IRepository<Block, long> blockRepository, 
             IRepository<Step, long> stepRepository, 
             IRepository<Answer, long> answerRepository,
@@ -45,44 +42,40 @@ namespace Platform.Background
             this.fileRepository = fileRepository ?? throw new ArgumentNullException(nameof(fileRepository));
             EventBus = NullEventBus.Instance;
         }
-
         [UnitOfWork]
-        public override void Execute(UploadFileToFtpArgs args)
+        public override void Execute(DeleteFileFromFtpArgs args)
         {
-            var url= fileService.UploadToFtp(args);
-            //url = $"ftp://{ftpurl}{url}";
-            File.Delete(args.TempFilePath);
+            fileService.DeleteFile(args.Path);
             switch (args.ParentType)
             {
                 case ParentType.Profession:
-                    Process<Profession, ProfessionContent, long>(url, args.ParentId, professionRepository);
+                    Process<Profession, ProfessionContent, long>(args.Path, args.ParentId, professionRepository);
                     break;
                 case ParentType.Block:
-                    Process<Block, BlockContent, long>(url, args.ParentId, blockRepository);
+                    Process<Block, BlockContent, long>(args.Path, args.ParentId, blockRepository);
                     break;
                 case ParentType.Step:
-                    Process<Step, StepContent, long>(url, args.ParentId, stepRepository);
+                    Process<Step, StepContent, long>(args.Path, args.ParentId, stepRepository);
                     break;
                 case ParentType.Answer:
-                    Process<Answer, AnswerContent, long>(url, args.ParentId, answerRepository);
+                    Process<Answer, AnswerContent, long>(args.Path, args.ParentId, answerRepository);
                     break;
                 case ParentType.None:
-                    Process(url);
+                    Process(args.Path);
                     break;
                 default:
                     throw new ArgumentException($"{nameof(args.ParentType)}");
                     break;
             }
-            EventBus.Trigger(this, new FileUploadedEventData
+            EventBus.Trigger(this, new FileDeletedEventData
             {
                 UserId = args.UserId,
                 ParentId = args.ParentId,
-                FileName = args.FileName,
+                FileName = args.Path,
                 ParentType = args.ParentType
             });
-
         }
-
+        
         [UnitOfWork]
         private void Process<TEntity, TContent, TKey>(string url, long ParentId, IRepository<TEntity, TKey> repository)
             where TEntity: Entity<TKey>, IHasContent<TEntity, TContent, TKey>
@@ -105,44 +98,28 @@ namespace Platform.Background
                     }
                 }
             }
-            content.FileUrls.Add(url);
         }
 
         [UnitOfWork]
         private void Process(string url)
         {
             var file= fileRepository.FirstOrDefault(f=>f.Path==url);
-            if (file == null)
+            if (file != null)
             {
-                fileRepository.Insert(new SingleFile
-                {
-                    Path = url
-                });
+                fileRepository.Delete(file);
             }
         }
-
     }
-
     [Serializable]
-    public class UploadFileToFtpArgs
+    public class DeleteFileFromFtpArgs
     {
-        public string TempFilePath { get; set; }
-        public string FileName { get; set; }
+        public string Path { get; set; }
+      //  public string FileName { get; set; }
         //public string Mime { get; set; }
         [EnumDataType(typeof(ParentType))]
         [JsonConverter(typeof(StringEnumConverter))]
         public ParentType ParentType { get; set; }
         public long ParentId { get; set; }
         public long UserId { get; set; }
-    }
-    
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum ParentType
-    {
-        Profession, 
-        Block,
-        Step,
-        Answer,
-        None
     }
 }

@@ -16,6 +16,7 @@ namespace Platform.Tests
         Task<int> SubmitTest(UserTestDto input);
         Task<ICollection<UserTests>> GetUserAnswers(long professionid, long blockid, long userid);
         Task<Dictionary<Block, ICollection<UserTests>>> GetUserAnswers(long professionid, long userid);
+        Task<int> SubmitOpen(UserTestDto input);
     }
 
     public class UserTestDto

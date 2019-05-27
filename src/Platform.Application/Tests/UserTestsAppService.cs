@@ -36,14 +36,17 @@ namespace Platform.Tests
                     throw new AbpAuthorizationException("You are not authorized to submit this test!");
                 }
             }
-            var res = await userTestManager.SubmitTest(input);
             if (input.Type == AnswerType.Open)
             {
-                
+                await userTestManager.SubmitOpen(input);
                 return new SubmitResponseDto { CorrectCount = 0, AnswersCount = 0 };
             }
+            var res = await userTestManager.SubmitTest(input);
+            
             return new SubmitResponseDto { CorrectCount = res, AnswersCount = input.AnswerIds.Count };
         }
+        
+        
 
         public async Task<UserAnswersDto> GetUserAnswersForProfession(long userid, long professionid)
         {

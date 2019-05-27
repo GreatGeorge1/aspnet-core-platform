@@ -17,4 +17,15 @@ namespace Platform.Background
         public ParentType ParentType { get; set; }
         public long ParentId { get; set; }
     }
+    
+    public class FileDeletedEventData : EventData
+    {
+        public long UserId { get; set; }
+        public string FileName { get; set; }
+        [EnumDataType(typeof(ParentType))]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ParentType ParentType { get; set; }
+        public long ParentId { get; set; }
+    }
+    
 }

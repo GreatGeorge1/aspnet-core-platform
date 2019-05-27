@@ -16,7 +16,7 @@ namespace Platform.Payment.Models
         [JsonProperty("amountMax")] 
         public double? AmountMax { get; set; }
         [JsonProperty("amount")] 
-        public double? Amount { get; set; }
+        public double Amount { get; set; }
         [JsonProperty("forwardUrl")] 
         public string ForwardUrl { get; set; }
         [JsonProperty("actionType")] 

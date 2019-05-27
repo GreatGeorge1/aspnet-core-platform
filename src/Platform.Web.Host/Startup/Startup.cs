@@ -330,6 +330,12 @@ namespace Platform.Web.Host.Startup
             //builder.StructuralTypes.First(t => t.ClrType == typeof(Profession)).AddProperty(typeof(Profession).GetProperty("Duration"));
             builder.StructuralTypes.First(t => t.ClrType == typeof(ProfessionContent)).AddCollectionProperty(typeof(ProfessionContent).GetProperty("FileUrls"));
             builder.EntityType<ProfessionContent>().Ignore(p=>p._fileurls);
+            builder.StructuralTypes.First(t => t.ClrType == typeof(StepContent)).AddCollectionProperty(typeof(StepContent).GetProperty("FileUrls"));
+            builder.EntityType<StepContent>().Ignore(p=>p._fileurls);
+            builder.StructuralTypes.First(t => t.ClrType == typeof(BlockContent)).AddCollectionProperty(typeof(BlockContent).GetProperty("FileUrls"));
+            builder.EntityType<BlockContent>().Ignore(p=>p._fileurls);
+            builder.StructuralTypes.First(t => t.ClrType == typeof(AnswerContent)).AddCollectionProperty(typeof(AnswerContent).GetProperty("FileUrls"));
+            builder.EntityType<AnswerContent>().Ignore(p=>p._fileurls);
             return builder;
         }
         

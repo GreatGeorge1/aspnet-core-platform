@@ -7,6 +7,6 @@ namespace Platform.Orders.Dtos
     public class CreateOrderDto
     {
         public long UserId { get; set; }
-        public ICollection<long> PackageIds { get; set; }
+        public long PackageId { get; set; }
     }
 }
