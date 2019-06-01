@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ using Abp.Authorization.Users;
 using Abp.BackgroundJobs;
 using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.IdentityFramework;
 using Abp.Linq.Extensions;
@@ -29,7 +31,7 @@ using Platform.Users.Dto;
 
 namespace Platform.Users
 {
-    [AbpAuthorize(PermissionNames.Pages_Users)]
+    [AbpAuthorize]
     public class UserAppService : AsyncCrudAppService<User, UserDto, long, PagedUserResultRequestDto, CreateUserDto, UserDto>, IUserAppService
     {
         private readonly UserManager _userManager;
@@ -39,6 +41,7 @@ namespace Platform.Users
         private readonly IAbpSession _abpSession;
         private readonly LogInManager _logInManager;
         private readonly IBackgroundJobManager _backgroundJobManager;
+        private readonly IRepository<User, long> _userRepository;
 
         public UserAppService(
             IRepository<User, long> repository,
@@ -48,7 +51,8 @@ namespace Platform.Users
             IPasswordHasher<User> passwordHasher,
             IAbpSession abpSession,
             LogInManager logInManager,
-            IBackgroundJobManager backgroundJobManager)
+            IBackgroundJobManager backgroundJobManager,
+            IRepository<User, long> userRepository)
             : base(repository)
         {
             _userManager = userManager;
@@ -58,6 +62,7 @@ namespace Platform.Users
             _abpSession = abpSession;
             _logInManager = logInManager;
             _backgroundJobManager = backgroundJobManager;
+            _userRepository = userRepository;
         }
 
         [AbpAllowAnonymous]
@@ -67,7 +72,7 @@ namespace Platform.Users
             var tenantId = 1;
             //user.TenantId = AbpSession.TenantId;
             user.TenantId = tenantId;
-            user.IsEmailConfirmed = true;
+            user.IsEmailConfirmed = false;
             await _userManager.InitializeOptionsAsync(tenantId);
 
             CheckErrors(await _userManager.CreateAsync(user, input.Password));
@@ -79,7 +84,7 @@ namespace Platform.Users
                     CheckErrors(await _userManager.SetRoles(user, input.RoleNames));
                 }
             }
-            
+            user.IsEmailConfirmed = false;
             CurrentUnitOfWork.SaveChanges();
 
             _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
@@ -92,10 +97,16 @@ namespace Platform.Users
                                 Обирати професію з нами легко та швидко!<br><br>
                                 Виникли питання? Звертайтесь до нас: <a href = 'mailto: info@choizy.org'>info@choizy.org</a><br>"
                 });
+
+            await this.SendConfirmCodeOnEmail(new SendConfirmCodeDto()
+            {
+                ConfirmFormUrl = "https://www.choizy.org/ConfirmEmail",
+                Email = user.EmailAddress
+            });
             
             return MapToEntityDto(user);
         }
-
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task<UserDto> Update(UserDto input)
         {
             CheckUpdatePermission();
@@ -114,6 +125,87 @@ namespace Platform.Users
             return await Get(input);
         }
 
+        [AbpAuthorize]
+        [UnitOfWork]
+        public async Task ChangePhone(UserChangePhone input)
+        {
+            if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
+            {
+                if (AbpSession.UserId != input.UserId)
+                {
+                    throw new AbpAuthorizationException("You are not authorized to change this user");
+                }
+            }
+            var res = await _userRepository.FirstOrDefaultAsync(user => user.Id == input.UserId);
+            
+            if (res == null)
+            {
+                throw new EntityNotFoundException(typeof(User), input.UserId);
+            }
+            res.PhoneNumber = input.NewPhone;
+        }
+        
+        [AbpAuthorize]
+        [UnitOfWork]
+        public async Task ChangeName(UserChangeName input)
+        {
+            if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
+            {
+                if (AbpSession.UserId != input.UserId)
+                {
+                    throw new AbpAuthorizationException("You are not authorized to change this user");
+                }
+            }
+            var res = await _userRepository.FirstOrDefaultAsync(user => user.Id == input.UserId);
+            
+            if (res == null)
+            {
+                throw new EntityNotFoundException(typeof(User), input.UserId);
+            }
+            res.Name = input.Name;
+        }
+        
+        [AbpAuthorize]
+        [UnitOfWork]
+        public async Task<bool> ChangeEmail(UserChangeEmail input)
+        {
+            if (!PermissionChecker.IsGranted(PermissionNames.Pages_Users))
+            {
+                if (AbpSession.UserId != input.UserId)
+                {
+                    throw new AbpAuthorizationException("You are not authorized to change this user");
+                }
+            }
+            var res = await _userRepository.FirstOrDefaultAsync(user => user.Id == input.UserId);
+
+            var check = await _userRepository.FirstOrDefaultAsync(user=>user.EmailAddress==input.Email);
+            if (check != null)
+            {
+                throw new UserFriendlyException("Пользователь с таким email уже существует");
+            }
+            
+            //  var user = await _userManager.FindByNameOrEmailAsync(input.UserNameOrEmail)??throw new UserFriendlyException($"Такий користувач не існує: {input.UserNameOrEmail}");
+            var resetToken = await _userManager.GenerateChangeEmailTokenAsync(res, input.Email);
+            var url = input.ConfirmChangeUrl.Trim();
+            var urlToken = WebUtility.HtmlEncode(resetToken);
+            res.NewEmail = input.Email;
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = input.Email,
+                    Subject = "Зміна пошти - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{res.Name}</b><br><br>
+                                <a href = '{url}/?userid={res.Id}&token={urlToken}&type=change'>Натисніть сюди, щоб підтвердити зміну пошти на {input.Email}</a><br><br>
+                                Або перейдіть за посиланням:  <a href = '{url}/?userid={res.Id}&token={urlToken}&type=change'>{url}/?userid={res.Id}&token={urlToken}&type=change</a><br><br>
+                                Це посилання буде дійсне 24 години<br><br>
+                              "
+                });
+            return true;
+        }
+        
+        
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public override async Task Delete(EntityDto<long> input)
         {
             var user = await _userManager.GetUserByIdAsync(input.Id);
@@ -158,14 +250,20 @@ namespace Platform.Users
 
         protected override IQueryable<User> CreateFilteredQuery(PagedUserResultRequestDto input)
         {
-            return Repository.GetAllIncluding(x => x.Roles)
+            return Repository.GetAllIncluding(x => x.Roles,x=>x.Orders)
                 .WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.UserName.Contains(input.Keyword) || x.Name.Contains(input.Keyword) || x.EmailAddress.Contains(input.Keyword))
                 .WhereIf(input.IsActive.HasValue, x => x.IsActive == input.IsActive);
         }
-
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         protected override async Task<User> GetEntityByIdAsync(long id)
         {
-            var user = await Repository.GetAllIncluding(x => x.Roles).FirstOrDefaultAsync(x => x.Id == id);
+            var user = await Repository.GetAll()
+                .Include(x=>x.Orders)
+                .ThenInclude(x=>x.OrderPackages)
+                .ThenInclude(x=>x.Package)
+                .ThenInclude(x=>x.Profession)
+                .ThenInclude(x=>x.Content)
+                .Include(x=>x.Roles).FirstOrDefaultAsync(x => x.Id == id);
 
             if (user == null)
             {
@@ -184,7 +282,7 @@ namespace Platform.Users
         {
             identityResult.CheckErrors(LocalizationManager);
         }
-
+        [AbpAuthorize]
         public async Task<bool> ChangePassword(ChangePasswordDto input)
         {
             if (_abpSession.UserId == null)
@@ -271,8 +369,75 @@ namespace Platform.Users
                 });
             return true;
         }
-
         
+        [AbpAllowAnonymous]
+        public async Task<bool> SendConfirmCodeOnEmail(SendConfirmCodeDto input)
+        {
+            var user = await _userManager.FindByNameOrEmailAsync(input.Email)??throw new UserFriendlyException($"Такий користувач не існує: {input.Email}");
+            var resetToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var url = input.ConfirmFormUrl.Trim();
+            var urlToken = WebUtility.HtmlEncode(resetToken);
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.EmailAddress,
+                    Subject = "Активація профілю - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                                <a href = '{url}/?userid={user.Id}&token={urlToken}&type=confirm'>Натисніть сюди, щоб активувати профіль</a><br><br>
+                                Або перейдіть за посиланням:  <a href = '{url}/?userid={user.Id}&token={urlToken}&type=confirm'>{url}/?userid={user.Id}&token={urlToken}&type=confirm</a><br><br>
+                                Це посилання буде дійсне 24 години<br><br>
+                              "
+                });
+            return true;
+        }
+
+        [AbpAllowAnonymous]
+        public async Task<bool> ConfirmEmail(ConfirmEmailDto input)
+        {
+            var token = input.ConfirmCode;
+            var user = await _userManager.GetUserByIdAsync(input.UserId)??throw new UserFriendlyException($"Такий користувач не існує");
+            (await _userManager.ConfirmEmailAsync(user, token.Trim())).CheckErrors();
+            
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.EmailAddress,
+                    Subject = "Почту підтверджено - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                               Почту підтверджено<br><br>
+                              "
+                });
+            return true;
+        }
+        
+        [AbpAllowAnonymous]
+        [UnitOfWork]
+        public async Task<bool> ConfirmEmailChange(ConfirmEmailDto input)
+        {
+            var token = input.ConfirmCode;
+            var user = await _userManager.GetUserByIdAsync(input.UserId)??throw new UserFriendlyException($"Такий користувач не існує");
+            (await _userManager.ChangeEmailAsync(user,user.NewEmail, token.Trim())).CheckErrors();
+
+
+            var user2 = await _userRepository.FirstOrDefaultAsync(user.Id);
+            user2.UserName = user.NewEmail;
+            user2.NormalizedUserName = user.NewEmail.Normalize();
+            _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                new SendEmailArgs
+                {
+                    Email = user.NewEmail,
+                    Subject = "Почту підтверджено - Choizy.Org",
+                    isHtml = true,
+                    Message = $@"Ім'я: <b>{user.Name}</b><br><br>
+                               Почту підтверджено<br><br>
+                              "
+                });
+            return true;
+        }
+        
+        [AbpAuthorize(PermissionNames.Pages_Users)]
         public async Task<bool> ResetPassword(ResetPasswordDto input)
         {
             if (_abpSession.UserId == null)

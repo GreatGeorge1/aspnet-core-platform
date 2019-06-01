@@ -9,4 +9,12 @@ namespace Platform.Users.Dto
         [Required]
         public string ResetFormUrl { get; set; }
     }
+    
+    public class SendConfirmCodeDto
+    {
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string ConfirmFormUrl { get; set; }
+    }
 }

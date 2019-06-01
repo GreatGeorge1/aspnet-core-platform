@@ -211,7 +211,7 @@ namespace Platform.Controllers
             var userInfo = await _externalAuthManager.GetUserInfo(model.AuthProvider, model.ProviderAccessCode);
             if (userInfo.ProviderKey != model.ProviderKey)
             {
-                throw new UserFriendlyException(L("CouldNotValidateExternalUser"));
+                    throw new UserFriendlyException(L("CouldNotValidateExternalUser"));
             }
 
             return userInfo;

@@ -1,15 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Abp.AspNetCore.Mvc.Controllers;
 using Abp.BackgroundJobs;
 using Abp.Net.Mail;
 using Abp.Net.Mail.Smtp;
+using Abp.UI;
 using JetBrains.Annotations;
 using Platform.Background;
 using Microsoft.AspNetCore.Mvc;
+using Platform.Authorization.Users;
+using Platform.Models.Google;
+using Platform.Orders;
+using Platform.Payment;
+using Platform.Payment.Dtos;
+using User = Platform.Authorization.Users.User;
 
 namespace Platform.Controllers
 {
@@ -17,10 +25,13 @@ namespace Platform.Controllers
     public class SendEmail: AbpController
     {
         [NotNull] private readonly IBackgroundJobManager _backgroundJobManager;
-        public SendEmail([NotNull] IBackgroundJobManager backgroundJobManager)
+        private readonly EasyPayService _paymentService;
+        public SendEmail([NotNull] IBackgroundJobManager backgroundJobManager,
+            EasyPayService paymentService)
         {
             _backgroundJobManager =
                 backgroundJobManager ?? throw new ArgumentNullException(nameof(backgroundJobManager));
+            _paymentService= paymentService ?? throw new ArgumentNullException(nameof(paymentService));
         }
 
         [HttpPost]
@@ -61,7 +72,32 @@ namespace Platform.Controllers
         }
         
         [HttpPost]
-        public async Task SendPsycho([FromBody]PsychoSendEmailDto input){
+        public async Task<ConfirmOrderResponseDto> SendPsycho([FromBody]PsychoSendEmailDto input)
+        {
+
+           // var user = await _userManager.FindByEmailAsync(input.Email);
+           ConfirmOrderResponseDto res=new ConfirmOrderResponseDto();
+            switch (input.PackageId)
+            {
+                case 1:
+                    //550
+                    res= await this.GenOrder(550, input.Phone, input.Name, input.Email, input.Package);
+                    break;
+                case 2:
+                    //550
+                    res= await this.GenOrder(550, input.Phone, input.Name, input.Email, input.Package);
+                    break;
+                case 3:
+                    //950
+                    res= await this.GenOrder(950, input.Phone, input.Name, input.Email, input.Package);
+                    break;
+                case 4:
+                    //1350
+                    res= await this.GenOrder(1350, input.Phone, input.Name, input.Email, input.Package);
+                    break;
+                default:
+                    throw new UserFriendlyException("такого id не существует");
+            }
             _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
                 new SendEmailArgs
                 {
@@ -84,6 +120,37 @@ namespace Platform.Controllers
                                 Телефон: <b>{input.Phone}</b><br><br>
                                 Послуга: <b>{input.Package}</b><br><br>"
                 });
+            return res;
+        }
+
+
+        private async Task<ConfirmOrderResponseDto> GenOrder(int summ, string phone, string name, string email, string desc)
+        {
+            var app=await _paymentService.CreateApp();
+
+            var secret = UrlToken.GenerateToken();
+            //var secret2 = UrlToken.GenerateToken();
+            //order.SetData("secretSuccess",secret);
+            // order.SetData("secretFailed",secret);
+            try
+            {
+                var createOrder = await _paymentService.CreateOrder(app, secret, $"Оплата консультації психолога #{desc}. {name}, {email}, {phone}.",
+                    (double) summ, new Urls()
+                    {
+                        //Success = $"{baseUrl}/?orderId={OrderId}&success=true&secret={secret}",
+                        //Failed = $"{baseUrl}/?orderId={OrderId}&success=false&secret=null"
+                    });
+                return new ConfirmOrderResponseDto()
+                {
+                    ForwardUrl = createOrder.ForwardUrl,
+                    Amount = createOrder.Amount
+                };
+            }
+            catch (HttpRequestException e)
+            {
+                //await orderRepository.DeleteAsync(OrderId);
+                throw new UserFriendlyException(e.Message);
+            }
         }
         
         [HttpPost]
@@ -119,6 +186,7 @@ namespace Platform.Controllers
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Package { get; set; }
+        public int PackageId { get; set; }
     }
     
     public class FeedbackSendEmailDto{

@@ -30,14 +30,14 @@ namespace Platform.Web.Host.Startup
         public override void PostInitialize()
         {
             var externalAuthConfiguration = IocManager.Resolve<IExternalAuthConfiguration>();
-            externalAuthConfiguration.Providers.Add(
-                new ExternalLoginProviderInfo(
-                   InstagramAuthProvider.Name,
-                   "2fb449df1bd84999898a1a87a81f939c",
-                   "7413c43d4590436db88b8708eda073fb",
-                   typeof(InstagramAuthProvider)
-               )
-           );
+           // externalAuthConfiguration.Providers.Add(
+           //     new ExternalLoginProviderInfo(
+           //        InstagramAuthProvider.Name,
+           //        "2fb449df1bd84999898a1a87a81f939c",
+           //        "7413c43d4590436db88b8708eda073fb",
+           //        typeof(InstagramAuthProvider)
+           //    )
+           //);
             externalAuthConfiguration.Providers.Add(
                  new ExternalLoginProviderInfo(
                     FacebookAuthProvider.Name,
@@ -46,8 +46,14 @@ namespace Platform.Web.Host.Startup
                     typeof(FacebookAuthProvider)
                 )
             );
-
-           
+            externalAuthConfiguration.Providers.Add(
+                new ExternalLoginProviderInfo(
+                    GoogleAuthProvider.Name,
+                    "903160367405-lh9flgd14o68ik9tsqqmpl2qlr2lv53i.apps.googleusercontent.com",
+                    "cy4jSqo_676hlXI3LTmkfeL0",
+                    typeof(GoogleAuthProvider)
+                    )
+            );
         }
 
     }

@@ -57,21 +57,28 @@ namespace Platform.Orders
         [UnitOfWork]
         public async Task<ConfirmOrderResponseDto> ConfirmOrder(long OrderId, string baseUrl)
         {
-            var order = await orderRepository.FirstOrDefaultAsync(OrderId);
+            var order = await orderRepository.GetAll()
+                .Include(o=>o.User)
+                .Include(o=>o.OrderPackages)
+                .ThenInclude(o=>o.Package)
+                .ThenInclude(o=>o.Profession)
+                .ThenInclude(o=>o.Content)
+                .FirstOrDefaultAsync(o=>o.Id==OrderId);
             if (order.IsCompleted == true)
             {
                 throw new UserFriendlyException("Cannot confirm the order, order is completed already!");
             }
             order.IsActive = true;
+            var user = order.User;
             var app=await _paymentService.CreateApp();
 
             var secret = UrlToken.GenerateToken();
-            var secret2 = UrlToken.GenerateToken();
+            //var secret2 = UrlToken.GenerateToken();
             order.SetData("secretSuccess",secret);
            // order.SetData("secretFailed",secret);
             try
             {
-                var createOrder = await _paymentService.CreateOrder(app, order.Id, $"Оплата сертификата #{order.Id}",
+                var createOrder = await _paymentService.CreateOrder(app, order.Id.ToString(), $"Оплата сертификата #{order.Id}.Користувач {user.Name}, Id #{user.Id}, {user.EmailAddress}. Курс {order.OrderPackages.First().Package.Profession.Content.Title} Id#{order.OrderPackages.First().Package.Profession.Id}",
                     (double) order.Summ, new Urls()
                     {
                         Success = $"{baseUrl}/?orderId={OrderId}&success=true&secret={secret}",
@@ -133,11 +140,21 @@ namespace Platform.Orders
         public async Task CompleteOrder(EasyPayNotify notify, string body, string sign)
         {
             var check=await _paymentService.CheckSign(body, sign);
-            //if (check == false)
-            //{
+            if (check == false)
+            {
+                _ = await _backgroundJobManager.EnqueueAsync<SendEMailJob, SendEmailArgs>(
+                    new SendEmailArgs
+                    {
+                        Email = "info@choizy.org",
+                        Subject = $"Отладка бек(ошибка easypay)",
+                        isHtml = true,
+                        Message = $@"{body}<br><br>
+                                    {sign}
+                             "
+                    });
                 //throw new UserFriendlyException("Sign not valid");
-               // return;
-            //}
+                return;
+            }
             var order = await orderRepository.FirstOrDefaultAsync(Convert.ToInt64(notify.OrderId));
             if (order.IsActive!=true)
             {

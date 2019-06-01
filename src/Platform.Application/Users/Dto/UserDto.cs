@@ -49,4 +49,23 @@ namespace Platform.Users.Dto
 
         public string[] RoleNames { get; set; }
     }
+
+    public class UserChangePhone
+    {
+        public long UserId { get; set; }
+        public string NewPhone { get; set; }
+    }
+    
+    public class UserChangeName
+    {
+        public long UserId { get; set; }
+        public string Name { get; set; }
+    }
+    
+    public class UserChangeEmail
+    {
+        public long UserId { get; set; }
+        public string Email { get; set; }
+        public string ConfirmChangeUrl { get; set; }
+    }
 }

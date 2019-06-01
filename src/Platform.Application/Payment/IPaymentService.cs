@@ -9,7 +9,7 @@ namespace Platform.Payment
     {
         Task<bool> CheckSign(string body, string sign);
         Task<CreateApp> CreateApp();
-        Task<CreateOrderResponse> CreateOrder(CreateApp createApp, long orderid, string description, double amount);
-        Task<CreateOrderResponse> CreateOrder(CreateApp createApp, long orderid, string description, double amount, Urls urls);
+        Task<CreateOrderResponse> CreateOrder(CreateApp createApp, string orderid, string description, double amount);
+        Task<CreateOrderResponse> CreateOrder(CreateApp createApp, string orderid, string description, double amount, Urls urls);
     }
 }

@@ -966,6 +966,8 @@ namespace Platform.Migrations
                         .IsRequired()
                         .HasMaxLength(150);
 
+                    b.Property<string>("NewEmail");
+
                     b.Property<string>("NormalizedEmailAddress")
                         .IsRequired()
                         .HasMaxLength(256);

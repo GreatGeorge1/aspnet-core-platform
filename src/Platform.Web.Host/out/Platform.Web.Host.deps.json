@@ -6,7 +6,7 @@
   "compilationOptions": {
     "defines": [
       "TRACE",
-      "DEBUG",
+      "RELEASE",
       "NETCOREAPP",
       "NETCOREAPP2_2"
     ],
@@ -14,7 +14,7 @@
     "platform": "x64",
     "allowUnsafe": false,
     "warningsAsErrors": false,
-    "optimize": false,
+    "optimize": true,
     "keyFile": "",
     "emitEntryPoint": true,
     "xmlDoc": false,
@@ -3222,6 +3222,7 @@
           "Abp.AspNetCore.OData": "4.5.0",
           "Abp.AspNetCore.SignalR": "4.5.0",
           "Abp.ZeroCore": "4.5.0",
+          "Google.Apis": "1.40.0",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.2.0",
           "Platform.Application": "1.0.0",
@@ -6786,6 +6787,7 @@
           "Abp.AspNetCore.OData": "4.5.0",
           "Abp.AspNetCore.SignalR": "4.5.0",
           "Abp.ZeroCore": "4.5.0",
+          "Google.Apis": "1.40.0",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.2.0",
           "Platform.Application": "1.0.0",

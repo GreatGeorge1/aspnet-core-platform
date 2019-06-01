@@ -55,7 +55,7 @@ namespace Platform.Payment
             }
         }
         
-        public async Task<CreateOrderResponse> CreateOrder(CreateApp createApp, long orderid, string description, double amount)
+        public async Task<CreateOrderResponse> CreateOrder(CreateApp createApp, string orderid, string description, double amount)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -102,7 +102,7 @@ namespace Platform.Payment
             }
         }
 
-         public async Task<CreateOrderResponse> CreateOrder(CreateApp createApp, long orderid, string description, double amount, Urls urls)
+         public async Task<CreateOrderResponse> CreateOrder(CreateApp createApp, string orderid, string description, double amount, Urls urls)
         {
             using (HttpClient client = new HttpClient())
             {

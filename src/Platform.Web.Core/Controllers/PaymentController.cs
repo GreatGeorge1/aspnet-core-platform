@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Ocsp;
 using Platform.Background;
 using Platform.Orders;
@@ -38,26 +39,18 @@ namespace Platform.Controllers
                 return BadRequest();
             }
             
-            using (var mem = new MemoryStream())
-            using (var reader = new StreamReader(mem))
-            {
-                Request.Body.CopyTo(mem);
- 
-                var body = reader.ReadToEnd();
+           
  
                 // Do something
-                _ = await _backgroundJobManager.EnqueueAsync<EasyPayProcessNotifyJob, EasyPayProcessNotifyArgs>(
-                    new EasyPayProcessNotifyArgs
-                    {
-                        Sign = sign,
-                        Body=body,
-                        Notify = input
-                    });
+            _ = await _backgroundJobManager.EnqueueAsync<EasyPayProcessNotifyJob, EasyPayProcessNotifyArgs>(
+                new EasyPayProcessNotifyArgs
+                {
+                    Sign = sign,
+                    Body=  JsonConvert.SerializeObject(input),
+                    Notify = input
+                });
                 
-                mem.Seek(0, SeekOrigin.Begin);
- 
-                body = reader.ReadToEnd();
-            }
+              
             return Ok();
         }
     }

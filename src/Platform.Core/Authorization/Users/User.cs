@@ -15,6 +15,7 @@ namespace Platform.Authorization.Users
         public DateTime DOB { get; set; }
         public ICollection<Order> Orders {get;set;}
         public ICollection<UserProfessions> UserProfessions { get; set; }
+        public string NewEmail { get; set; }
         
         [Required]
         [StringLength(150)]
